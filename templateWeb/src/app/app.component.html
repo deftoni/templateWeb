@@ -1,8 +1,25 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    salut to {{ title }}!
-  </h1>
+
+
+<div class="container">
+  <div style="text-align:center">
+    <h1>
+      template Web
+    </h1>
   </div>
 
+  <div>
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Acceuil</a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/articles">Articles</a>
+      </li>
+    </ul>
+  </div>
 
+  <body>
+    <router-outlet></router-outlet>
+  </body>
+</div>
