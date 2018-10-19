@@ -10,7 +10,7 @@ import { ARTICLES } from '../mock-articles';
 })
 export class ArticleListComponent implements OnInit {
 
-  articles = ARTICLES;
+  articles: Article[] = ARTICLES;
 
   constructor(public articlesService: ArticlesService) { }
 

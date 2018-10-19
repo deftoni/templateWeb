@@ -25,8 +25,7 @@ export class ArticleCreateComponent implements OnInit {
     }
     const article: Article = {
       title: form.value.title ,
-      content: form.value.content ,
-      date: new Date().toLocaleString()
+      content: form.value.content
     };
     this.articlesService.addArticle(article);
     console.log('ajout d\'un article effectué');
