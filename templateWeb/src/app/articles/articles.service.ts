@@ -15,7 +15,6 @@ export class ArticlesService {
   }
 
   addArticle( article: Article ) {
-    // const article = {title: title, content: content, date: date};
     this.articles.push(article);
   }
 }
