@@ -1,0 +1,18 @@
+<div class="container">
+  <div style="overflow:hidden;">
+    <h3>Liste des articles</h3>
+    <button routerLink="/articleCreate" routerLinkActive="router-link-active"  style="float: right;" type="button" class="btn btn-primary btn-sm">Ajouter un article</button>
+  </div>
+  <div class="list-group" *ngIf="articles.length > 0">
+    <a routerLink="/home" routerLinkActive="router-link-active"  class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let article of articles" >
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ article.title }}</h5>
+        <small>{{ article.date }}</small>
+      </div>
+      <p class="mb-1">{{ article.content }}</p>
+    </a>
+  </div>
+  <div class="list-group" *ngIf="articles.length <= 0">
+    <p class="p-3 mb-2 bg-warning text-dark">Aucun article pour le moment</p>
+  </div>
+</div>
