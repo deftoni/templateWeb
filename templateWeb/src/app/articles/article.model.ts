@@ -1,5 +1,5 @@
-export interface Article {
+export class Article {
   title: string;
   content: string;
-  date: string;
+  date?: string;
 }

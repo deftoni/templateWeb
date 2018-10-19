@@ -4,6 +4,7 @@ import { ArticleListComponent } from './articles/article-list/article-list.compo
 import { HomeComponent } from './home/home.component';
 import { ArticleCreateComponent } from './articles/article-create/article-create.component';
 
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent},

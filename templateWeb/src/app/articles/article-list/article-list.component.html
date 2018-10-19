@@ -1,16 +1,65 @@
 <div class="container">
-  <div style="overflow:hidden;">
-    <h3>Liste des articles</h3>
-    <button routerLink="/articleCreate" routerLinkActive="router-link-active"  style="float: right;" type="button" class="btn btn-primary btn-sm">Ajouter un article</button>
+  <div class="row" style="margin-bottom:2%">
+      <div>
+          <img src="assets/img/fdForet.jpg" style="width:100%">
+      </div>      
   </div>
-  <div class="list-group" *ngIf="articles.length > 0">
-    <a routerLink="/home" routerLinkActive="router-link-active"  class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let article of articles" >
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{ article.title }}</h5>
-        <small>{{ article.date }}</small>
+  <div class="row justify-content-center">
+    <div class="input-group mb-3 col-5">
+      <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
       </div>
-      <p class="mb-1">{{ article.content }}</p>
-    </a>
+    </div>
+    <div class="col-1">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          AFFICHER
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item">Nouveauté</a>
+          <a class="dropdown-item">Création autonme</a>
+          <a class="dropdown-item">Le street cred c'est ici</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-1" style="margin-left: 2%">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          PAR
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item">Prix</a>
+          <a class="dropdown-item">Date</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center" style="overflow:hidden;">
+    <div class="col-3">
+      <h3>Liste des articles</h3>
+    </div>
+    <div class="col-3">
+      <button routerLink="/articleCreate" routerLinkActive="router-link-active" style="float: right;" type="button"
+        class="btn btn-primary btn-sm">Ajouter un article</button>
+    </div>
+  </div>
+  <div *ngIf="articles.length > 0">
+    <div class="row">
+      <div class="col" *ngFor="let article of articles" style="padding-left:7%">
+        <div class="card" style="width: 26rem;">
+          <img class="card-img-top" src="/assets/img/jordan1.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{article.title}}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <a class="btn btn-primary">J'achete !</a>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="list-group" *ngIf="articles.length <= 0">
     <p class="p-3 mb-2 bg-warning text-dark">Aucun article pour le moment</p>
