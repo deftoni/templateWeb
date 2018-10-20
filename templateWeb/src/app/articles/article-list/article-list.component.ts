@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../article.model';
 import { ArticlesService } from '../articles.service';
-import { ARTICLES } from '../mock-articles';
 
 @Component({
   selector: 'app-article-list',
@@ -10,7 +9,7 @@ import { ARTICLES } from '../mock-articles';
 })
 export class ArticleListComponent implements OnInit {
 
-  articles: Article[] = ARTICLES;
+  articles: Article[];
 
   constructor(public articlesService: ArticlesService) { }
 
