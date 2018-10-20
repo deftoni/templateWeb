@@ -1,36 +1,33 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(255, 255, 255);">
-  <a class="navbar-brand" style="color:#6495ED;" routerLink="/home">MTP</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
-    aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" routerLink="/home"><i class="fas fa-home"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="menuPrincipal">
+  <div class="collapse navbar-collapse" id="mainMenu">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" style="color:#6495ED;" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Home <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" style="color:#6495ED;">About</a>
+        <a class="nav-link">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" style="color:#6495ED;" routerLink="/articleList">Liste d'article</a>
+        <a class="nav-link" routerLink="/articleList">Articles</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" style="color:#6495ED;" href="">Contact us</a>
+        <a class="nav-link">Contact us</a>
       </li>
     </ul>
   </div>
   <div class="btn-group" role="group" aria-label="Basic example">
     <button type="button" class="btn btn-outline-primary">Sign In</button>
-    <button type="button" class="btn btn-outline-success">Sign Up</button>
+    <button type="button" class="btn btn-outline-primary">Sign Up</button>
   </div>
 </nav>
 
-<body>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
-</body>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
 
 <footer class="bestFooterEver">
   <div class="container">
