@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ArticleListComponent } from './articles/article-list/article-list.component';
 import { ArticleCreateComponent } from './articles/article-create/article-create.component';
+import { ServicesListComponent } from './services-list/services-list.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { ArticleCreateComponent } from './articles/article-create/article-create
     AppComponent,
     HomeComponent,
     ArticleListComponent,
-    ArticleCreateComponent
+    ArticleCreateComponent,
+    ServicesListComponent,
+    PortfolioComponent
   ],
   imports: [
     BrowserModule,
