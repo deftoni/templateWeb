@@ -1,10 +1,10 @@
 import { Article } from './article.model';
 
 export const ARTICLES: Article[] = [
-  { title: 'plop', content: 'Mr. Nice' },
-  { title: 'plopi', content: 'Narco' },
-  { title: 'plopo', content: 'Bombasto' },
-  { title: 'plopu', content: 'Celeritas' },
-  { title: 'plopa', content: 'Magneta' },
-  { title: 'plopy', content: 'RubberMan' }
+  { id: '1245', title: 'plop', content: 'Mr. Nice' },
+  { id: '6546', title: 'plopi', content: 'Narco' },
+  { id: '7547', title: 'plopo', content: 'Bombasto' },
+  { id: '8566', title: 'plopu', content: 'Celeritas' },
+  { id: '9785', title: 'plopa', content: 'Magneta' },
+  { id: '9654', title: 'plopy', content: 'RubberMan' }
 ];

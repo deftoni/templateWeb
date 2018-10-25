@@ -1,4 +1,4 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Article } from '../article.model';
 import { ArticlesService } from '../articles.service';
 
@@ -9,14 +9,18 @@ import { ArticlesService } from '../articles.service';
 })
 export class ArticleListComponent implements OnInit {
 
-  articles: Article[];
-
+  public articles: Article[] = [];
 
   constructor(public articlesService: ArticlesService) { }
 
   ngOnInit() {
-    this.articles = this.articlesService.getArticles();
-  }
 
+    this.articlesService.getArticlesObserver().subscribe(
+      (articleData) => { console.log('next', articleData); this.articles = articleData.articles; },
+      () => { console.log('error'); },
+      () => { console.log('complete'); }
+    );
+
+  }
 
 }
