@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Article } from './article.model';
 import { HttpClient } from '@angular/common/http';
 
-import { ARTICLES } from './mock-articles';
-import { Subject, Observable } from 'rxjs';
+// import { ARTICLES } from './mock-articles';
+import { Subject } from 'rxjs';
 
 
 @Injectable({
@@ -13,10 +13,9 @@ import { Subject, Observable } from 'rxjs';
 export class ArticlesService {
 
   // private articles: Article[] = ARTICLES;
-  private articles: Article[];
+  private articlesUpdated = new Subject<Article>();
 
   constructor(private http: HttpClient) { }
-
 
   getArticlesObserver() {
 
@@ -26,8 +25,16 @@ export class ArticlesService {
     );
   }
 
+  getArticlesUpdateListener() {
+    return this.articlesUpdated.asObservable();
+  }
+
   addArticle(title: string, content: string ) {
     const article: Article = {id: null, title: title, content: content};
-    this.articles.push(article);
+    this.http.post<{ message: string }>('http://localhost:3000/api/articles', article)
+    .subscribe((responseData) => {
+      console.log('msg', responseData.message);
+      this.articlesUpdated.next(article);
+    });
   }
 }

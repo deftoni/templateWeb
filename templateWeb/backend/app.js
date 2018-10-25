@@ -1,5 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', "*");
@@ -14,7 +18,15 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/articles' , (req, res, next ) => {
+app.post('/api/articles', (req, res, next ) => {
+  const article = req.body;
+  console.log(article);
+  res.status(201).json({
+    message: 'Article added successfully'
+  });
+});
+
+app.get('/api/articles' , (req, res, next ) => {
   const articles = [
     {
       id: '213',
@@ -25,11 +37,16 @@ app.use('/api/articles' , (req, res, next ) => {
       id: '241',
       title: 'second server side article',
       content: 'this is coming from the server too'
+    },
+    {
+      id: '249',
+      title: 'third server side article',
+      content: 'this is coming from the server feels good !'
     }
 
   ];
   res.status(200).json({
-    message: 'articles fetched succesfully',
+    message: 'articles fetched successfully',
     articles: articles
   });
 });
