@@ -3,7 +3,6 @@ import { Article } from './article.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-// import { ARTICLES } from './mock-articles';
 import { Subject } from 'rxjs';
 
 @Injectable({
