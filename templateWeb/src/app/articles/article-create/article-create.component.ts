@@ -23,7 +23,8 @@ export class ArticleCreateComponent implements OnInit {
       // test a faire
       return;
     }
-    this.articlesService.addArticle(form.value.title, form.value.content );
+
+    this.articlesService.addArticle(form.value.title, form.value.content);
 
     // test si l'ajout a etait effectué
     this.router.navigate(['/', 'articleList']);

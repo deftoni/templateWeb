@@ -1,6 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const Article = require('./models/article');
+
 const app = express();
+
+mongoose.connect('mongodb+srv://mush:8mpRcH61LWu31rPG@cluster0-g1zec.gcp.mongodb.net/templateWebDB?retryWrites=true')
+.then( () => {
+  console.log('Connected to dataBase !');
+})
+.catch(() => {
+  console.log('Connection failed !')
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -19,35 +31,34 @@ app.use((req, res, next) => {
 });
 
 app.post('/api/articles', (req, res, next ) => {
-  const article = req.body;
-  console.log(article);
-  res.status(201).json({
-    message: 'Article added successfully'
+  const article = new Article({
+    title: req.body.title,
+    content: req.body.content
+  });
+  article.save().then(createdArticle => {
+    res.status(201).json({
+      message: 'Article added successfully',
+      articleId: createdArticle._id
+    });
   });
 });
 
 app.get('/api/articles' , (req, res, next ) => {
-  const articles = [
-    {
-      id: '213',
-      title: 'first server side article',
-      content: 'this is coming from the server'
-    },
-    {
-      id: '241',
-      title: 'second server side article',
-      content: 'this is coming from the server too'
-    },
-    {
-      id: '249',
-      title: 'third server side article',
-      content: 'this is coming from the server feels good !'
-    }
+  Article.find()
+    .then(documents => {
+      res.status(200).json({
+        message: 'articles fetched successfully',
+        articles: documents
+      });
+    });
+});
 
-  ];
-  res.status(200).json({
-    message: 'articles fetched successfully',
-    articles: articles
+app.delete('/api/articles/:id', (req, res, next) => {
+  Article.deleteOne({_id: req.params.id})
+  .then(() => {
+    res.status(200).json({
+      message: 'Article deleted successfully'
+    });
   });
 });
 

@@ -18,16 +18,18 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     // recuperation des articles
-    this.articlesService.getArticlesObserver().subscribe(
-      (articleData) => { console.log('next', articleData), this.articles = articleData.articles; },
-      () => { console.log('error'); },
-      () => { console.log('complete'); }
-    );
+      this.articlesService.getArticles();
 
-    // verification d'ajout d'articles
+    // verification de l'ajout d'articles
     this.articlesSub = this.articlesService.getArticlesUpdateListener().subscribe(
-      (article: Article) => { this.articles.push(article); },
+      (articles: Article[]) => {
+        console.log('UPDATE Articles', articles),
+        this.articles = articles; }
       );
+  }
+
+  onDelete(articleId: string) {
+    this.articlesService.deleteArticle(articleId);
   }
 
   ngOnDestroy() {

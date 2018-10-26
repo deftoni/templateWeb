@@ -54,6 +54,9 @@
               <h2 class="sub_title">{{ article.title }}</h2>
               <p class="description">{{ article.content }}</p>
             </div>
+            <div class="button-delete">
+              <button type="button" class="btn btn-danger" (click)="onDelete(article.id)">Supprimer</button>
+            </div>
           </div>
         </div>
       </div>
