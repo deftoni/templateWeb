@@ -1,5 +1,5 @@
 <div class="container mt-10">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center pt-4">
     <div class="input-group mb-3 col-5">
       <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="button-addon2">
       <div class="input-group-append">
@@ -32,25 +32,29 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center" style="overflow:hidden;">
-    <div class="col-3">
+  <div class="row mt-5" style="overflow:hidden;">
+    <div class="col-xl-12 text-center">
       <h3>Liste des articles</h3>
     </div>
-    <div class="col-3">
-      <button routerLink="/articleCreate" routerLinkActive="router-link-active" style="float: right;" type="button"
+    <div class="col-xl-12 text-center">
+      <button routerLink="/articleCreate" routerLinkActive="router-link-active" type="button"
         class="btn btn-primary btn-sm">Ajouter un article</button>
     </div>
   </div>
-  <div *ngIf="articles.length > 0">
+  <div class="container pt-5" *ngIf="articles.length > 0">
     <div class="row">
-      <div class="col" *ngFor="let article of articles" style="padding-left:7%">
-        <div class="card" style="width: 26rem;">
-          <img class="card-img-top" src="/assets/img/jordan1.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">{{ article.title }}</h5>
-            <p class="card-text">{{ article.content }}</p>
+      <div id="card" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4" *ngFor="let article of articles">
+        <div class="post-module hover">
+          <div class="thumbnail">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg" />
           </div>
-          <a class="btn btn-primary">J'achete !</a>
+          <div class="post-content">
+            <div class="category">Photos</div>
+            <div>
+              <h2 class="sub_title">{{ article.title }}</h2>
+              <p class="description">{{ article.content }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
