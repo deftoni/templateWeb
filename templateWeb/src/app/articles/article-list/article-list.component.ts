@@ -3,6 +3,8 @@ import { Article } from '../article.model';
 import { ArticlesService } from '../articles.service';
 import { Subscription } from 'rxjs';
 
+import { NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.component.html',
@@ -12,6 +14,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
 
   public articles: Article[] = [];
   private articlesSub: Subscription;
+  private articleToUpdate: Article;
 
   constructor(public articlesService: ArticlesService) { }
 
@@ -35,4 +38,26 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.articlesSub.unsubscribe();
   }
+
+  setArticleToUpdateArticle(articleIdToUpdate: string)
+  {
+    for(let article of this.articles)
+    {
+      if(article.id === articleIdToUpdate)
+      {
+        this.articleToUpdate = article;
+      }
+    }
+  }
+
+  onUpdateArticle(form: NgForm) {
+    if (form.invalid) {
+      console.log('formulaire de modification d\'un article invalide');
+      // test a faire
+      return;
+    }
+    console.log("je suis prêt à update" + form.value.title);
+    //this.articlesService.updateArticle(form.value);
+  }
+
 }

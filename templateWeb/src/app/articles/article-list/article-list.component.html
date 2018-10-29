@@ -37,8 +37,8 @@
       <h3>Liste des articles</h3>
     </div>
     <div class="col-xl-12 text-center">
-      <button routerLink="/articleCreate" routerLinkActive="router-link-active" type="button"
-        class="btn btn-primary btn-sm">Ajouter un article</button>
+      <button routerLink="/articleCreate" routerLinkActive="router-link-active" type="button" class="btn btn-primary btn-sm">Ajouter
+        un article</button>
     </div>
   </div>
   <div class="container pt-5" *ngIf="articles.length > 0">
@@ -54,8 +54,16 @@
               <h2 class="sub_title">{{ article.title }}</h2>
               <p class="description">{{ article.content }}</p>
             </div>
-            <div class="button-delete">
-              <button type="button" class="btn btn-danger" (click)="onDelete(article.id)">Supprimer</button>
+            <div class="row">
+              <div class="col-6">
+                <button type="button" class="btn btn-info" data-toggle="modal" (click)="setArticleToUpdateArticle(article.id)"
+                  data-target="#articleUpdateModal">
+                  Modifier
+                </button>
+              </div>
+              <div class="col-6 button-delete">
+                <button type="button" class="btn btn-danger" (click)="onDelete(article.id)">Supprimer</button>
+              </div>
             </div>
           </div>
         </div>
@@ -64,5 +72,40 @@
   </div>
   <div class="list-group" *ngIf="articles.length <= 0">
     <p class="p-3 mb-2 bg-warning text-dark">Aucun article pour le moment</p>
+  </div>
+  <div class="modal fade" id="articleUpdateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header" *ngIf="articleToUpdate">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Modification de {{ articleToUpdate.title }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="articleToUpdate">
+            <div class="container">
+              <form class="needs-validation" novalidate (submit)="onUpdateArticle(articleToUpdateForm)"
+                #articleToUpdateForm="ngForm">
+                <div class="form-group">
+                  <input type="hidden" class="form-control" name="id" value="{{ articleToUpdate.id }}" required>
+                  <label for="articleTitle">Titre de l'article</label>
+                  <input type="text" class="form-control" name="title" value="{{ articleToUpdate.title }}" required>
+                </div>
+                <div class="form-group">
+                  <label for="articleContent">Contenu de l'article</label>
+                  <textarea class="form-control" name="content" rows="4" value="{{ articleToUpdate.content }}" required></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

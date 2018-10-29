@@ -66,4 +66,8 @@ export class ArticlesService {
       this.articlesUpdated.next([...this.articles]);
     });
   }
+
+  updateArticle(articleToUpdate: Article){
+    console.log(articleToUpdate + "has been updated");
+  }
 }
