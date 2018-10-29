@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { Subject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,60 +15,71 @@ export class ArticlesService {
   private articles: Article[] = [];
   private articlesUpdated = new Subject<Article[]>();
 
+  private _url = "http://localhost:3000/api/articles";
+
   constructor(private http: HttpClient) { }
 
   getArticles() {
 
     this.http
-    .get<{ message: string, articles: any }>(
-      'http://localhost:3000/api/articles'
-    )
-    .pipe(map((articleData) => {
-      return articleData.articles.map((article) => {
-        return {
-          id: article._id ,
-          title: article.title,
-          content: article.content
-        };
-      });
-    }))
-    .subscribe(
-      (articleTransformed) => {
-        this.articles = articleTransformed,
-        console.log('GET Article', this.articles),
-        this.articlesUpdated.next([...this.articles]);
-      },
-      () => { console.log('error'); },
-      () => { }
-    );
+      .get<{ message: string, articles: any }>(
+        'http://localhost:3000/api/articles'
+      )
+      .pipe(map((articleData) => {
+        return articleData.articles.map((article) => {
+          return {
+            id: article._id,
+            title: article.title,
+            content: article.content
+          };
+        });
+      }))
+      .subscribe(
+        (articleTransformed) => {
+          this.articles = articleTransformed,
+            console.log('GET Article', this.articles),
+            this.articlesUpdated.next([...this.articles]);
+        },
+        () => { console.log('error'); },
+        () => { }
+      );
   }
 
   getArticlesUpdateListener() {
     return this.articlesUpdated.asObservable();
   }
 
-  addArticle(title: string, content: string ) {
-    const article: Article = {id: null, title: title, content: content};
+  addArticle(title: string, content: string) {
+    const article: Article = { id: null, title: title, content: content };
     this.http.post<{ message: string, articleId: string }>('http://localhost:3000/api/articles', article)
-    .subscribe(
-      (responseData) => {
-      console.log('msg', responseData.message);
-      article.id = responseData.articleId;
-      this.articles.push(article);
-      this.articlesUpdated.next([...this.articles]);
-      }
-    );
+      .subscribe(
+        (responseData) => {
+          console.log('msg', responseData.message);
+          article.id = responseData.articleId;
+          this.articles.push(article);
+          this.articlesUpdated.next([...this.articles]);
+        }
+      );
   }
 
   deleteArticle(articleId: string) {
     this.http.delete('http://localhost:3000/api/articles/' + articleId)
-    .subscribe(() => {
-      this.articles = this.articles.filter(article => article.id !== articleId);
-      this.articlesUpdated.next([...this.articles]);
-    });
+      .subscribe(() => {
+        this.articles = this.articles.filter(article => article.id !== articleId);
+        this.articlesUpdated.next([...this.articles]);
+      });
   }
 
-  updateArticle(articleToUpdate: Article){
-    console.log(articleToUpdate + "has been updated");
+  updateArticle(articleToUpdate: Article) {
+    this.http.put<{ message: string, articleId: string }>(`${this._url}/${articleToUpdate.id}`, articleToUpdate)
+      .subscribe(
+        (responseData) => {
+          console.log('msg', responseData.message);
+          articleToUpdate.id = responseData.articleId;
+          this.articles.push(articleToUpdate);
+          this.articlesUpdated.next([...this.articles]);
+        }
+      );
   }
+
 }

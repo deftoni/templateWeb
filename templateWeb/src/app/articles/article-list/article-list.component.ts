@@ -21,30 +21,24 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     // recuperation des articles
-      this.articlesService.getArticles();
+    this.articlesService.getArticles();
 
     // verification de l'ajout d'articles
     this.articlesSub = this.articlesService.getArticlesUpdateListener().subscribe(
       (articles: Article[]) => {
         console.log('UPDATE Articles', articles),
-        this.articles = articles; }
-      );
+          this.articles = articles;
+      }
+    );
   }
 
   onDelete(articleId: string) {
     this.articlesService.deleteArticle(articleId);
   }
 
-  ngOnDestroy() {
-    this.articlesSub.unsubscribe();
-  }
-
-  setArticleToUpdateArticle(articleIdToUpdate: string)
-  {
-    for(let article of this.articles)
-    {
-      if(article.id === articleIdToUpdate)
-      {
+  setArticleToUpdateArticle(articleIdToUpdate: string) {
+    for (let article of this.articles) {
+      if (article.id === articleIdToUpdate) {
         this.articleToUpdate = article;
       }
     }
@@ -56,8 +50,12 @@ export class ArticleListComponent implements OnInit, OnDestroy {
       // test a faire
       return;
     }
-    console.log("je suis prêt à update" + form.value.title);
-    //this.articlesService.updateArticle(form.value);
+    console.log(form.value);
+    this.articlesService.updateArticle(form.value);
+  }
+
+  ngOnDestroy() {
+    this.articlesSub.unsubscribe();
   }
 
 }

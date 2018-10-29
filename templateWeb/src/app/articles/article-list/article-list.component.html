@@ -89,17 +89,18 @@
               <form class="needs-validation" novalidate (submit)="onUpdateArticle(articleToUpdateForm)"
                 #articleToUpdateForm="ngForm">
                 <div class="form-group">
-                  <input type="hidden" class="form-control" name="id" value="{{ articleToUpdate.id }}" required>
+                  <input type="hidden" class="form-control" name="id" ngModel="{{ articleToUpdate.id }}">
                   <label for="articleTitle">Titre de l'article</label>
-                  <input type="text" class="form-control" name="title" value="{{ articleToUpdate.title }}" required>
+                  <input type="text" class="form-control" name="title" ngModel="{{ articleToUpdate.title }}" required>
                 </div>
                 <div class="form-group">
                   <label for="articleContent">Contenu de l'article</label>
-                  <textarea class="form-control" name="content" rows="4" value="{{ articleToUpdate.content }}" required></textarea>
+                  <textarea class="form-control" name="content" rows="4" ngModel="{{ articleToUpdate.content }}"
+                    required></textarea>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
               </form>
             </div>
