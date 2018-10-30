@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Article } from '../article.model';
-import { ArticlesService } from '../articles.service';
+import { ArticlesService } from '../../../services/articles/articles.service';
 import { Router } from '@angular/router';
 
 @Component({

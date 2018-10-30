@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Article } from '../article.model';
-import { ArticlesService } from '../articles.service';
+import { Article } from '../../../models/articles/article.model';
+import { ArticlesService } from '../../../services/articles/articles.service';
 import { Subscription } from 'rxjs';
 
 import { NgForm } from '@angular/forms';
@@ -37,7 +37,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   }
 
   setArticleToUpdateArticle(articleIdToUpdate: string) {
-    for (let article of this.articles) {
+    for (const article of this.articles) {
       if (article.id === articleIdToUpdate) {
         this.articleToUpdate = article;
       }

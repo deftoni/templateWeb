@@ -5,11 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { ArticleListComponent } from './articles/article-list/article-list.component';
-import { ArticleCreateComponent } from './articles/article-create/article-create.component';
-import { ServicesListComponent } from './services-list/services-list.component';
-import { PortfolioComponent } from './portfolio/portfolio.component';
+import { HomeComponent } from './components/home/home.component';
+import { ArticleListComponent } from './components/articles/article-list/article-list.component';
+import { ArticleCreateComponent } from './components/articles/article-create/article-create.component';
+import { ServicesListComponent } from './components/services-list/services-list.component';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
 
 @NgModule({

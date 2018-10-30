@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Article } from './article.model';
+import { Article } from '../../models/articles/article.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -15,7 +15,7 @@ export class ArticlesService {
   private articles: Article[] = [];
   private articlesUpdated = new Subject<Article[]>();
 
-  private _url = "http://localhost:3000/api/articles";
+  private _url = 'http://localhost:3000/api/articles';
 
   constructor(private http: HttpClient) { }
 
@@ -77,10 +77,10 @@ export class ArticlesService {
           console.log('msg', responseData.message);
           console.log('le nouvel article', articleToUpdate);
           console.log('le tableau d article', this.articles);
-          
-          this.articles.find( ( {id} ) => { return id == responseData.articleId }).title =  articleToUpdate.title;
-          this.articles.find( ( {id} ) => { return id == responseData.articleId }).content =  articleToUpdate.content;
-          
+
+          this.articles.find( ( {id} ) => id === responseData.articleId ).title =  articleToUpdate.title;
+          this.articles.find( ( {id} ) =>  id === responseData.articleId ).content =  articleToUpdate.content;
+
           this.articlesUpdated.next([...this.articles]);
         }
       );
