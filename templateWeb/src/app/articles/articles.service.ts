@@ -75,8 +75,12 @@ export class ArticlesService {
       .subscribe(
         (responseData) => {
           console.log('msg', responseData.message);
-          articleToUpdate.id = responseData.articleId;
-          this.articles.push(articleToUpdate);
+          console.log('le nouvel article', articleToUpdate);
+          console.log('le tableau d article', this.articles);
+          
+          this.articles.find( ( {id} ) => { return id == responseData.articleId }).title =  articleToUpdate.title;
+          this.articles.find( ( {id} ) => { return id == responseData.articleId }).content =  articleToUpdate.content;
+          
           this.articlesUpdated.next([...this.articles]);
         }
       );

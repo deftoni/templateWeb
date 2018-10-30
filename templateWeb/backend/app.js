@@ -65,6 +65,7 @@ app.delete('/api/articles/:id', (req, res, next) => {
 
 app.put('/api/articles/:id', (req, res, next) => {
   Article.findByIdAndUpdate({ _id: req.params.id }, req.body).then(updatedArticle => {
+    console.log(updatedArticle);
     res.status(201).json({
       message: 'Article updated successfully',
       articleId: updatedArticle._id
