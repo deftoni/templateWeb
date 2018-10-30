@@ -7,11 +7,12 @@ const Article = require('./models/article');
 const app = express();
 
 mongoose.connect('mongodb+srv://mush:8mpRcH61LWu31rPG@cluster0-g1zec.gcp.mongodb.net/templateWebDB?retryWrites=true')
+
   .then(() => {
     console.log('Connected to dataBase !');
   })
   .catch(() => {
-    console.log('Connection failed !')
+    console.log('Connection failed !');
   });
 
 app.use(bodyParser.json());
