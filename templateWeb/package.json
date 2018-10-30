@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:server": "nodemon server.js"
+    "start:server": "nodemon ../server/server.js"
   },
   "private": true,
   "dependencies": {
@@ -31,7 +31,7 @@
     "express": "^4.16.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
-    "mongoose": "^5.3.6",
+    "mongoose": "^5.3.7",
     "node-sass": "^4.9.4",
     "popper.js": "^1.14.4",
     "rxjs": "~6.2.0",
