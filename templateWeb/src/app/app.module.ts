@@ -10,6 +10,8 @@ import { ArticleListComponent } from './components/articles/article-list/article
 import { ArticleCreateComponent } from './components/articles/article-create/article-create.component';
 import { ServicesListComponent } from './components/services-list/services-list.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
     ArticleListComponent,
     ArticleCreateComponent,
     ServicesListComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+/* ////// START GENERAL CSS ///////*/
+
+:host {
+  --myColor1: #FFFFFF;
+  --myColor2: #6495ED;
+  --myColor3: #33923C;
+  --myColor4: #212529;
+}
+
+
+.bestFooterEver {
+  background: var(--myColor3);
+  color: azure;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+/* ////// END GENERAL CSS ///////*/
