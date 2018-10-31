@@ -14,7 +14,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
 
   public articles: Article[] = [];
   private articlesSub: Subscription;
-  private articleToUpdate: Article;
+  public articleToUpdate: Article;
 
   constructor(public articlesService: ArticlesService) { }
 

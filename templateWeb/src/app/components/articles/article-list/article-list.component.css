@@ -6,6 +6,11 @@
   margin-top: 10rem!important;
 }
 
+#addArticle:focus
+{
+  outline:none;
+}
+
 /*//////////////////// START CARDS CSS  ////////////////////////*/
 
 .post-module {

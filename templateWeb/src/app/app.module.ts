@@ -12,6 +12,7 @@ import { ServicesListComponent } from './components/services-list/services-list.
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ServicesListComponent,
     PortfolioComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
