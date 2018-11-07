@@ -13,6 +13,8 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { LinkListComponent } from './components/navbar/link-list/link-list/link-list.component';
+import { LinkItemsComponent } from './components/navbar/link-list/link-items/link-items.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     PortfolioComponent,
     NavbarComponent,
     FooterComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    LinkListComponent,
+    LinkItemsComponent
   ],
   imports: [
     BrowserModule,
