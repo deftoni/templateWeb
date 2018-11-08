@@ -1,0 +1,21 @@
+<div class="modal-body">
+  <div class="container">
+    <h3>Création d'un article</h3>
+    <form class="needs-validation" novalidate (ngSubmit)="onUpdateArticle(articleForm)" #articleForm="ngForm">
+      <input type="hidden" name="id" ngModel ngModel='{{id}}'>
+      <div class="form-group">
+        <label for="articleTitle">Titre de l'article</label>
+        <input type="text" class="form-control" name="title" placeholder="Entrer un titre" ngModel ngModel='{{title}}'
+          required>
+      </div>
+      <div class="form-group">
+        <label for="articleContent">Contenu de l'article</label>
+        <textarea class="form-control" name="content" rows="4" ngModel ngModel='{{content}}' required></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark" placement="top" ngbPopover="L'article a bien été modifié">Save</button>
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+      </div>
+    </form>
+  </div>
+</div>

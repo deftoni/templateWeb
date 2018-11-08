@@ -17,9 +17,10 @@ import { LinkListComponent } from './components/navbar/link-list/link-list/link-
 import { LinkItemsComponent } from './components/navbar/link-list/link-items/link-items.component';
 import { ArticleComponent } from './components/articles/article/article.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { NgbdModalComponent, NgbdModalContentComponent } from './components/buttons/modal/modal.component';
 import { DeleteButtonComponent } from './components/buttons/delete-button/delete-button.component';
 import { AddButtonComponent } from './components/buttons/add-button/add-button.component';
+import { NgbdModalContentComponent } from './components/articles/update-article-modal-content/update-article-modal-content.component';
+import { NgbdModalComponent } from './components/buttons/update-button/update-button.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,10 @@ import { AddButtonComponent } from './components/buttons/add-button/add-button.c
     LinkListComponent,
     LinkItemsComponent,
     ArticleComponent,
-    NgbdModalComponent,
     NgbdModalContentComponent,
     DeleteButtonComponent,
-    AddButtonComponent
+    AddButtonComponent,
+    NgbdModalComponent
   ],
   entryComponents: [NgbdModalContentComponent],
   imports: [
