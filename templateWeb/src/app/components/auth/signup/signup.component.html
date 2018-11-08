@@ -1,0 +1,22 @@
+<div class="loginForm">
+  <div class="container mt-10">
+    <h3>Page d'enregistrement utilisateur</h3>
+    <form (submit)="onSignup(signupForm)" #signupForm="ngForm" novalidate>
+      <div class="form-group row">
+          <label for="email" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" name="email" placeholder="Entrer votre email" #emailInput="ngModel" ngModel required email>
+            <div class="alert alert-danger" *ngIf="emailInput.invalid && emailInput.touched " >Email incorrect</div>
+          </div>
+      </div>
+      <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" name="password" placeholder="Entrer votre mot de passe" #passwordInput="ngModel" ngModel required>
+          <div class="alert alert-danger" *ngIf="passwordInput.invalid && passwordInput.touched" >Password incorrect</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn" >Signup</button>
+    </form>
+  </div>
+</div>

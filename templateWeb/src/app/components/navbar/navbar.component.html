@@ -18,12 +18,20 @@
         <li class="nav-item">
             <app-link-list></app-link-list>
         </li>
-
-
       </ul>
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-outline-primary navbar-brand">Login</button>
-      </div>
     </div>
+  </div>
+  <div class="pull-right">
+    <ul class="nav pull-right">
+      <li *ngIf='!userIsAuthenticated'>
+        <a routerLink="/login" class="nav-link js-scroll-trigger">Login</a>
+      </li>
+      <li *ngIf='!userIsAuthenticated'>
+       <a routerLink="/signup" class="nav-link js-scroll-trigger">Signup</a>
+      </li>
+      <li *ngIf='userIsAuthenticated'>
+        <button type="button" (click)="onLogout()" class="btn">Logout</button>
+      </li>
+    </ul>
   </div>
 </nav>

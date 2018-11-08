@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,9 @@ import { DeleteButtonComponent } from './components/buttons/delete-button/delete
 import { AddButtonComponent } from './components/buttons/add-button/add-button.component';
 import { NgbdModalContentComponent } from './components/articles/article-update-modal-content/article-update-modal-content.component';
 import { NgbdModalComponent } from './components/buttons/update-button/update-button.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { AuthIntercepter } from './services/auth/auth-intercepter';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { NgbdModalComponent } from './components/buttons/update-button/update-bu
     NgbdModalContentComponent,
     DeleteButtonComponent,
     AddButtonComponent,
-    NgbdModalComponent
+    NgbdModalComponent,
+    LoginComponent,
+    SignupComponent
   ],
   entryComponents: [NgbdModalContentComponent],
   imports: [
@@ -49,7 +54,9 @@ import { NgbdModalComponent } from './components/buttons/update-button/update-bu
     HttpClientModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

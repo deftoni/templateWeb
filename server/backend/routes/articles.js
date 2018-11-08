@@ -1,9 +1,10 @@
 const express = require('express');
 const Article = require('../models/article');
+const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
-router.post('', (req, res, next) => {
+router.post('', checkAuth, (req, res, next) => {
     const article = new Article({
       title: req.body.title,
       content: req.body.content
@@ -26,7 +27,7 @@ router.post('', (req, res, next) => {
       });
   });
   
-  router.delete('/:id', (req, res, next) => {
+  router.delete('/:id', checkAuth, (req, res, next) => {
     Article.deleteOne({ _id: req.params.id })
       .then(() => {
         res.status(200).json({
@@ -35,7 +36,7 @@ router.post('', (req, res, next) => {
       });
   });
   
-  router.put('/:id', (req, res, next) => {
+  router.put('/:id', checkAuth, (req, res, next) => {
     Article.findByIdAndUpdate({ _id: req.params.id }, req.body).then(updatedArticle => {
       console.log(updatedArticle);
       res.status(201).json({

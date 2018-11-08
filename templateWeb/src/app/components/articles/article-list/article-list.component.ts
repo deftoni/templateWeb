@@ -4,6 +4,7 @@ import { ArticlesService } from '../../../services/articles/articles.service';
 import { Subscription } from 'rxjs';
 
 import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-article-list',
@@ -15,8 +16,10 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   public articles: Article[] = [];
   private articlesSub: Subscription;
   public articleToUpdate: Article;
+  private authListenerSub: Subscription;
+  userIsAuthenticated = false;
 
-  constructor(public articlesService: ArticlesService) { }
+  constructor(public articlesService: ArticlesService, private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -30,6 +33,11 @@ export class ArticleListComponent implements OnInit, OnDestroy {
           this.articles = articles;
       }
     );
+    this.userIsAuthenticated = this.authService.getAuthStatus();
+    this.authListenerSub = this.authService.getAuthStatusListener()
+    .subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    });
   }
 
   onUpdateArticle(form: NgForm) {
@@ -44,6 +52,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.articlesSub.unsubscribe();
+    this.authListenerSub.unsubscribe();
   }
 
 }
