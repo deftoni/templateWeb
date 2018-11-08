@@ -19,7 +19,7 @@ import { ArticleComponent } from './components/articles/article/article.componen
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DeleteButtonComponent } from './components/buttons/delete-button/delete-button.component';
 import { AddButtonComponent } from './components/buttons/add-button/add-button.component';
-import { NgbdModalContentComponent } from './components/articles/update-article-modal-content/update-article-modal-content.component';
+import { NgbdModalContentComponent } from './components/articles/article-update-modal-content/article-update-modal-content.component';
 import { NgbdModalComponent } from './components/buttons/update-button/update-button.component';
 
 @NgModule({

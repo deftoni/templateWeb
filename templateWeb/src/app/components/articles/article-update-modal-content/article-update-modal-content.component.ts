@@ -5,7 +5,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ngbd-modal-content',
-  templateUrl: './modal-content.component.html'
+  templateUrl: './article-update-modal-content.component.html'
 })
 export class NgbdModalContentComponent {
 

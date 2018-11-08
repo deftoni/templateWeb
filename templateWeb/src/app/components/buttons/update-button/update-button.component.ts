@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {NgbdModalContentComponent} from '../../articles/update-article-modal-content/update-article-modal-content.component';
+import {NgbdModalContentComponent} from '../../articles/article-update-modal-content/article-update-modal-content.component';
 
 
 @Component({
