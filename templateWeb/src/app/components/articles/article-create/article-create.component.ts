@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class ArticleCreateComponent implements OnInit {
 
-
   constructor(public articlesService: ArticlesService, private router: Router) { }
 
   ngOnInit() {
@@ -22,7 +21,7 @@ export class ArticleCreateComponent implements OnInit {
       // test a faire
       return;
     }
-
+    console.log(form.value);
     this.articlesService.addArticle(form.value.title, form.value.content);
 
     // test si l'ajout a etait effectué

@@ -32,18 +32,6 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     );
   }
 
-  onDelete(articleId: string) {
-    this.articlesService.deleteArticle(articleId);
-  }
-
-  setArticleToUpdateArticle(articleIdToUpdate: string) {
-    for (const article of this.articles) {
-      if (article.id === articleIdToUpdate) {
-        this.articleToUpdate = article;
-      }
-    }
-  }
-
   onUpdateArticle(form: NgForm) {
     if (form.invalid) {
       console.log('formulaire de modification d\'un article invalide');

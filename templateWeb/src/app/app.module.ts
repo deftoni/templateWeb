@@ -15,7 +15,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LinkListComponent } from './components/navbar/link-list/link-list/link-list.component';
 import { LinkItemsComponent } from './components/navbar/link-list/link-items/link-items.component';
-
+import { ArticleComponent } from './components/articles/article/article.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalComponent, NgbdModalContentComponent } from './components/buttons/modal/modal.component';
+import { DeleteButtonComponent } from './components/buttons/delete-button/delete-button.component';
+import { AddButtonComponent } from './components/buttons/add-button/add-button.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +33,20 @@ import { LinkItemsComponent } from './components/navbar/link-list/link-items/lin
     FooterComponent,
     SearchBarComponent,
     LinkListComponent,
-    LinkItemsComponent
+    LinkItemsComponent,
+    ArticleComponent,
+    NgbdModalComponent,
+    NgbdModalContentComponent,
+    DeleteButtonComponent,
+    AddButtonComponent
   ],
+  entryComponents: [NgbdModalContentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
