@@ -7,7 +7,8 @@ const articlesRoutes = require('./routes/articles');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://mush:8mpRcH61LWu31rPG@cluster0-g1zec.gcp.mongodb.net/templateWebDB?retryWrites=true')
+mongoose.set('useCreateIndex', true)
+mongoose.connect('mongodb+srv://mush:8mpRcH61LWu31rPG@cluster0-g1zec.gcp.mongodb.net/templateWebDB', { useNewUrlParser: true })
 
   .then(() => {
     console.log('Connected to dataBase !');
