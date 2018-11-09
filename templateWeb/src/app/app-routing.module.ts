@@ -5,12 +5,13 @@ import { HomeComponent } from './components/home/home.component';
 import { ArticleCreateComponent } from './components/articles/article-create/article-create.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
+import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'articleList', component: ArticleListComponent },
-  { path: 'articleCreate', component: ArticleCreateComponent },
+  { path: 'articleCreate', component: ArticleCreateComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent }
 
@@ -18,6 +19,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
