@@ -31,7 +31,8 @@ export class ArticlesService {
           return {
             id: article._id,
             title: article.title,
-            content: article.content
+            content: article.content,
+            img_irl: article.img_irl
           };
         });
       }))
@@ -50,8 +51,8 @@ export class ArticlesService {
     return this.articlesUpdated.asObservable();
   }
 
-  addArticle(title: string, content: string) {
-    const article: Article = { id: null, title: title, content: content };
+  addArticle(title: string, content: string, img_irl: string) {
+    const article: Article = { id: null, title: title, content: content, img_irl: img_irl };
     this.http.post<{ message: string, articleId: string }>(`${this.config.getArticleUrl()}`, article)
       .subscribe(
         (responseData) => {
@@ -61,6 +62,17 @@ export class ArticlesService {
           this.articlesUpdated.next([...this.articles]);
         }
       );
+  }
+
+  addImgArticleToFtp(img: any) {
+    console.log('this is my img I want to send to the server: ', img);
+    this.http.post<{ message: string}>(`${this.config.getArticleUrl()}` + 'upload', img, {
+      reportProgress: true,
+      observe: 'events'
+    })
+      .subscribe(event => {
+        console.log(event); // handle event here
+      });
   }
 
   deleteArticle(articleId: string) {
@@ -81,6 +93,7 @@ export class ArticlesService {
 
           this.articles.find(({ id }) => id === responseData.articleId).title = articleToUpdate.title;
           this.articles.find(({ id }) => id === responseData.articleId).content = articleToUpdate.content;
+          this.articles.find(({ id }) => id === responseData.articleId).img_irl = articleToUpdate.img_irl;
 
           this.articlesUpdated.next([...this.articles]);
         }

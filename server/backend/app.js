@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const fileUpload = require('../../templateWeb/node_modules/express-fileupload');
 const userRoutes = require('./routes/user');
 const articlesRoutes = require('./routes/articles');
 
@@ -19,6 +19,8 @@ mongoose.connect('mongodb+srv://mush:8mpRcH61LWu31rPG@cluster0-g1zec.gcp.mongodb
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(fileUpload());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', "*");

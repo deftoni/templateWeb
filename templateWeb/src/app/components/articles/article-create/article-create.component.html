@@ -1,18 +1,29 @@
 <div class="articleCreateMarge">
   <div class="container">
     <h3>Création d'un article</h3>
-    <form class="needs-validation" novalidate (submit)="onAddArticle(articleForm)" #articleForm="ngForm">
-        <div class="form-group">
-            <label for="articleTitle">Titre de l'article</label>
-            <input type="text" class="form-control" name="title" placeholder="Entrer un titre" ngModel required >
-            <!-- <div class="invalid-tooltip" *ngIf="articleForm.getControl('articleTitle').invalid">Champs incorrect</div> -->
-        </div>
+    <form class="needs-validation" novalidate (submit)="onAddArticle(articleForm)" #articleForm="ngForm" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="articleTitle">Titre de l'article</label>
+        <input type="text" class="form-control" name="title" placeholder="Entrer un titre" ngModel required>
+        <!-- <div class="invalid-tooltip" *ngIf="articleForm.getControl('articleTitle').invalid">Champs incorrect</div> -->
+      </div>
       <div class="form-group">
         <label for="articleContent">Contenu de l'article</label>
-        <textarea class="form-control" name="content" rows="4" ngModel required></textarea>
+        <textarea class="form-control" name="content" placeholder="Entrer un content" rows="4" ngModel required></textarea>
       </div>
-      <button type="submit" class="btn btn-primary btn-sm" >Envoyé</button>
+        <div class="custom-file">
+          <input type="file" name="file" id="file" class="custom-file-input" (change)="getFiles($event)" ngModel>
+          <label *ngIf="imgGotAName === true" for="file" class="custom-file-label">
+            {{imgName}}
+          </label>
+          <label *ngIf="imgGotAName === false" for="file" class="custom-file-label">
+              choose a file
+            </label>
+        </div>
+      <button type="submit" class="btn btn-primary btn-sm mt-4">Envoyé</button>
     </form>
+    <div>
+    </div>
   </div>
 </div>
 <!-- routerLink="/articleList"-->
