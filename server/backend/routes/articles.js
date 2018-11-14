@@ -1,51 +1,15 @@
 const express = require('express');
-const Article = require('../models/article');
 const checkAuth = require('../middleware/check-auth');
-
 const router = express.Router();
 
-router.post('', checkAuth, (req, res, next) => {
-  const article = new Article({
-    title: req.body.title,
-    content: req.body.content,
-    img_irl: req.body.img_irl
-  });
-  article.save().then(createdArticle => {
-    res.status(201).json({
-      message: 'Article added successfully',
-      articleId: createdArticle._id
-    });
-  });
-});
+var articlesController = require('../controllers/articles.controller');
 
-router.get('', (req, res, next) => {
-  Article.find()
-    .then(documents => {
-      res.status(200).json({
-        message: 'articles fetched successfully',
-        articles: documents
-      });
-    });
-});
+//routes
+router.post('', checkAuth, articlesController.create);
+router.get('', articlesController.getArticles);
+router.delete('/:id', checkAuth, articlesController.deleteArticle);
+router.put('/:id', checkAuth, articlesController.updateArticle);
 
-router.delete('/:id', checkAuth, (req, res, next) => {
-  Article.deleteOne({ _id: req.params.id })
-    .then(() => {
-      res.status(200).json({
-        message: 'Article deleted successfully'
-      });
-    });
-});
-
-router.put('/:id', checkAuth, (req, res, next) => {
-  Article.findByIdAndUpdate({ _id: req.params.id }, req.body).then(updatedArticle => {
-    console.log(updatedArticle);
-    res.status(201).json({
-      message: 'Article updated successfully',
-      articleId: updatedArticle._id
-    });
-  });
-});
 
 router.post('/upload', function (req, res) {
 

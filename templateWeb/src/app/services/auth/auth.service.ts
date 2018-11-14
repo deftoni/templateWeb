@@ -31,7 +31,7 @@ export class AuthService {
 
   createUser(email: string, password: string) {
     const authData: AuthData = {email: email, password: password};
-    this.http.post(`${this.config.getUserUrl()}` + 'signup', authData)
+    this.http.post<{ message: string, result: any }>(`${this.config.getUserUrl()}` + 'signup', authData)
       .subscribe(response => {
         console.log(response);
       });
@@ -39,8 +39,9 @@ export class AuthService {
 
   login(email: string, password: string) {
     const authData: AuthData = {email: email, password: password};
-    this.http.post<{ token: string, expireIn: number }>(`${this.config.getUserUrl()}` + 'login', authData)
+    this.http.post<{ message: string, token: string, expireIn: number }>(`${this.config.getUserUrl()}` + 'login', authData)
     .subscribe(response => {
+      console.log(response);
       const token = response.token;
       this.token = token;
       if ( token ) {
