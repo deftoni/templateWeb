@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LISTLINKITEM } from '../../../models/linkItems/linkItem';
+import { LISTLINKITEM } from '../../../../models/linkItems/linkItem';
 @Component({
   selector: 'app-link-list',
   templateUrl: './link-list.component.html',
