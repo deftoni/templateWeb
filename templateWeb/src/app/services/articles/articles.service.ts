@@ -17,6 +17,8 @@ export class ArticlesService {
   private articleUpdated = new Subject<Article>();
   private articleDetails: Article;
   private totalArticle: number;
+  private articlesPerPage: number;
+  private currentPage: number;
 
   private config = new Config();
 
@@ -100,11 +102,18 @@ export class ArticlesService {
 
   deleteArticle(articleId: string) {
     this.http.delete(`${this.config.getArticleUrl()}` + articleId)
-      .subscribe(() => {
-        this.articles = this.articles.filter(article => article.id !== articleId);
-        this.totalArticle--;
-        this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
-      });
+    .subscribe(() => {
+      this.getArticles(this.articlesPerPage, this.currentPage);
+    });
+      /*.subscribe(() => {
+      this.articles = this.articles.filter(article => article.id !== articleId);
+      this.totalArticle--;
+      this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
+    });*/
+  }
+  updatePageData(articlesPerPage: number, currentPage: number) {
+    this.articlesPerPage = articlesPerPage;
+    this.currentPage = currentPage;
   }
 
   updateArticle(articleToUpdate: Article) {

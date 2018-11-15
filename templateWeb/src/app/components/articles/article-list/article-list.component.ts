@@ -60,6 +60,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     this.currentPage = pageData.page + 1;
     this.articlesPerPage = pageData.rows;
     this.articlesService.getArticles(this.articlesPerPage, this.currentPage);
+    this.articlesService.updatePageData(this.articlesPerPage, this.currentPage);
   }
 
   ngOnDestroy() {
