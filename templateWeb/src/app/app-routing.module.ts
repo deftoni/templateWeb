@@ -6,6 +6,7 @@ import { ArticleCreateComponent } from './components/articles/article-create/art
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthGuard } from './services/auth/auth.guard';
+import { ArticleDetailsComponent } from './components/articles/article-details/article-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'articleList', component: ArticleListComponent },
   { path: 'articleCreate', component: ArticleCreateComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent }
+  { path: 'signup', component: SignupComponent },
+  { path: 'article-details/:articleId', component: ArticleDetailsComponent }
 
 ];
 

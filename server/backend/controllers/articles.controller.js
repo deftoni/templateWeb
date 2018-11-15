@@ -32,6 +32,23 @@ module.exports.getArticles = function (req, res, next) {
     });
 }
 
+module.exports.getArticleById = function (req, res, next) {
+    articlesWorker.getArticleById(req.params.id)
+    .then(articleFetched => {
+        console.log('article Fetched from controller: ',articleFetched )
+        res.status(200).json({
+            message: 'article Fetched successfully',
+            article: articleFetched
+        })
+    })
+    .catch(err => {
+        res.status(400).json({
+            message: 'bad request you mother ******',
+            error: err  
+        })
+    })
+}
+
 module.exports.deleteArticle = function (req, res, next) {
     articlesWorker.deleteArticle(req.params.id)
     .then(() => {

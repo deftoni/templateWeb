@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ArticlesService } from '../../../services/articles/articles.service';
+import { ArticlesService } from '../../../../services/articles/articles.service';
 
 @Component({
   selector: 'app-delete-button',

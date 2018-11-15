@@ -14,6 +14,8 @@ export class ArticlesService {
 
   private articles: Article[] = [];
   private articlesUpdated = new Subject<Article[]>();
+  private articleUpdated = new Subject<Article>();
+  private articleDetails: Article;
 
   private config = new Config();
 
@@ -48,6 +50,21 @@ export class ArticlesService {
 
   getArticlesUpdateListener() {
     return this.articlesUpdated.asObservable();
+  }
+
+  getArticleById(articleId: string) {
+    console.log('articleId in service', articleId);
+    this.http.get<{ message: string, article: Article }>(
+      `${this.config.getArticleUrl()}` + articleId
+    ).subscribe(reponseData => {
+      console.log('article Fetched from Service: ', reponseData);
+     this.articleDetails = reponseData.article;
+     this.articleUpdated.next(this.articleDetails);
+    });
+  }
+
+  getArticleDetailsListener() {
+    return this.articleUpdated.asObservable();
   }
 
   addArticle(title: string, content: string, img_irl: string) {

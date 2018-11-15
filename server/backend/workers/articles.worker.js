@@ -32,6 +32,24 @@ module.exports.getArticles = function () {
     })
 }
 
+module.exports.getArticleById =  function (articleId) {
+    return new Promise(function (resolve, reject){
+        articleRepo.getArticleById(articleId)
+        .then(articleFetched => {
+            const cleanArticle = {
+                id: articleFetched._id,
+                title: articleFetched.title,
+                content: articleFetched.content,
+                img_irl: articleFetched.img_irl
+            }
+            resolve(cleanArticle);
+        })
+        .catch(function (err){
+            reject(err);
+        })
+    })
+}
+
 module.exports.deleteArticle = function (articleId) {
     return new Promise(function (resolve, reject) {
         // if article exist

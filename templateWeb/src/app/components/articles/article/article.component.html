@@ -13,8 +13,11 @@
         <div class="col-4">
          <app-ngbd-modal-component [article]="article"></app-ngbd-modal-component>
         </div>
-        <div class="col-4">
+        <div class="col-4 pl-0">
           <app-delete-button [articleId]="article.id"></app-delete-button>
+        </div>
+        <div class="col-4 pl-0">
+          <app-get-article-details-button [articleId]="article.id"></app-get-article-details-button>
         </div>
       </div>
     </div>

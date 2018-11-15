@@ -1,5 +1,6 @@
 .articleCreateMarge{
-    margin-top: 10%;
+  margin-top: 15%;
+  margin-bottom: 10%;
 }
 
 .image-preview{
@@ -9,4 +10,5 @@
 
 .image-preview img{
   height: 100%;
+
 }

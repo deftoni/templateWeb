@@ -17,13 +17,15 @@ import { LinkListComponent } from './components/link-list/link-list/link-list.co
 import { LinkItemsComponent } from './components/link-list/link-items/link-items.component';
 import { ArticleComponent } from './components/articles/article/article.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { DeleteButtonComponent } from './components/buttons/delete-button/delete-button.component';
-import { AddButtonComponent } from './components/buttons/add-button/add-button.component';
+import { DeleteButtonComponent } from './components/articles/buttons/delete-button/delete-button.component';
+import { AddButtonComponent } from './components/articles/buttons/add-button/add-button.component';
 import { NgbdModalContentComponent } from './components/articles/article-update-modal-content/article-update-modal-content.component';
-import { NgbdModalComponent } from './components/buttons/update-button/update-button.component';
+import { NgbdModalComponent } from './components/articles/buttons/update-button/update-button.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthIntercepter } from './services/auth/auth-intercepter';
+import { ArticleDetailsComponent } from './components/articles/article-details/article-details.component';
+import { GetArticleDetailsButtonComponent } from './components/articles/buttons/get-article-details-button/get-article-details-button.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AuthIntercepter } from './services/auth/auth-intercepter';
     AddButtonComponent,
     NgbdModalComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ArticleDetailsComponent,
+    GetArticleDetailsButtonComponent
   ],
   entryComponents: [NgbdModalContentComponent],
   imports: [

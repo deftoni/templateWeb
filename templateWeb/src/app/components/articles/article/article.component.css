@@ -5,6 +5,7 @@
 
 .post-module {
   position: relative;
+  min-width: 302px;
   z-index: 1;
   display: block;
   background: #FFFFFF;

@@ -9,7 +9,7 @@ router.post('', checkAuth, articlesController.create);
 router.get('', articlesController.getArticles);
 router.delete('/:id', checkAuth, articlesController.deleteArticle);
 router.put('/:id', checkAuth, articlesController.updateArticle);
-
+router.get('/:id', articlesController.getArticleById);
 
 router.post('/upload', function (req, res) {
 

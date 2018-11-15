@@ -24,6 +24,18 @@ module.exports.getArticles = function () {
     });
 };
 
+module.exports.getArticleById = function(articleId) {
+    return new Promise(function (resolve, reject) {
+        Article.findById(articleId)
+        .then(articleFetched => {
+            resolve(articleFetched)
+        })
+        .catch( err => {
+            reject(err);
+        })
+    })
+}
+
 module.exports.deleteArticle = function (articleId) {
     return new Promise(function (resolve, reject) {
         Article.deleteOne({ _id: articleId })

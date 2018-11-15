@@ -30,7 +30,7 @@ export class ArticleCreateComponent implements OnInit {
     uploadData.append('myFile', this.articleImg, this.articleImg.name);
     this.articlesService.addImgArticleToFtp(uploadData);
 
-    const img_irl: string = '/server/ressources/article/img/' + this.articleImg.name;
+    const img_irl: string = '/templateWeb/server/ressources/article/img/' + this.articleImg.name;
     this.articlesService.addArticle(form.value.title, form.value.content, img_irl);
 
     // test si l'ajout a etait effectué
