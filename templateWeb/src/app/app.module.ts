@@ -25,6 +25,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthIntercepter } from './services/auth/auth-intercepter';
 import { ArticleDetailsComponent } from './components/articles/article-details/article-details.component';
+// tslint:disable-next-line:max-line-length
 import { GetArticleDetailsButtonComponent } from './components/articles/buttons/get-article-details-button/get-article-details-button.component';
 
 @NgModule({

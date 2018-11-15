@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Article } from '../../../models/articles/article.model';
 import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from '../../../services/articles/articles.service';
@@ -10,7 +10,7 @@ import { ARTICLES } from 'src/app/models/articles/mock-articles';
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.css']
 })
-export class ArticleDetailsComponent implements OnInit {
+export class ArticleDetailsComponent implements OnInit, OnDestroy {
 
   myArticleToDisplay: Article;
   articleId: string;
@@ -22,12 +22,16 @@ export class ArticleDetailsComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.articleId = params.articleId;
-      console.log('my articleId: ', this.articleId);
     });
 
     this.articlesService.getArticleById(this.articleId);
-    this.articleSub = this.articlesService.getArticleDetailsListener().subscribe();
-    console.log( 'my article to display from component: ', this.articleSub);
+    this.articleSub = this.articlesService.getArticleDetailsListener().subscribe((article: Article) => {
+      console.log( 'my article: ', article);
+      this.myArticleToDisplay = article;
+    });
   }
 
+  ngOnDestroy() {
+    this.articleSub.unsubscribe();
+  }
 }

@@ -53,12 +53,11 @@ export class ArticlesService {
   }
 
   getArticleById(articleId: string) {
-    console.log('articleId in service', articleId);
     this.http.get<{ message: string, article: Article }>(
       `${this.config.getArticleUrl()}` + articleId
     ).subscribe(reponseData => {
-      console.log('article Fetched from Service: ', reponseData);
      this.articleDetails = reponseData.article;
+     console.log('GET ArticleByID: ', this.articleDetails);
      this.articleUpdated.next(this.articleDetails);
     });
   }
