@@ -1,11 +1,13 @@
-<div class="container articleDetailMarge">
+<div *ngIf="!this.myArticleToDisplay">
+</div>
+<div class="container articleDetailMarge" *ngIf="this.myArticleToDisplay">
   <div class="row">
     <div class="col">
       <img class="imgArticleDetail" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg">
     </div>
     <div class="col">
       <div class="row">
-        <h2>po</h2>
+        <h2>{{ this.myArticleToDisplay.title }}</h2>
       </div>
       <div class="row">
         <h2>plopo</h2>

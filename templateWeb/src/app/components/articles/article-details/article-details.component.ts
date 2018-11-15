@@ -12,7 +12,7 @@ import { ARTICLES } from 'src/app/models/articles/mock-articles';
 })
 export class ArticleDetailsComponent implements OnInit, OnDestroy {
 
-  myArticleToDisplay: Article;
+  public myArticleToDisplay: Article;
   articleId: string;
   private sub: any;
   private articleSub: Subscription;
