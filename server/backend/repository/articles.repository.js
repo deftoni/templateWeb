@@ -28,13 +28,39 @@ module.exports.getArticleById = function(articleId) {
     return new Promise(function (resolve, reject) {
         Article.findById(articleId)
         .then(articleFetched => {
-            resolve(articleFetched)
+            resolve(articleFetched);
         })
         .catch( err => {
             reject(err);
         })
     })
 }
+
+module.exports.getArticlesSelected = function(size, page) {
+    return new Promise(function (resolve, reject) {
+        const articleQuery = Article.find().skip(size * (page - 1 )).limit(size);
+        
+        articleQuery
+        .then(articlesFetched => {
+            resolve(articlesFetched);
+        })
+        .catch( err => {
+            reject(err);
+        })
+    })
+}
+
+module.exports.countArticles = function () {
+    return new Promise(function (resolve, reject) {
+        Article.estimatedDocumentCount()
+        .then(nbArticles => {
+            resolve(nbArticles);
+        })
+        .catch( err => {
+            reject(err);
+        })
+    });
+};
 
 module.exports.deleteArticle = function (articleId) {
     return new Promise(function (resolve, reject) {

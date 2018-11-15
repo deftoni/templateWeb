@@ -10,12 +10,15 @@
       <app-add-button></app-add-button>
     </div>
   </div>
-  <div class="container pt-5" *ngIf="articles.length > 0">
+  <div class="container pt-5" *ngIf="articles">
     <div class="row">
         <app-article class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4" *ngFor="let article of articles" [article]="article"></app-article>
     </div>
   </div>
-  <div class="list-group" *ngIf="articles.length <= 0">
+  <div class="paginator" *ngIf="articles">
+    <p-paginator [rows]='this.articlesPerPage' [totalRecords]='this.totalArticles' [rowsPerPageOptions]='this.pageSizeOptions' (onPageChange)='onChangedPage($event)'></p-paginator>
+  </div>
+  <div class="list-group" *ngIf="!articles">
     <p class="p-3 mb-2 bg-warning text-dark">Aucun article pour le moment</p>
   </div>
 </div>

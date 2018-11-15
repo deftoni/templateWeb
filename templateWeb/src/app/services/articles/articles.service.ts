@@ -13,35 +13,42 @@ import { Subject } from 'rxjs';
 export class ArticlesService {
 
   private articles: Article[] = [];
-  private articlesUpdated = new Subject<Article[]>();
+  private articlesUpdated = new Subject<{articles: Article[], countArticle: number}>();
   private articleUpdated = new Subject<Article>();
   private articleDetails: Article;
+  private totalArticle: number;
 
   private config = new Config();
 
   constructor(private http: HttpClient) { }
 
-  getArticles() {
-
+  getArticles(articlesPerPage: number, currentPage: number) {
+    const queryParams = `?pagesize=${articlesPerPage}&page=${currentPage}`;
     this.http
-      .get<{ message: string, articles: any }>(
-        `${this.config.getArticleUrl()}`
+      .get<{ message: string, articles: any, maxArticles: number }>(
+        `${this.config.getArticleUrl()}` + queryParams
       )
-      .pipe(map((articleData) => {
-        return articleData.articles.map((article) => {
+      .pipe(
+        map((articleData) => {
           return {
-            id: article._id,
-            title: article.title,
-            content: article.content,
-            img_irl: article.img_irl
+            article: articleData.articles.map((article) => {
+              return {
+                id: article._id,
+                title: article.title,
+                content: article.content,
+                img_irl: article.img_irl
+              };
+            }),
+            maxArticles: articleData.maxArticles
           };
-        });
-      }))
+        })
+      )
       .subscribe(
-        (articleTransformed) => {
-          this.articles = articleTransformed,
-            console.log('GET Article', this.articles),
-            this.articlesUpdated.next([...this.articles]);
+        (transformedArticleData) => {
+          this.articles = transformedArticleData.article,
+          this.totalArticle = transformedArticleData.maxArticles,
+          console.log('GET Article', transformedArticleData),
+          this.articlesUpdated.next({articles: [...this.articles], countArticle: transformedArticleData.maxArticles });
         },
         () => { console.log('error'); },
         () => { }
@@ -74,7 +81,8 @@ export class ArticlesService {
           console.log('msg', responseData.message);
           article.id = responseData.articleId;
           this.articles.push(article);
-          this.articlesUpdated.next([...this.articles]);
+          this.totalArticle++;
+          this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
         }
       );
   }
@@ -94,7 +102,8 @@ export class ArticlesService {
     this.http.delete(`${this.config.getArticleUrl()}` + articleId)
       .subscribe(() => {
         this.articles = this.articles.filter(article => article.id !== articleId);
-        this.articlesUpdated.next([...this.articles]);
+        this.totalArticle--;
+        this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
       });
   }
 
@@ -110,7 +119,7 @@ export class ArticlesService {
           this.articles.find(({ id }) => id === responseData.articleId).content = articleToUpdate.content;
           this.articles.find(({ id }) => id === responseData.articleId).img_irl = articleToUpdate.img_irl;
 
-          this.articlesUpdated.next([...this.articles]);
+          this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
         }
       );
   }

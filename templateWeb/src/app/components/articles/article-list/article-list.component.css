@@ -6,9 +6,12 @@
   margin-top: 10rem!important;
 }
 
-#addArticle:focus
-{
-  outline:none;
+#addArticle:focus{
+  outline: none;
+}
+
+.paginator{
+  margin-top: 1rem;
 }
 
 

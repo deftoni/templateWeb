@@ -17,11 +17,12 @@ module.exports.create = function (req, res, next) {
 }
 
 module.exports.getArticles = function (req, res, next) {
-    articlesWorker.getArticles()
-    .then(articles => {
+    articlesWorker.getArticles(req.query)
+    .then((articles) => {
         res.status(201).json({
             message: 'articles fetched successfully',
-            articles: articles
+            articles: articles[0],
+            maxArticles: articles[1]
         })
     })
     .catch(err => {

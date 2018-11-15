@@ -19,16 +19,35 @@ module.exports.create = function (article) {
     })
 }
 
-module.exports.getArticles = function () {
+module.exports.getArticles = function (query) {
     return new Promise(function (resolve, reject) {
         
-        articleRepo.getArticles()
-        .then( articles => {
-            resolve(articles);
-        })
-        .catch(function (err) {
-            reject(err);
-         });
+        const pageSize = +query.pagesize;
+        const currentPage = +query.page;
+        let fetchedArticles;
+
+        if (pageSize && currentPage) {
+            
+            articleRepo.getArticlesSelected(pageSize, currentPage)
+            .then( articles => {
+                fetchedArticles = articles;
+                return articleRepo.countArticles()
+            })
+            .then(total => {
+                resolve([fetchedArticles, total]);
+            })
+            .catch(function (err) {
+                reject(err);
+            });
+        } else {
+            articleRepo.getArticles()
+            .then( articles => {
+                resolve(articles);
+            })
+            .catch(function (err) {
+                reject(err);
+            });
+        }
     })
 }
 

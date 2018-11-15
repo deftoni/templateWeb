@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^6.1.0",
+    "@angular/animations": "^6.1.10",
     "@angular/common": "^6.1.0",
     "@angular/compiler": "^6.1.0",
     "@angular/core": "^6.1.0",
@@ -43,6 +43,8 @@
     "multer-gridfs-storage": "^3.2.3",
     "node-sass": "^4.9.4",
     "popper.js": "^1.14.4",
+    "primeicons": "^1.0.0",
+    "primeng": "^6.1.6",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },

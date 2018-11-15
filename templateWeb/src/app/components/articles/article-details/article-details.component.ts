@@ -26,7 +26,6 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
 
     this.articlesService.getArticleById(this.articleId);
     this.articleSub = this.articlesService.getArticleDetailsListener().subscribe((article: Article) => {
-      console.log( 'my article: ', article);
       this.myArticleToDisplay = article;
     });
   }

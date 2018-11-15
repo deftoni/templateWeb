@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -16,7 +17,7 @@ import { SearchBarComponent } from './components/articles/search-bar/search-bar.
 import { LinkListComponent } from './components/navigation/link-list/link-list/link-list.component';
 import { LinkItemsComponent } from './components/navigation/link-list/link-items/link-items.component';
 import { ArticleComponent } from './components/articles/article/article.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteButtonComponent } from './components/articles/buttons/delete-button/delete-button.component';
 import { AddButtonComponent } from './components/articles/buttons/add-button/add-button.component';
 import { NgbdModalContentComponent } from './components/articles/article-update-modal-content/article-update-modal-content.component';
@@ -27,6 +28,8 @@ import { AuthIntercepter } from './services/auth/auth-intercepter';
 import { ArticleDetailsComponent } from './components/articles/article-details/article-details.component';
 // tslint:disable-next-line:max-line-length
 import { GetArticleDetailsButtonComponent } from './components/articles/buttons/get-article-details-button/get-article-details-button.component';
+import { PaginatorModule } from 'primeng/paginator';
+
 
 @NgModule({
   declarations: [
@@ -54,10 +57,12 @@ import { GetArticleDetailsButtonComponent } from './components/articles/buttons/
   entryComponents: [NgbdModalContentComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    PaginatorModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true}
