@@ -15,6 +15,7 @@ export class ArticleCreateComponent implements OnInit {
   articleImg: File;
   imgName: String = null;
   imgGotAName: Boolean = false;
+  imgPreview;
 
   ngOnInit() {
   }
@@ -25,8 +26,6 @@ export class ArticleCreateComponent implements OnInit {
       // test a faire
       return;
     }
-    console.log('img de mon article: ', this.articleImg);
-
     const uploadData = new FormData();
     uploadData.append('myFile', this.articleImg, this.articleImg.name);
     this.articlesService.addImgArticleToFtp(uploadData);
@@ -38,11 +37,15 @@ export class ArticleCreateComponent implements OnInit {
     this.router.navigate(['/', 'articleList']);
   }
 
-  getFiles(event) {
-    console.log('event img', event.target.files[0]);
-    this.articleImg = event.target.files[0];
-    this.imgName = event.target.files[0].name;
+  onGetFiles(event: Event) {
+    this.articleImg = (event.target as HTMLInputElement).files[0];
+    this.imgName = (event.target as HTMLInputElement).files[0].name;
     this.imgGotAName = true;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imgPreview = reader.result;
+    };
+    reader.readAsDataURL(this.articleImg);
   }
 
 }

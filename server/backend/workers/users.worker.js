@@ -10,7 +10,7 @@ module.exports.create = function (user) {
         userRepo.getByEmail(user.email)
           .then(function (duplicateUser) {
             if (duplicateUser) {
-              // username already exists
+              // mail already exists
               reject('Email "' + user.email + '" is already taken');
             } else {
               bcrypt.hash(user.password, 10)
