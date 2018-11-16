@@ -2,12 +2,12 @@ const Article = require('../models/article');
 
 var articleRepo = require('../repository/articles.repository');
 
-module.exports.create = function (article) {
+module.exports.create = function (articleAndImg) {
     return new Promise(function (resolve, reject) {
         const cleanArticle = new Article({
-            title: article.title,
-            content: article.content,
-            img_irl: article.img_irl
+            title: articleAndImg.article.title,
+            content: articleAndImg.article.content,
+            img_irl: articleAndImg.article.img_irl
         });
         articleRepo.addArticle(cleanArticle)
         .then( articleCreated => {

@@ -75,9 +75,12 @@ export class ArticlesService {
     return this.articleUpdated.asObservable();
   }
 
-  addArticle(title: string, content: string, img_irl: string) {
+  addArticle(title: string, content: string, img_irl: string, img: any) {
     const article: Article = { id: null, title: title, content: content, img_irl: img_irl };
-    this.http.post<{ message: string, articleId: string }>(`${this.config.getArticleUrl()}`, article)
+    const articleAndImg: {} = {'article': article, 'img': img};
+
+    console.log('My big object a envoyé au serveur: ', articleAndImg);
+    this.http.post<{ message: string, articleId: string}>(`${this.config.getArticleUrl()}`, articleAndImg)
       .subscribe(
         (responseData) => {
           console.log('msg', responseData.message);
@@ -87,6 +90,7 @@ export class ArticlesService {
           this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
         }
       );
+
   }
 
   addImgArticleToFtp(img: any) {
