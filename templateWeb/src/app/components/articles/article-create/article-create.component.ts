@@ -27,14 +27,14 @@ export class ArticleCreateComponent implements OnInit {
       return;
     }
     const uploadData = new FormData();
-    const img_irl: string = '/templateWeb/server/ressources/article/img/' + this.articleImg.name;
 
-    uploadData.append('myFile', this.articleImg, this.articleImg.name); // this.articlesService.addImgArticleToFtp(uploadData);
-    console.log('myFormData to send from component to service: ', uploadData);
-    this.articlesService.addArticle(form.value.title, form.value.content, img_irl, uploadData);
-
+    uploadData.append('title', form.value.title);
+    uploadData.append('content', form.value.content);
+    uploadData.append('myFile', this.articleImg, this.articleImg.name);
+    // this.articlesService.addImgArticleToFtp(uploadData);
+    this.articlesService.addArticle(uploadData);
     // test si l'ajout a etait effectué
-    this.router.navigate(['/', 'articleList']);
+    // this.router.navigate(['/', 'articleList']);
   }
 
   onGetFiles(event: Event) {

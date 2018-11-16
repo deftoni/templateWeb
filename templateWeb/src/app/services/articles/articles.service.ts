@@ -75,15 +75,15 @@ export class ArticlesService {
     return this.articleUpdated.asObservable();
   }
 
-  addArticle(title: string, content: string, img_irl: string, img: any) {
-    const article: Article = { id: null, title: title, content: content, img_irl: img_irl };
-    const articleAndImg: {} = {'article': article, 'img': img};
+  addArticle( newArticle: FormData) {
+    console.log('mon titre : ', newArticle.get('title'));
 
-    console.log('My big object a envoyé au serveur: ', articleAndImg);
-    this.http.post<{ message: string, articleId: string}>(`${this.config.getArticleUrl()}`, articleAndImg)
+    // tslint:disable-next-line:max-line-length
+    const article: Article = { id: null, title: newArticle.get('title').toString(), content: newArticle.get('content').toString() , img_irl: null };
+
+    this.http.post<{ message: string, articleId: string}>(`${this.config.getArticleUrl()}`, newArticle)
       .subscribe(
         (responseData) => {
-          console.log('msg', responseData.message);
           article.id = responseData.articleId;
           this.articles.push(article);
           this.totalArticle++;

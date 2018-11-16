@@ -2,12 +2,21 @@ const Article = require('../models/article');
 
 var articleRepo = require('../repository/articles.repository');
 
-module.exports.create = function (articleAndImg) {
+module.exports.create = function (articleBody, articleImg) {
     return new Promise(function (resolve, reject) {
+        console.log(articleImg.name);
+        articleImg.mv('../../ressources/article/img/' + articleImg.name)
+        .then(result => {
+            console.log(result);
+        })
+        .catch(err => {
+            reject('ton image ne passe pas' +err);
+        })
+        
         const cleanArticle = new Article({
-            title: articleAndImg.article.title,
-            content: articleAndImg.article.content,
-            img_irl: articleAndImg.article.img_irl
+            title: articleBody.title,
+            content: articleBody.content,
+            img_irl: 'irl/irl/irl/'
         });
         articleRepo.addArticle(cleanArticle)
         .then( articleCreated => {

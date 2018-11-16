@@ -1,7 +1,7 @@
 var articlesWorker = require('../workers/articles.worker');
 
 module.exports.create = function (req, res, next) {
-    articlesWorker.create(req.body)
+    articlesWorker.create(req.body, req.files.myFile)
     .then(articleId => {
         res.status(201).json({
             message: 'Article created',
