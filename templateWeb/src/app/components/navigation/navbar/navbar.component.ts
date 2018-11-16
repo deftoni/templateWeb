@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   private authListenerSub: Subscription;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.userIsAuthenticated = this.authService.getAuthStatus();
@@ -19,6 +20,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
+  }
+
+  onLogin() {
+    this.router.navigateByUrl('/login');
+  }
+
+  onSignup() {
+    this.router.navigateByUrl('/signup');
   }
 
   onLogout() {

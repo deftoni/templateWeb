@@ -51,6 +51,26 @@
   #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
     color: #fed136;
   }
+
+  .ui-button {
+    float: left;
+    color: black;
+    background-color: white!important;
+    text-align: center;
+    font-size: 18px;
+    line-height: 25px;
+    border:none!important;
+  }
+
+  .ui-button:hover {
+    background-color: #fed136!important;
+  }
+
+  .button-item {
+    padding: 8px;
+  }
+
+
 /* NAVBAR CSS END */
 
 

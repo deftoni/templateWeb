@@ -78,8 +78,11 @@ export class ArticlesService {
   addArticle( newArticle: FormData) {
     console.log('mon titre : ', newArticle.get('title'));
 
-    // tslint:disable-next-line:max-line-length
-    const article: Article = { id: null, title: newArticle.get('title').toString(), content: newArticle.get('content').toString() , img_irl: null };
+    const article: Article = {
+      id: null, title: newArticle.get('title').toString(),
+      content: newArticle.get('content').toString(),
+      img_irl: null
+    };
 
     this.http.post<{ message: string, articleId: string}>(`${this.config.getArticleUrl()}`, newArticle)
       .subscribe(

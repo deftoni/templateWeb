@@ -23,14 +23,14 @@
   </div>
   <div class="pull-right">
     <ul class="nav pull-right">
-      <li *ngIf='!userIsAuthenticated'>
-        <a routerLink="/login" class="nav-link js-scroll-trigger">Login</a>
+      <li class="button-item" *ngIf='!userIsAuthenticated'>
+        <button pButton label="Login" type="button" class="ui-button-secondary ui-button-rounded" (click)="onLogin()"></button>
       </li>
-      <li *ngIf='!userIsAuthenticated'>
-       <a routerLink="/signup" class="nav-link js-scroll-trigger">Signup</a>
+      <li class="button-item" *ngIf='!userIsAuthenticated'>
+          <button pButton label="Signup" type="button" class="ui-button-secondary ui-button-rounded" (click)="onSignup()"></button>
       </li>
-      <li *ngIf='userIsAuthenticated'>
-        <button type="button" (click)="onLogout()" class="btn">Logout</button>
+      <li class="button-item" *ngIf='userIsAuthenticated'>
+          <button pButton label="Logout" type="button" class="ui-button-secondary ui-button-rounded" (click)="onLogout()"></button>
       </li>
     </ul>
   </div>

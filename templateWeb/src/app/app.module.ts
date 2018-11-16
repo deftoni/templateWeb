@@ -29,6 +29,7 @@ import { ArticleDetailsComponent } from './components/articles/article-details/a
 // tslint:disable-next-line:max-line-length
 import { GetArticleDetailsButtonComponent } from './components/articles/buttons/get-article-details-button/get-article-details-button.component';
 import { PaginatorModule } from 'primeng/paginator';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { PaginatorModule } from 'primeng/paginator';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    PaginatorModule
+    PaginatorModule,
+    ButtonModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true}
