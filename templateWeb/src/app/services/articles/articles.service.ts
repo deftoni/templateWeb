@@ -76,7 +76,6 @@ export class ArticlesService {
   }
 
   addArticle( newArticle: FormData) {
-    console.log('mon titre : ', newArticle.get('title'));
 
     const article: Article = {
       id: null, title: newArticle.get('title').toString(),

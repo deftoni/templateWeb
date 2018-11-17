@@ -13,14 +13,14 @@
       </div>
         <div class="custom-file">
           <input type="file" name="file" class="custom-file-input" (change)="onGetFiles($event)" ngModel>
-          <label *ngIf="imgGotAName === true" for="file" class="custom-file-label">
+          <label *ngIf="imgGotAnImg === true" for="file" class="custom-file-label">
             {{ imgName }}
           </label>
-          <label *ngIf="imgGotAName === false" for="file" class="custom-file-label">
+          <label *ngIf="imgGotAnImg === false" for="file" class="custom-file-label">
               choose a file
             </label>
         </div>
-        <div class="image-preview" *ngIf="imgPreview !== '' && imgPreview">
+        <div class="image-preview" *ngIf="imgPreview !== null && imgPreview && imgGotAnImg === true">
           <img [src]="imgPreview" [alt]="imgName">
         </div>
       <button type="submit" class="btn btn-primary btn-sm mt-4">Envoyé</button>

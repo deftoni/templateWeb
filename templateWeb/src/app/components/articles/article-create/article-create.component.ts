@@ -14,8 +14,9 @@ export class ArticleCreateComponent implements OnInit {
 
   articleImg: File;
   imgName: String = null;
-  imgGotAName: Boolean = false;
+  imgGotAnImg: Boolean = false;
   imgPreview;
+
 
   ngOnInit() {
   }
@@ -30,17 +31,24 @@ export class ArticleCreateComponent implements OnInit {
 
     uploadData.append('title', form.value.title);
     uploadData.append('content', form.value.content);
-    uploadData.append('myFile', this.articleImg, this.articleImg.name);
-    // this.articlesService.addImgArticleToFtp(uploadData);
+    if (this.imgGotAnImg === true) {
+      console.log('I have an img: ', this.articleImg);
+      uploadData.append('myFile', this.articleImg, this.articleImg.name);
+    } else {
+      console.log('no img: ', this.articleImg);
+    }
+
+
     this.articlesService.addArticle(uploadData);
+
     // test si l'ajout a etait effectué
-    // this.router.navigate(['/', 'articleList']);
+    this.router.navigate(['/', 'articleList']);
   }
 
   onGetFiles(event: Event) {
     this.articleImg = (event.target as HTMLInputElement).files[0];
     this.imgName = (event.target as HTMLInputElement).files[0].name;
-    this.imgGotAName = true;
+    this.imgGotAnImg = true;
     const reader = new FileReader();
     reader.onload = () => {
       this.imgPreview = reader.result;

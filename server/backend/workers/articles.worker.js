@@ -5,7 +5,7 @@ var articleRepo = require('../repository/articles.repository');
 module.exports.create = function (articleBody, articleImg) {
     return new Promise(function (resolve, reject) {
         console.log(articleImg.name);
-        articleImg.mv('../../ressources/article/img/' + articleImg.name)
+        articleImg.mv('../../templateWeb/server/ressources/article/img/' + articleImg.name)
         .then(result => {
             console.log(result);
         })
