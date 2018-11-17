@@ -2,10 +2,11 @@ var articlesWorker = require('../workers/articles.worker');
 
 module.exports.create = function (req, res, next) {
     articlesWorker.create(req)
-    .then(articleId => {
+    .then(article => {
         res.status(201).json({
             message: 'Article created',
-            articleId: articleId
+            articleId: article._id,
+            articleImgPath: article.img_irl
         })
     })
     .catch(err => {

@@ -20,7 +20,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
 
   public totalArticles = 0;
-  public articlesPerPage = 2;
+  public articlesPerPage = 5;
   public currentPage = 1;
   public pageSizeOptions = [1, 2, 5, 10];
 
@@ -29,6 +29,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     // recuperation des articles
+    this.articlesService.updatePageData(this.articlesPerPage, this.currentPage);
     this.articlesService.getArticles(this.articlesPerPage, this.currentPage);
 
     // verification de l'ajout d'articles
@@ -56,7 +57,6 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     this.articlesService.updateArticle(form.value);
   }
   onChangedPage(pageData) {
-    console.log(pageData);
     this.currentPage = pageData.page + 1;
     this.articlesPerPage = pageData.rows;
     this.articlesService.getArticles(this.articlesPerPage, this.currentPage);

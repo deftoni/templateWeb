@@ -4,18 +4,18 @@ var articleRepo = require('../repository/articles.repository');
 
 module.exports.create = function (req) {
     return new Promise(function (resolve, reject) {
-        console.log(req);
         if (req.files == null) {
 
             const cleanArticle = new Article({
                 title: req.body.title,
                 content: req.body.content,
-                img_irl: '/templateWeb/server/ressources/article/img/defaultImg.png'
+                // img_irl: '/templateWeb/server/ressources/article/img/defaultImg.png'
+                img_irl: 'http://localhost:3000/images/articleImages/'+'defaultImg.png'
             });
             
             articleRepo.addArticle(cleanArticle)
                 .then(articleCreated => {
-                    resolve(articleCreated._id);
+                    resolve(articleCreated);
                 })
                 .catch(function (err) {
                     reject(err);
@@ -26,24 +26,22 @@ module.exports.create = function (req) {
             var uniqueImgName = '_' + Math.random().toString(36).substr(2, 9) + dateNow + req.files.myFile.name;
             uniqueImgName = uniqueImgName.split(" ").join("-");
             
-            req.files.myFile.mv('../../templateWeb/server/ressources/article/img/' + uniqueImgName)
+            req.files.myFile.mv('../../templateWeb/server/backend/public/images/articleImages/' + uniqueImgName)
             .then(result => {
-                console.log(result);
+                console.log('Image : ' + uniqueImgName + ' ajouté');
             })
             .catch(err => {
                 reject('ton image ne passe pas' + err);
             })
-            
-            console.log('my unique name: ', uniqueImgName);
             const cleanArticle = new Article({
                 title: req.body.title,
                 content: req.body.content,
-                img_irl: '/templateWeb/server/ressources/article/img/' + uniqueImgName
+                img_irl: 'http://localhost:3000/images/articleImages/' + uniqueImgName
             });
 
             articleRepo.addArticle(cleanArticle)
             .then(articleCreated => {
-                resolve(articleCreated._id);
+                resolve(articleCreated);
             })
             .catch(function (err) {
                 reject(err);

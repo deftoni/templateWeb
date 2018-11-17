@@ -83,10 +83,11 @@ export class ArticlesService {
       img_irl: null
     };
 
-    this.http.post<{ message: string, articleId: string}>(`${this.config.getArticleUrl()}`, newArticle)
+    this.http.post<{ message: string, articleId: string, articleImgPath: string}>(`${this.config.getArticleUrl()}`, newArticle)
       .subscribe(
         (responseData) => {
           article.id = responseData.articleId;
+          article.img_irl = responseData.articleImgPath;
           this.articles.push(article);
           this.totalArticle++;
           this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});

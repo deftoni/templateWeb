@@ -36,7 +36,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/images', express.static(path.join("/server/ressources/article/img")));
+app.use('/images', express.static(path.join('../server/backend/public/images')));
 app.use('/api/articles', articlesRoutes);
 app.use('/api/user', userRoutes);
 
