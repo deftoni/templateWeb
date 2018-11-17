@@ -34,8 +34,6 @@ export class ArticleCreateComponent implements OnInit {
     if (this.imgGotAnImg === true) {
       console.log('I have an img: ', this.articleImg);
       uploadData.append('myFile', this.articleImg, this.articleImg.name);
-    } else {
-      console.log('no img: ', this.articleImg);
     }
 
 
