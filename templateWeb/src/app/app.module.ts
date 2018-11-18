@@ -30,6 +30,8 @@ import { ArticleDetailsComponent } from './components/articles/article-details/a
 import { GetArticleDetailsButtonComponent } from './components/articles/buttons/get-article-details-button/get-article-details-button.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -64,10 +66,11 @@ import { ButtonModule } from 'primeng/button';
     HttpClientModule,
     NgbModule,
     PaginatorModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true}, MessageService
   ],
   bootstrap: [AppComponent]
 })

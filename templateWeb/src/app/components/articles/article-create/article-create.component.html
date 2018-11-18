@@ -11,19 +11,25 @@
         <label for="articleContent">Contenu de l'article</label>
         <textarea class="form-control" name="content" placeholder="Entrer un content" rows="4" ngModel required></textarea>
       </div>
-        <div class="custom-file">
+        <div class="custom-file col-6">
           <input type="file" name="file" class="custom-file-input" (change)="onGetFiles($event)" ngModel>
           <label *ngIf="imgGotAnImg === true" for="file" class="custom-file-label">
             {{ imgName }}
           </label>
           <label *ngIf="imgGotAnImg === false" for="file" class="custom-file-label">
-              choose a file
+              choose a file (jpeg, jpg or png)
             </label>
+            <p-toast key="wrongExtension" position="center"></p-toast>
+            <p-toast key="SizeTooBig" position="center"></p-toast>
         </div>
         <div class="image-preview" *ngIf="imgPreview !== null && imgPreview && imgGotAnImg === true">
           <img [src]="imgPreview" [alt]="imgName">
         </div>
-      <button type="submit" class="btn btn-primary btn-sm mt-4">Envoyé</button>
+        <div class="row">
+          <div class="col-12">
+              <button type="submit" class="btn btn-primary mt-4">Envoyé</button>
+          </div>
+        </div>
     </form>
     <div>
     </div>

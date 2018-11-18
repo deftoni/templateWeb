@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ArticlesService } from '../../../services/articles/articles.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-article-create',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ArticleCreateComponent implements OnInit {
 
-  constructor(public articlesService: ArticlesService, private router: Router) { }
+  constructor(public articlesService: ArticlesService, private router: Router, private messageService: MessageService) { }
 
   articleImg: File;
   imgName: String = null;
@@ -44,14 +45,35 @@ export class ArticleCreateComponent implements OnInit {
   }
 
   onGetFiles(event: Event) {
-    this.articleImg = (event.target as HTMLInputElement).files[0];
-    this.imgName = (event.target as HTMLInputElement).files[0].name;
-    this.imgGotAnImg = true;
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imgPreview = reader.result;
-    };
-    reader.readAsDataURL(this.articleImg);
-  }
+    if ((event.target as HTMLInputElement).files[0].size > 15000000) {
 
+      this.messageService.add({
+        key: 'SizeTooBig', severity: 'error',
+        summary: 'Wrong image', detail: 'Damn Mush your image is too big, its ok try again ', life: 5000
+      });
+
+    } else {
+      if ((event.target as HTMLInputElement).files[0].type !== 'image/jpeg'
+        && (event.target as HTMLInputElement).files[0].type !== 'image/jpg'
+        && (event.target as HTMLInputElement).files[0].type !== 'image/png') {
+
+        this.messageService.add({
+          key: 'wrongExtension', severity: 'error',
+          summary: 'Wrong image', detail: 'Damn Mush your image has not the good extension, its ok try again',
+          life: 5000
+        });
+
+      } else {
+
+        this.articleImg = (event.target as HTMLInputElement).files[0];
+        this.imgName = (event.target as HTMLInputElement).files[0].name;
+        this.imgGotAnImg = true;
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imgPreview = reader.result;
+        };
+        reader.readAsDataURL(this.articleImg);
+      }
+    }
+  }
 }
