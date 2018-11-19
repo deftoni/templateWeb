@@ -16,9 +16,7 @@ export class ArticleCreateComponent implements OnInit {
   articleImg: File;
   imgName: String = null;
   imgGotAnImg: Boolean = false;
-  // imgPreview;
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
+  imgPreview;
 
 
   ngOnInit() {
@@ -68,32 +66,14 @@ export class ArticleCreateComponent implements OnInit {
       } else {
 
         this.articleImg = (event.target as HTMLInputElement).files[0];
-        console.log('ma base', (event));
         this.imgName = (event.target as HTMLInputElement).files[0].name;
         this.imgGotAnImg = true;
-
-        // preview de l'image
-         this.imageChangedEvent = event;
-
-        /*
         const reader = new FileReader();
         reader.onload = () => {
           this.imgPreview = reader.result;
         };
         reader.readAsDataURL(this.articleImg);
-        */
       }
     }
-  }
-
-
-  imageCropped(event) {
-    this.croppedImage = event.base64;
-  }
-  imageLoaded() {
-    // show cropper
-  }
-  loadImageFailed() {
-    // show message
   }
 }
