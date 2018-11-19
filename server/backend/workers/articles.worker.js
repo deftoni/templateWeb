@@ -1,4 +1,5 @@
 const Article = require('../models/article');
+const fs = require('fs');
 
 var articleRepo = require('../repository/articles.repository');
 
@@ -106,15 +107,37 @@ module.exports.getArticleById = function (articleId) {
 module.exports.deleteArticle = function (articleId) {
     return new Promise(function (resolve, reject) {
         // if article exist
-        articleRepo.deleteArticle(articleId)
-            .then(() => {
-                resolve();
+        articleRepo.getArticleById(articleId)
+            .then(article => {
+                // on regarde si l'article a une image
+                if ( article.img_irl != 'http://localhost:3000/images/articleImages/'+'defaultImg.png') {
+                    // on delete l'image du server
+                    imageName = article.img_irl.split('http://localhost:3000/images/articleImages/')
+                    const path = '../../templateWeb/server/backend/public/images/articleImages/' + imageName[1];
+                    // delete l'image
+                    fs.unlink(path, err => {
+                        if (err) {
+                            reject ('image non supprimer' +err);
+                        }
+                        console.log('l\'image : ' + imageName[1] + ' a etait supprimer');
+                    })
+                } else {
+                    console.log('aucune image a supprimer')
+                }
+                articleRepo.deleteArticle(articleId)
+                .then(() => {
+                    resolve();
+                })
+                .catch(function (err) {
+                    reject(err);
+                });
             })
             .catch(function (err) {
-                reject(err);
+                reject('l\'article n\'existe pas '+err);
             });
     })
 }
+
 module.exports.updateArticle = function (articleId, articleUpdate) {
     return new Promise(function (resolve, reject) {
         // if article exist
