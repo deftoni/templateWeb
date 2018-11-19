@@ -4,6 +4,7 @@ import { ArticlesService } from '../../../services/articles/articles.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
+
 @Component({
   selector: 'app-article-create',
   templateUrl: './article-create.component.html',
@@ -68,11 +69,15 @@ export class ArticleCreateComponent implements OnInit {
         this.articleImg = (event.target as HTMLInputElement).files[0];
         this.imgName = (event.target as HTMLInputElement).files[0].name;
         this.imgGotAnImg = true;
+
+        // preview de l'image
+
         const reader = new FileReader();
         reader.onload = () => {
           this.imgPreview = reader.result;
         };
         reader.readAsDataURL(this.articleImg);
+
       }
     }
   }

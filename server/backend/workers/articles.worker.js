@@ -112,12 +112,12 @@ module.exports.deleteArticle = function (articleId) {
                 // on regarde si l'article a une image
                 if ( article.img_irl != 'http://localhost:3000/images/articleImages/'+'defaultImg.png') {
                     // on delete l'image du server
-                    imageName = article.img_irl.split('http://localhost:3000/images/articleImages/');
+                    imageName = article.img_irl.split('http://localhost:3000/images/articleImages/')
                     const path = '../../templateWeb/server/backend/public/images/articleImages/' + imageName[1];
                     // delete l'image
                     fs.unlink(path, err => {
                         if (err) {
-                            reject ('image non supprimer ' +err);
+                            reject ('image non supprimer' +err);
                         }
                         console.log('l\'image : ' + imageName[1] + ' a etait supprimer');
                     })
