@@ -32,6 +32,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { MessageService } from 'primeng/api';
     NgbModule,
     PaginatorModule,
     ButtonModule,
-    ToastModule
+    ToastModule,
+    ImageCropperModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true}, MessageService

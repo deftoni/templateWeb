@@ -12,7 +12,7 @@
         <textarea class="form-control" name="content" placeholder="Entrer un content" rows="4" ngModel required></textarea>
       </div>
         <div class="custom-file col-6">
-          <input type="file" name="file" class="custom-file-input" (change)="onGetFiles($event)" ngModel>
+          <input type="file" name="file" class="custom-file-input" (change)="onGetFiles($event)" accept="image/*" ngModel>
           <label *ngIf="imgGotAnImg === true" for="file" class="custom-file-label">
             {{ imgName }}
           </label>
@@ -22,9 +22,25 @@
             <p-toast key="wrongExtension" position="center"></p-toast>
             <p-toast key="SizeTooBig" position="center"></p-toast>
         </div>
+
+        <div *ngIf="croppedImage !== null && imgGotAnImg === true">
+          <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="4 / 3"
+          [resizeToWidth]="128"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (loadImageFailed)="loadImageFailed()">
+          </image-cropper>
+        <img [src]="croppedImage" />
+  </div>
+        <!--
         <div class="image-preview" *ngIf="imgPreview !== null && imgPreview && imgGotAnImg === true">
           <img [src]="imgPreview" [alt]="imgName">
         </div>
+        -->
         <div class="row">
           <div class="col-12">
               <button type="submit" class="btn btn-primary mt-4">Envoyé</button>
