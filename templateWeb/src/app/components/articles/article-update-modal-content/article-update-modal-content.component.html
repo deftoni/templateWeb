@@ -12,6 +12,14 @@
         <label for="articleContent">Contenu de l'article</label>
         <textarea class="form-control" name="content" rows="4" ngModel ngModel='{{content}}' required></textarea>
       </div>
+      <div class="custom-file">
+        <input type="file" name="file" class="custom-file-input" ngModel>
+
+        <label for="file" class="custom-file-label" name="fileName">
+
+          </label>
+{{img_irl}}
+      </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-outline-dark" placement="top" ngbPopover="L'article a bien été modifié">Save</button>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
