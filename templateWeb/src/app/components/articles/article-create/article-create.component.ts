@@ -17,49 +17,47 @@ export class ArticleCreateComponent implements OnInit {
   @ViewChild('angularCropper') public angularCropper: CropperComponent;
 
   config = [];
-  imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Bartholdi_Fountain_in_Washington%2C_D.C._2012.JPG/800px-Bartholdi_Fountain_in_Washington%2C_D.C._2012.JPG';
-
+  imageUrl;
   resultImage: any;
   resultResult: any;
-
-  constructor(public articlesService: ArticlesService, private router: Router,
-     private messageService: MessageService, private sanitizer: DomSanitizer) { }
-
+  myBlob;
   articleImg: File;
   imgName: String = null;
   imgGotAnImg: Boolean = false;
-  imgPreview;
   iGotCropped: Boolean = false;
-  myBlob;
+  IGotAnUrl: Boolean = false;
+
+
+  constructor(public articlesService: ArticlesService, private router: Router,
+    private messageService: MessageService, private sanitizer: DomSanitizer) { }
+
+
   ngOnInit() {
   }
 
   CropMe() {
     this.iGotCropped = true;
     this.resultResult = this.angularCropper.imageUrl;
-    console.log('Hello');
     this.resultImage = this.angularCropper.cropper.getCroppedCanvas();
-    this.resultImage.toBlob((blob) => {this.myBlob = blob; });
-    console.log(this.resultImage);
+    this.resultImage.toBlob((blob) => { this.myBlob = blob; });
     this.angularCropper.exportCanvas();
-
   }
 
   resultImageFun(event: ImageCropperResult) {
     const urlCreator = window.URL;
-  this.resultResult = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/jpeg');
+    this.resultResult = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/jpeg');
   }
 
-checkstatus(event: any) {
-  console.log(event.blob);
-  if (event.blob === undefined) {
-    return;
-  }
-  // this.resultResult = event.blob;
-  const urlCreator = window.URL;
-  this.resultResult = this.sanitizer.bypassSecurityTrustUrl(
+  checkstatus(event: any) {
+    console.log(event.blob);
+    if (event.blob === undefined) {
+      return;
+    }
+    // this.resultResult = event.blob;
+    const urlCreator = window.URL;
+    this.resultResult = this.sanitizer.bypassSecurityTrustUrl(
       urlCreator.createObjectURL(new Blob(event.blob)));
-}
+  }
 
   onAddArticle(form: NgForm) {
     if (form.invalid) {
@@ -67,12 +65,17 @@ checkstatus(event: any) {
       // test a faire
       return;
     }
-    console.log('myFORMdATAtOSend: ', form.value.title);
     const uploadData = new FormData();
 
     uploadData.append('title', form.value.title);
     uploadData.append('content', form.value.content);
-    uploadData.append('myFile', this.myBlob);
+
+    if (this.myBlob == null) {
+      uploadData.append('myFile', this.articleImg, this.articleImg.name);
+    } else {
+      uploadData.append('myFile', this.myBlob, this.articleImg.name);
+    }
+
 
     this.articlesService.addArticle(uploadData);
 
@@ -101,35 +104,19 @@ checkstatus(event: any) {
 
       } else {
 
-        // this.readURL(event.target);
-        console.log('myURL: *******************', this.readURL(event.target));
         this.articleImg = (event.target as HTMLInputElement).files[0];
-        console.log('myIMGIwantTheURL**************: ', this.articleImg);
         this.imgName = (event.target as HTMLInputElement).files[0].name;
         this.imgGotAnImg = true;
 
-        // preview de l'image
-        /*
         const reader = new FileReader();
+
         reader.onload = () => {
-          this.imgPreview = reader.result;
+          this.imageUrl = reader.result;
         };
+
         reader.readAsDataURL(this.articleImg);
-        */
+        this.IGotAnUrl = true;
       }
     }
   }
-
-  readURL(input) {
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-
-      reader.onload = function(e) {
-        (document.getElementById('myImgInput') as HTMLImageElement).src = input.result;
-      };
-
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-
 }
