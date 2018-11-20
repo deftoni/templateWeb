@@ -25,6 +25,7 @@ import { NgbdModalComponent } from './components/articles/buttons/update-button/
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthIntercepter } from './services/auth/auth-intercepter';
+import { ErrorIntercepter } from './services/error-interceptor';
 import { ArticleDetailsComponent } from './components/articles/article-details/article-details.component';
 // tslint:disable-next-line:max-line-length
 import { GetArticleDetailsButtonComponent } from './components/articles/buttons/get-article-details-button/get-article-details-button.component';
@@ -33,6 +34,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CropperComponent } from 'angular-cropperjs';
+import { ErrorComponent } from './components/error/error.component';
 
 
 @NgModule({
@@ -57,9 +59,13 @@ import { CropperComponent } from 'angular-cropperjs';
     SignupComponent,
     ArticleDetailsComponent,
     GetArticleDetailsButtonComponent,
-    CropperComponent
+    CropperComponent,
+    ErrorComponent
   ],
-  entryComponents: [NgbdModalContentComponent],
+  entryComponents: [
+    NgbdModalContentComponent,
+    ErrorComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -72,7 +78,9 @@ import { CropperComponent } from 'angular-cropperjs';
     ToastModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true}, MessageService
+    {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorIntercepter, multi: true},
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

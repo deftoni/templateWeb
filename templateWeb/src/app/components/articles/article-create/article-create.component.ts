@@ -28,8 +28,12 @@ export class ArticleCreateComponent implements OnInit {
   IGotAnUrl: Boolean = false;
 
 
-  constructor(public articlesService: ArticlesService, private router: Router,
-    private messageService: MessageService, private sanitizer: DomSanitizer) { }
+  constructor(
+    public articlesService: ArticlesService,
+    private router: Router,
+    private messageService: MessageService,
+    private sanitizer: DomSanitizer
+  ) { }
 
 
   ngOnInit() {
