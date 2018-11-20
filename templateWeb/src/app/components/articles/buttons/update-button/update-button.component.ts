@@ -16,6 +16,7 @@ export class NgbdModalComponent {
     modalRef.componentInstance.title = this.article.title;
     modalRef.componentInstance.content = this.article.content;
     modalRef.componentInstance.id = this.article.id;
+    modalRef.componentInstance.img_irl = this.article.img_irl;
   }
 }
 

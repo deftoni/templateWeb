@@ -32,6 +32,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { CropperComponent } from 'angular-cropperjs';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { MessageService } from 'primeng/api';
     LoginComponent,
     SignupComponent,
     ArticleDetailsComponent,
-    GetArticleDetailsButtonComponent
+    GetArticleDetailsButtonComponent,
+    CropperComponent
   ],
   entryComponents: [NgbdModalContentComponent],
   imports: [

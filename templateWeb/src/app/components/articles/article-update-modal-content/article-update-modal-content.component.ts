@@ -12,6 +12,7 @@ export class NgbdModalContentComponent {
   @Input() title;
   @Input() content;
   @Input() id;
+  @Input() img_irl;
 
   constructor(public activeModal: NgbActiveModal, public articlesService: ArticlesService) { }
 

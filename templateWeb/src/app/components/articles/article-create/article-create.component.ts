@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ArticlesService } from '../../../services/articles/articles.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { CropperComponent, ImageCropperResult } from 'angular-cropperjs';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -12,15 +14,49 @@ import { MessageService } from 'primeng/api';
 })
 export class ArticleCreateComponent implements OnInit {
 
-  constructor(public articlesService: ArticlesService, private router: Router, private messageService: MessageService) { }
+  @ViewChild('angularCropper') public angularCropper: CropperComponent;
 
+  config = [];
+  imageUrl;
+  resultImage: any;
+  resultResult: any;
+  myBlob;
   articleImg: File;
   imgName: String = null;
   imgGotAnImg: Boolean = false;
-  imgPreview;
+  iGotCropped: Boolean = false;
+  IGotAnUrl: Boolean = false;
+
+
+  constructor(public articlesService: ArticlesService, private router: Router,
+    private messageService: MessageService, private sanitizer: DomSanitizer) { }
 
 
   ngOnInit() {
+  }
+
+  CropMe() {
+    this.iGotCropped = true;
+    this.resultResult = this.angularCropper.imageUrl;
+    this.resultImage = this.angularCropper.cropper.getCroppedCanvas();
+    this.resultImage.toBlob((blob) => { this.myBlob = blob; });
+    this.angularCropper.exportCanvas();
+  }
+
+  resultImageFun(event: ImageCropperResult) {
+    const urlCreator = window.URL;
+    this.resultResult = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/jpeg');
+  }
+
+  checkstatus(event: any) {
+    console.log(event.blob);
+    if (event.blob === undefined) {
+      return;
+    }
+    // this.resultResult = event.blob;
+    const urlCreator = window.URL;
+    this.resultResult = this.sanitizer.bypassSecurityTrustUrl(
+      urlCreator.createObjectURL(new Blob(event.blob)));
   }
 
   onAddArticle(form: NgForm) {
@@ -33,9 +69,11 @@ export class ArticleCreateComponent implements OnInit {
 
     uploadData.append('title', form.value.title);
     uploadData.append('content', form.value.content);
-    if (this.imgGotAnImg === true) {
-      console.log('I have an img: ', this.articleImg);
+
+    if (this.myBlob == null) {
       uploadData.append('myFile', this.articleImg, this.articleImg.name);
+    } else {
+      uploadData.append('myFile', this.myBlob, this.articleImg.name);
     }
 
 
@@ -70,14 +108,14 @@ export class ArticleCreateComponent implements OnInit {
         this.imgName = (event.target as HTMLInputElement).files[0].name;
         this.imgGotAnImg = true;
 
-        // preview de l'image
-
         const reader = new FileReader();
-        reader.onload = () => {
-          this.imgPreview = reader.result;
-        };
-        reader.readAsDataURL(this.articleImg);
 
+        reader.onload = () => {
+          this.imageUrl = reader.result;
+        };
+
+        reader.readAsDataURL(this.articleImg);
+        this.IGotAnUrl = true;
       }
     }
   }
