@@ -10,7 +10,6 @@ module.exports.create = function (req) {
             const cleanArticle = new Article({
                 title: req.body.title,
                 content: req.body.content,
-                // img_irl: '/templateWeb/server/ressources/article/img/defaultImg.png'
                 img_irl: 'http://localhost:3000/images/articleImages/'+'defaultImg.png'
             });
             
