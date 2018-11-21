@@ -12,10 +12,10 @@ mongoose.set('useCreateIndex', true)
 mongoose.connect('mongodb+srv://AngularNode:N8qqeeZPwYf1QBn9@cluster0-g1zec.gcp.mongodb.net/templateWebDB', { useNewUrlParser: true })
 
   .then(() => {
-    console.log('Connected to dataBase !');
+    console.log('Connected to dataBase');
   })
   .catch(() => {
-    console.log('Connection failed !');
+    console.log('Connection failed!');
   });
 
 app.use(bodyParser.json());
