@@ -74,14 +74,14 @@ export class ArticleCreateComponent implements OnInit {
 
     if (!this.articleImg) {
       console.log('no image');
-      uploadData.append('myFile', null, null);
-    }
-
-    if (this.myBlob == null || this.iGotCropped === false) {
-      uploadData.append('myFile', this.articleImg, this.articleImg.name);
     } else {
-      console.log('iGotCropped: ', this.iGotCropped);
-      uploadData.append('myFile', this.myBlob, this.articleImg.name);
+
+      if (this.myBlob == null || this.iGotCropped === false) {
+        uploadData.append('myFile', this.articleImg, this.articleImg.name);
+      } else {
+        console.log('iGotCropped: ', this.iGotCropped);
+        uploadData.append('myFile', this.myBlob, this.articleImg.name);
+      }
     }
 
 
