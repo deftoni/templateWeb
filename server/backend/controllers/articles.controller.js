@@ -4,7 +4,7 @@ module.exports.create = function (req, res, next) {
     articlesWorker.create(req)
     .then(article => {
         res.status(201).json({
-            message: 'Article created',
+            message: 'Article created successfully',
             articleId: article._id,
             articleImgPath: article.img_irl
         })
@@ -21,14 +21,14 @@ module.exports.getArticles = function (req, res, next) {
     articlesWorker.getArticles(req.query)
     .then((articles) => {
         res.status(201).json({
-            message: 'articles fetched successfully',
+            message: 'Articles fetched successfully',
             articles: articles[0],
             maxArticles: articles[1]
         })
     })
     .catch(err => {
         res.status(400).json({
-            message: 'Bad request!',
+            message: 'Articles not fetched!',
             error: err
         })
     });
@@ -36,16 +36,15 @@ module.exports.getArticles = function (req, res, next) {
 
 module.exports.getArticleById = function (req, res, next) {
     articlesWorker.getArticleById(req.params.id)
-    .then(articleFetched => {
-        console.log('article Fetched from controller: ',articleFetched )
+    .then(article => {
         res.status(200).json({
-            message: 'article Fetched successfully',
-            article: articleFetched
+            message: 'Article fetched successfully',
+            article: article
         })
     })
     .catch(err => {
         res.status(400).json({
-            message: 'bad request you mother ******',
+            message: 'Article not fetched!',
             error: err  
         })
     })

@@ -2,19 +2,25 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@a
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ErrorComponent } from '../components/error/error.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MessageService } from 'primeng/api';
 
 @Injectable()
 export class ErrorIntercepter implements HttpInterceptor {
-  constructor(private modalService: NgbModal) { }
+  constructor(private messageService: MessageService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        const modalRef = this.modalService.open(ErrorComponent);
-        modalRef.componentInstance.error = error;
+
+        this.messageService.add({
+          key: 'errorToast',
+          severity: 'error',
+          summary: error.error.message,
+          detail: error.error.error,
+          life: 5000
+        });
+
         return throwError(error);
       })
     );

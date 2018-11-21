@@ -28,11 +28,11 @@ module.exports.create = function (req) {
             uniqueImgName = uniqueImgName.split(" ").join("-");
             
             req.files.myFile.mv('../../templateWeb/server/backend/public/images/articleImages/' + uniqueImgName)
-            .then(result => {
-                console.log('Image : ' + uniqueImgName + ' ajouté');
+            .then(() => {
+                console.log('Image: ' + uniqueImgName + ' upload');
             })
             .catch(err => {
-                reject('ton image ne passe pas' + err);
+                reject('Image upload failed! ' + err);
             })
             const cleanArticle = new Article({
                 title: req.body.title,
@@ -48,9 +48,6 @@ module.exports.create = function (req) {
                 reject(err);
             });
         }
-
-
-
     })
 }
 
@@ -117,12 +114,12 @@ module.exports.deleteArticle = function (articleId) {
                     // delete l'image
                     fs.unlink(path, err => {
                         if (err) {
-                            reject ('image non supprimer' +err);
+                            reject ('Image not deleted ' +err);
                         }
-                        console.log('l\'image : ' + imageName[1] + ' a etait supprimer');
+                        console.log('Image: ' + imageName[1] + ' deleted');
                     })
                 } else {
-                    console.log('aucune image a supprimer')
+                    console.log('no image to delete');
                 }
                 articleRepo.deleteArticle(articleId)
                 .then(() => {
@@ -133,7 +130,7 @@ module.exports.deleteArticle = function (articleId) {
                 });
             })
             .catch(function (err) {
-                reject('l\'article n\'existe pas '+err);
+                reject('Article does not exist '+err);
             });
     })
 }

@@ -25,7 +25,7 @@ import { NgbdModalComponent } from './components/articles/buttons/update-button/
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthIntercepter } from './services/auth/auth-intercepter';
-import { ErrorIntercepter } from './services/error-interceptor';
+import { ErrorIntercepter } from './services/error/error-interceptor';
 import { ArticleDetailsComponent } from './components/articles/article-details/article-details.component';
 // tslint:disable-next-line:max-line-length
 import { GetArticleDetailsButtonComponent } from './components/articles/buttons/get-article-details-button/get-article-details-button.component';
@@ -34,7 +34,6 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CropperComponent } from 'angular-cropperjs';
-import { ErrorComponent } from './components/error/error.component';
 
 
 @NgModule({
@@ -60,11 +59,9 @@ import { ErrorComponent } from './components/error/error.component';
     ArticleDetailsComponent,
     GetArticleDetailsButtonComponent,
     CropperComponent,
-    ErrorComponent
   ],
   entryComponents: [
-    NgbdModalContentComponent,
-    ErrorComponent
+    NgbdModalContentComponent
   ],
   imports: [
     BrowserModule,
