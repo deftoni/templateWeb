@@ -17,7 +17,7 @@ export class ArticleCreateComponent implements OnInit {
   @ViewChild('angularCropper') public angularCropper: CropperComponent;
 
   config = [];
-  imageUrl;
+  imageUrl = null;
   resultImage: any;
   resultResult: any;
   myBlob;
@@ -52,17 +52,6 @@ export class ArticleCreateComponent implements OnInit {
     this.resultResult = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/jpeg');
   }
 
-  checkstatus(event: any) {
-    console.log(event.blob);
-    if (event.blob === undefined) {
-      return;
-    }
-    // this.resultResult = event.blob;
-    const urlCreator = window.URL;
-    this.resultResult = this.sanitizer.bypassSecurityTrustUrl(
-      urlCreator.createObjectURL(new Blob(event.blob)));
-  }
-
   onAddArticle(form: NgForm) {
     if (form.invalid) {
       console.log('formulaire d\'ajout d\'un article invalide');
@@ -74,9 +63,10 @@ export class ArticleCreateComponent implements OnInit {
     uploadData.append('title', form.value.title);
     uploadData.append('content', form.value.content);
 
-    if (this.myBlob == null) {
+    if (this.myBlob == null || this.iGotCropped === false) {
       uploadData.append('myFile', this.articleImg, this.articleImg.name);
     } else {
+      console.log('iGotCropped: ', this.iGotCropped);
       uploadData.append('myFile', this.myBlob, this.articleImg.name);
     }
 
@@ -107,19 +97,24 @@ export class ArticleCreateComponent implements OnInit {
         });
 
       } else {
-
         this.articleImg = (event.target as HTMLInputElement).files[0];
         this.imgName = (event.target as HTMLInputElement).files[0].name;
         this.imgGotAnImg = true;
-
         const reader = new FileReader();
-
-        reader.onload = () => {
-          this.imageUrl = reader.result;
-        };
-
         reader.readAsDataURL(this.articleImg);
-        this.IGotAnUrl = true;
+        reader.onload = () => {
+          if (this.angularCropper) {
+            this.iGotCropped = false;
+            this.imageUrl = reader.result;
+            this.angularCropper.cropper.replace(this.imageUrl);
+            this.angularCropper.cropper.destroy();
+            this.angularCropper.cropper.clear();
+          } else {
+            this.iGotCropped = false;
+            this.imageUrl = reader.result;
+          }
+          this.IGotAnUrl = true;
+        };
       }
     }
   }

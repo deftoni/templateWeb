@@ -23,13 +23,13 @@
         <p-toast key="SizeTooBig" position="center"></p-toast>
       </div>
       <div *ngIf="IGotAnUrl === true">
-        <angular-cropper #angularCropper [cropperOptions]="config" (export)="resultImageFun($event)" (ready)="checkstatus($event)"
+        <angular-cropper #angularCropper [cropperOptions]="config" (export)="resultImageFun($event)"
           [imageUrl]="imageUrl" id="myImgCropper"></angular-cropper>
+          <a class=" btn btn-info" (click)="CropMe()">CropMe</a>
         <div class="container" *ngIf="iGotCropped === true">
           <div class="row">
               <img id="myImgCropped" [src]="resultResult" />
           </div>
-
         </div>
       </div>
       <div class="row">
@@ -38,7 +38,7 @@
         </div>
       </div>
     </form>
-    <button class="btn btn-dark" (click)="CropMe()">CropMe</button>
+
     <div>
     </div>
   </div>
