@@ -118,6 +118,13 @@ export class ArticlesService {
       this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
     });*/
   }
+
+  deleteArticleImage(articleId: string) {
+    this.http.delete(`${this.config.getArticleUrl()}` + '/ArticleImage/' + articleId)
+    .subscribe(() => {
+    });
+  }
+
   updatePageData(articlesPerPage: number, currentPage: number) {
     this.articlesPerPage = articlesPerPage;
     this.currentPage = currentPage;

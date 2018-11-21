@@ -1,27 +1,42 @@
 <div class="modal-body">
   <div class="container">
-    <h3>Création d'un article</h3>
+    <div class="row">
+      <h3>Création d'un article</h3>
+    </div>
+
     <form class="needs-validation" novalidate (ngSubmit)="onUpdateArticle(articleForm)" #articleForm="ngForm">
       <input type="hidden" name="id" ngModel ngModel='{{id}}'>
       <div class="form-group">
-        <label for="articleTitle">Titre de l'article</label>
-        <input type="text" class="form-control" name="title" placeholder="Entrer un titre" ngModel ngModel='{{title}}'
-          required>
+        <div class="row">
+          <label for="articleTitle">Titre de l'article</label>
+        </div>
+        <div class="row">
+          <input type="text" class="form-control" name="title" placeholder="Entrer un titre" ngModel ngModel='{{title}}'
+            required>
+        </div>
       </div>
       <div class="form-group">
-        <label for="articleContent">Contenu de l'article</label>
-        <textarea class="form-control" name="content" rows="4" ngModel ngModel='{{content}}' required></textarea>
+        <div class="row">
+          <label for="articleContent">Contenu de l'article</label>
+        </div>
+        <div class="row">
+          <textarea class="form-control" name="content" rows="4" ngModel ngModel='{{content}}' required></textarea>
+        </div>
       </div>
-      <div class="custom-file">
-        <input type="file" name="file" class="custom-file-input" ngModel>
-
-        <label for="file" class="custom-file-label" name="fileName">
-
+      <div class="row align-items-center">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-10 custom-file">
+          <input [disabled]="ImgInputDisable" type="file" name="file" class="custom-file-input" ngModel>
+          <label for="file" class="custom-file-label" name="fileName">
+            {{myImgName}}
           </label>
-{{img_irl}}
+        </div>
+        <div class=" buttonDeleteImage col-lg-2">
+          <button type="button" (click)="deleteArticleImage()" class="btn btn-danger"> supprimer </button>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-dark" placement="top" ngbPopover="L'article a bien été modifié">Save</button>
+
+      <div class=" row modal-footer">
+        <button type="submit" class="btn btn-outline-dark" placement="top" ngbPopover="Features in Progess... Votre article n'a pas été mise à jour">Save</button>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
       </div>
     </form>

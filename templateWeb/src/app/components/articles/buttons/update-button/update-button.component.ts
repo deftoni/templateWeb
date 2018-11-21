@@ -12,7 +12,7 @@ export class NgbdModalComponent {
   constructor(private modalService: NgbModal) { }
 
   open() {
-    const modalRef = this.modalService.open(NgbdModalContentComponent);
+    const modalRef = this.modalService.open(NgbdModalContentComponent, { size: 'lg' });
     modalRef.componentInstance.title = this.article.title;
     modalRef.componentInstance.content = this.article.content;
     modalRef.componentInstance.id = this.article.id;

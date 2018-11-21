@@ -100,6 +100,33 @@ module.exports.getArticleById = function (articleId) {
     })
 }
 
+module.exports.deleteArticleImage = function(articleId) {
+    return new Promise(function (resolve, reject) {
+        articleRepo.getArticleById(articleId)
+            .then(article => {
+                // on regarde si l'article a une image
+                if ( article.img_irl != 'http://localhost:3000/images/articleImages/'+'defaultImg.png') {
+                    // on recupere le chemin de l'image sur le server
+                    imageName = article.img_irl.split('http://localhost:3000/images/articleImages/')
+                    const path = '../../templateWeb/server/backend/public/images/articleImages/' + imageName[1];
+                    // on delete l'image
+                    fs.unlink(path, err => {
+                        if (err) {
+                            reject ('Image not deleted ' +err);
+                        }
+                        console.log('Image: ' + imageName[1] + ' deleted');
+                    })
+                    resolve();
+                } else {
+                    console.log('no image to delete');
+                }
+            })
+            .catch(function (err) {
+                reject('Article does not exist '+err);
+            });
+    })
+}
+
 module.exports.deleteArticle = function (articleId) {
     return new Promise(function (resolve, reject) {
         // if article exist

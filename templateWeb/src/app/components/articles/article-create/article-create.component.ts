@@ -17,7 +17,7 @@ export class ArticleCreateComponent implements OnInit {
   croppeOptions = [];
   imageUrl = null;
   resultImage: any;
-  resultResult: any;
+  resultCroppedImg: any;
   myBlob;
   articleImg: File;
   imgName: String = null;
@@ -38,7 +38,7 @@ export class ArticleCreateComponent implements OnInit {
 
   CropMe() {
     this.iGotCropped = true;
-    this.resultResult = this.angularCropper.imageUrl;
+    this.resultCroppedImg = this.angularCropper.imageUrl;
     this.resultImage = this.angularCropper.cropper.getCroppedCanvas();
     this.resultImage.toBlob((blob) => { this.myBlob = blob; });
     this.angularCropper.exportCanvas();
@@ -47,7 +47,7 @@ export class ArticleCreateComponent implements OnInit {
   deleteImage() {
     this.imageUrl = null;
     this.resultImage = null;
-    this.resultResult = null;
+    this.resultCroppedImg = null;
     this.myBlob = null;
     this.articleImg = null;
     this.imgName = null;
@@ -58,7 +58,7 @@ export class ArticleCreateComponent implements OnInit {
 
   resultImageFun(event: ImageCropperResult) {
     const urlCreator = window.URL;
-    this.resultResult = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/jpeg');
+    this.resultCroppedImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/jpeg');
   }
 
   onAddArticle(form: NgForm) {
