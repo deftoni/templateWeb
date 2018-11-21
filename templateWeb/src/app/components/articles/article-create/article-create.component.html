@@ -31,7 +31,7 @@
           id="myImgCropper">
       </angular-cropper>
           <button type="button" class=" btn btn-info" (click)="CropMe()">CropMe</button>
-          <button type="button" class=" btn btn-info btn-danger float-right" (click)="deleteImage()">delete</button>
+          <button type="button" class=" btn btn-info btn-danger float-right" (click)="deleteImage()">Delete</button>
         <div class="container" *ngIf="iGotCropped === true">
           <div class="row">
               <img id="myImgCropped" [src]="resultResult" />

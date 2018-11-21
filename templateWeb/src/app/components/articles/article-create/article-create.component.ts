@@ -73,7 +73,7 @@ export class ArticleCreateComponent implements OnInit {
     uploadData.append('content', form.value.content);
 
     if (!this.articleImg) {
-      console.log('no image');
+
     } else {
 
       if (this.myBlob == null || this.iGotCropped === false) {
