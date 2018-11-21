@@ -47,9 +47,9 @@ export class ArticlesService {
       )
       .subscribe(
         (transformedArticleData) => {
-          this.articles = transformedArticleData.article,
-          this.totalArticle = transformedArticleData.maxArticles,
-          console.log('GET Article', transformedArticleData),
+          this.articles = transformedArticleData.article;
+          this.totalArticle = transformedArticleData.maxArticles;
+          console.log('GET Article', transformedArticleData);
           this.articlesUpdated.next({articles: [...this.articles], countArticle: transformedArticleData.maxArticles });
         },
         () => { console.log('error'); },

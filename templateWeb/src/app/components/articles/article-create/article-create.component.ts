@@ -88,7 +88,7 @@ export class ArticleCreateComponent implements OnInit {
     this.articlesService.addArticle(uploadData);
 
     // test si l'ajout a etait effectué
-    // this.router.navigate(['/', 'articleList']);
+    this.router.navigate(['/articleList']);
   }
 
   onGetFiles(event: Event) {

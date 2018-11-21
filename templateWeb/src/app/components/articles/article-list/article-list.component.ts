@@ -28,9 +28,12 @@ export class ArticleListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    // recuperation des articles
-    this.articlesService.updatePageData(this.articlesPerPage, this.currentPage);
-    this.articlesService.getArticles(this.articlesPerPage, this.currentPage);
+    // verification de l'authentification
+    this.userIsAuthenticated = this.authService.getAuthStatus();
+    this.authListenerSub = this.authService.getAuthStatusListener()
+    .subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    });
 
     // verification de l'ajout d'articles
     this.articlesSub = this.articlesService.getArticlesUpdateListener().subscribe(
@@ -38,13 +41,17 @@ export class ArticleListComponent implements OnInit, OnDestroy {
         console.log('UPDATE Articles', articlesData),
         this.articles = articlesData.articles;
         this.totalArticles = articlesData.countArticle;
+        if (this.articles.length === 0 && this.currentPage > 1) {
+          this.currentPage--;
+          this.articlesService.updatePageData(this.articlesPerPage, this.currentPage);
+          this.articlesService.getArticles(this.articlesPerPage, this.currentPage);
+        }
       }
     );
-    this.userIsAuthenticated = this.authService.getAuthStatus();
-    this.authListenerSub = this.authService.getAuthStatusListener()
-    .subscribe(isAuthenticated => {
-      this.userIsAuthenticated = isAuthenticated;
-    });
+
+    // recuperation des articles
+    this.articlesService.updatePageData(this.articlesPerPage, this.currentPage);
+    this.articlesService.getArticles(this.articlesPerPage, this.currentPage);
   }
 
   onUpdateArticle(form: NgForm) {
