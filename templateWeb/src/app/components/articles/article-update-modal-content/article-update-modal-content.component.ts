@@ -7,7 +7,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-ngbd-modal-content',
   templateUrl: './article-update-modal-content.component.html'
 })
-export class NgbdModalContentComponent {
+export class NgbdModalContentComponent implements OnInit {
 
   @Input() title;
   @Input() content;
@@ -15,6 +15,10 @@ export class NgbdModalContentComponent {
   @Input() img_irl;
 
   constructor(public activeModal: NgbActiveModal, public articlesService: ArticlesService) { }
+
+  ngOnInit() {
+    console.log('coucou');
+  }
 
   onUpdateArticle(form: NgForm) {
     console.log('poulouuu');
