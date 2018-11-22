@@ -24,14 +24,26 @@
         </div>
       </div>
       <div class="row align-items-center">
-        <div class="col-lg-10 col-md-12 col-sm-12 col-10 custom-file">
-          <input [disabled]="ImgInputDisable" type="file" name="file" class="custom-file-input" ngModel>
-          <label for="file" class="custom-file-label" name="fileName">
+        <div *ngIf="btnDeleteImgTrigged === false" class="col-lg-10 col-md-12 col-sm-12 col-10 custom-file">
+          <input typ="hidden" type="text" name="img_irl" class="custom-file-input" ngModel='{{theDefaultImg}}'>
+          <input disabled type="file" name="file" class="custom-file-input">
+          <label class="custom-file-label" name="fileName">
             {{myImgName}}
           </label>
         </div>
+        <div *ngIf="btnDeleteImgTrigged === true" class="col-lg-10 col-md-12 col-sm-12 col-10 custom-file">
+          <input type="file" name="file" class="custom-file-input" ngModel (change)="onGetFiles($event)">
+          <label *ngIf="imgGotAnImg === true" for="file" class="custom-file-label">
+            {{ imgName }}
+          </label>
+          <label *ngIf="imgGotAnImg === false" for="file" class="custom-file-label">
+            choose a file (jpeg, jpg or png)
+          </label>
+          <p-toast key="wrongExtension" position="center"></p-toast>
+          <p-toast key="SizeTooBig" position="center"></p-toast>
+        </div>
         <div class=" buttonDeleteImage col-lg-2">
-          <button type="button" (click)="deleteArticleImage()" class="btn btn-danger"> supprimer </button>
+          <button type="submit" class="btn btn-danger"> supprimer </button>
         </div>
       </div>
 
