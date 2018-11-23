@@ -100,33 +100,6 @@ module.exports.getArticleById = function (articleId) {
     })
 }
 
-module.exports.deleteArticleImage = function(articleId) {
-    return new Promise(function (resolve, reject) {
-        articleRepo.getArticleById(articleId)
-            .then(article => {
-                // on regarde si l'article a une image
-                if ( article.img_irl != 'http://localhost:3000/images/articleImages/'+'defaultImg.png') {
-                    // on recupere le chemin de l'image sur le server
-                    imageName = article.img_irl.split('http://localhost:3000/images/articleImages/')
-                    const path = '../../templateWeb/server/backend/public/images/articleImages/' + imageName[1];
-                    // on delete l'image
-                    fs.unlink(path, err => {
-                        if (err) {
-                            reject ('Image not deleted ' +err);
-                        }
-                        console.log('Image: ' + imageName[1] + ' deleted');
-                    })
-                    resolve();
-                } else {
-                    console.log('no image to delete');
-                }
-            })
-            .catch(function (err) {
-                reject('Article does not exist '+err);
-            });
-    })
-}
-
 module.exports.deleteArticle = function (articleId) {
     return new Promise(function (resolve, reject) {
         // if article exist
@@ -161,16 +134,84 @@ module.exports.deleteArticle = function (articleId) {
     })
 }
 
-module.exports.updateArticle = function (articleId, articleUpdate) {
+module.exports.updateArticle = function (articleId, req) {
     return new Promise(function (resolve, reject) {
-        // if article exist
-        articleRepo.updateArticle(articleId, articleUpdate)
-            .then((articleUpdated) => {
-                resolve(articleUpdated._id);
+        if (req.files == null) {
+            const cleanArticleToSend = new Article({
+                _id: req.body.id,
+                title: req.body.title,
+                content: req.body.content,
+                img_irl: 'http://localhost:3000/images/articleImages/'+'defaultImg.png'
+            });
+            articleRepo.getArticleById(articleId)
+            .then(article => {
+                // on regarde si l'article a une image
+                if ( article.img_irl != 'http://localhost:3000/images/articleImages/'+'defaultImg.png') {
+                    // on recupere le chemin de l'image sur le server
+                    imageName = article.img_irl.split('http://localhost:3000/images/articleImages/')
+                    const path = '../../templateWeb/server/backend/public/images/articleImages/' + imageName[1];
+                    // on delete l'image
+                    fs.unlink(path, err => {
+                        if (err) {
+                            reject ('Image not deleted ' +err);
+                        }
+                        console.log('Image: ' + imageName[1] + ' deleted');
+                    })
+                } else {
+                    return;
+                }
+            })
+            .catch(function (err) {
+                reject('Article does not exist '+err);
+            });
+            articleRepo.updateArticle(articleId, cleanArticleToSend)
+                .then(oldArticle => {
+                    const cleanOldArticle = {
+                        id: oldArticle._id,
+                        title: oldArticle.title,
+                        content: oldArticle.content,
+                        img_irl: 'http://localhost:3000/images/articleImages/'+'defaultImg.png'
+                    };
+                    resolve(cleanOldArticle);
+                })
+                .catch(function (err) {
+                    reject(err);
+                });
+        }
+        else {
+            var dateNow = Date.now();
+            var uniqueImgName = '_' + Math.random().toString(36).substr(2, 9) + dateNow + req.files.myFile.name;
+            uniqueImgName = uniqueImgName.split(" ").join("-");
+            
+            req.files.myFile.mv('../../templateWeb/server/backend/public/images/articleImages/' + uniqueImgName)
+            .then(() => {
+                console.log('Image: ' + uniqueImgName + ' upload');
+            })
+            .catch(err => {
+                reject('Image upload failed! ' + err);
+            })
+
+            const cleanArticleToUpdate = new Article({
+                _id: req.body.id,
+                title: req.body.title,
+                content: req.body.content,
+                img_irl: 'http://localhost:3000/images/articleImages/' + uniqueImgName
+            });
+
+            articleRepo.updateArticle(articleId, cleanArticleToUpdate)
+            .then(oldArticle => {
+                const cleanOldArticle = {
+                    id: oldArticle._id,
+                    title: oldArticle.title,
+                    content: oldArticle.content,
+                    img_irl: 'http://localhost:3000/images/articleImages/' + uniqueImgName
+                };
+                resolve(cleanOldArticle);
             })
             .catch(function (err) {
                 reject(err);
             });
+        }
     })
 }
 

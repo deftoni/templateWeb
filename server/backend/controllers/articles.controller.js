@@ -65,27 +65,12 @@ module.exports.deleteArticle = function (req, res, next) {
     });
 }
 
-module.exports.deleteArticleImage = function(req, res, next) {
-    articlesWorker.deleteArticleImage(req.params.id)
-    .then(() => {
-        res.status(200).json({
-            message: 'image deleted successfully'
-          });
-    })
-    .catch(err => {
-        res.status(400).json({
-            message: 'image not deleted!',
-            error: err
-        })
-    });
-}
-
 module.exports.updateArticle = function (req, res, next) {
-    articlesWorker.updateArticle(req.params.id, req.body)
-    .then((updatedArticleId) => {
+    articlesWorker.updateArticle(req.params.id, req)
+    .then((cleanOldArticle) => {
         res.status(201).json({
             message: 'Article updated successfully',
-            articleId: updatedArticleId
+            cleanOldArticle: cleanOldArticle
         });
     })
     .catch(err => {

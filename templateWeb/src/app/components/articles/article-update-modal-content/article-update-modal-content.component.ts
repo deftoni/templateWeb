@@ -23,12 +23,21 @@ export class NgbdModalContentComponent implements OnInit {
   btnDeleteImgTrigged: Boolean = false ;
   myImgUrl;
   myImgName;
-  articleImg: File;
+  articleImg: File = null;
   imgName: String = null;
   imgGotAnImg: Boolean = false;
   theDefaultImg = this.config.getDefaultArticleImgUrl;
 
-  constructor(public activeModal: NgbActiveModal, public articlesService: ArticlesService, public messageService: MessageService) { }
+  IGotAnUrl: Boolean = false;
+  croppeOptions = [];
+  resultCroppedImg: any;
+  imageUrl = null;
+  iGotCropped: Boolean = false;
+  resultImage: any;
+  myBlob;
+
+  constructor(public activeModal: NgbActiveModal, public articlesService: ArticlesService,
+    public messageService: MessageService, private modalService: NgbModal) { }
 
   ngOnInit() {
     console.log('my input disable: ', this.btnDeleteImgTrigged);
@@ -38,15 +47,24 @@ export class NgbdModalContentComponent implements OnInit {
   }
 
   deleteArticleImage(form: NgForm) {
+    console.log('JE SUIS DANS deleteArticleImage');
     // this.articlesService.deleteArticleImage(this.id);
+    if (this.myImgName === 'choose... (png, jpeg, jpg)') {
+      return;
+    }
     this.btnDeleteImgTrigged = true;
     this.myImgName = 'choose... (png, jpeg, jpg)';
-    this.articlesService.updateArticle(form.value);
+    const uploadData = new FormData();
+    uploadData.append('id', form.value.id);
+    uploadData.append('title', form.value.title);
+    uploadData.append('content', form.value.content);
+    uploadData.append('img_irl', form.value.img_irl);
+    this.articlesService.updateArticle(uploadData);
+    console.log('my uploadData form: ', uploadData.get('id'));
     console.log('input disable booleen: ', this.btnDeleteImgTrigged);
   }
 
   onUpdateArticle(form: NgForm) {
-
     if (form.invalid) {
       console.log('formulaire de modification d\'un article invalide');
       // test a faire
@@ -54,18 +72,36 @@ export class NgbdModalContentComponent implements OnInit {
     }
 
     if (this.btnDeleteImgTrigged === false) {
+      const uploadData = new FormData();
+      uploadData.append('id', form.value.id);
+      uploadData.append('title', form.value.title);
+      uploadData.append('content', form.value.content);
+      uploadData.append('img_irl', form.value.img_irl);
+      this.articlesService.updateArticle(uploadData);
 
-      this.btnDeleteImgTrigged = true;
-      this.myImgName = 'choose... (png, jpeg, jpg)';
-      this.articlesService.updateArticle(form.value);
-      console.log('input disable booleen: ', this.btnDeleteImgTrigged);
-      console.log('my form trigge false: ', form.value);
+      this.modalService.dismissAll();
 
     } else {
-      console.log('my form trigge true: ', form.value);
+      const uploadData = new FormData();
+      uploadData.append('id', form.value.id);
+      uploadData.append('title', form.value.title);
+      uploadData.append('content', form.value.content);
+      uploadData.append('img_irl', form.value.img_irl);
+      console.log('just before send uploadData to service, img_irl: ', form.value.img_irl);
+
+      if (!this.articleImg) {
+        console.log('je passe ici 111111111');
+      } else {
+        console.log('je passe ici 2222222222');
+        if (this.myBlob == null || this.iGotCropped === false) {
+          uploadData.append('myFile', this.articleImg, this.articleImg.name);
+        } else {
+          uploadData.append('myFile', this.myBlob, this.articleImg.name);
+        }
+      }
+    this.articlesService.updateArticle(uploadData);
+    this.modalService.dismissAll();
     }
-    console.log('Features in progess...');
-    // this.articlesService.updateArticle(form.value);
   }
 
   onGetFiles(event) {
@@ -94,5 +130,46 @@ export class NgbdModalContentComponent implements OnInit {
     this.articleImg = (event.target as HTMLInputElement).files[0];
     this.imgName = (event.target as HTMLInputElement).files[0].name;
     this.imgGotAnImg = true;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(this.articleImg);
+    reader.onload = () => {
+      if (this.angularCropper) {
+        this.iGotCropped = false;
+        this.imageUrl = reader.result;
+        this.angularCropper.cropper.replace(this.imageUrl);
+        this.angularCropper.cropper.destroy();
+        this.angularCropper.cropper.clear();
+      } else {
+        this.iGotCropped = false;
+        this.imageUrl = reader.result;
+      }
+      this.IGotAnUrl = true;
+    };
+  }
+
+  CropMe() {
+    this.iGotCropped = true;
+    this.resultCroppedImg = this.angularCropper.imageUrl;
+    this.resultImage = this.angularCropper.cropper.getCroppedCanvas();
+    this.resultImage.toBlob((blob) => { this.myBlob = blob; });
+    this.angularCropper.exportCanvas();
+  }
+
+  resultImageFun(event: ImageCropperResult) {
+    const urlCreator = window.URL;
+    this.resultCroppedImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/jpeg');
+  }
+
+  deleteImage() {
+    this.imageUrl = null;
+    this.resultImage = null;
+    this.resultCroppedImg = null;
+    this.myBlob = null;
+    this.articleImg = null;
+    this.imgName = null;
+    this.imgGotAnImg = false;
+    this.iGotCropped = false;
+    this.IGotAnUrl = false;
   }
 }

@@ -136,18 +136,20 @@ export class ArticlesService {
     this.currentPage = currentPage;
   }
 
-  updateArticle(articleToUpdate: Article) {
-    this.http.put<{ message: string, articleId: string }>(`${this.config.getArticleUrl()}${articleToUpdate.id}`, articleToUpdate)
+  updateArticle(articleToUpdate: FormData) {
+    this.http.put<{ message: string, cleanOldArticle: Article }>(`${this.config.getArticleUrl()}${articleToUpdate.get('id')}`,
+    articleToUpdate)
       .subscribe(
         (responseData) => {
-          console.log('msg', responseData.message);
-          console.log('le nouvel article', articleToUpdate);
-          console.log('le tableau d article', this.articles);
-
-          this.articles.find(({ id }) => id === responseData.articleId).title = articleToUpdate.title;
-          this.articles.find(({ id }) => id === responseData.articleId).content = articleToUpdate.content;
-          this.articles.find(({ id }) => id === responseData.articleId).img_irl = articleToUpdate.img_irl;
-
+          this.articles.find(({ id }) => id === responseData.cleanOldArticle.id).title = articleToUpdate.get('title').toString();
+          this.articles.find(({ id }) => id === responseData.cleanOldArticle.id).content = articleToUpdate.get('content').toString();
+          if (articleToUpdate.get('img_irl').toString() === undefined) {
+            this.articles.find(({ id }) => id === responseData.cleanOldArticle.id).img_irl = responseData.cleanOldArticle.img_irl;
+            console.log('je passe ici 1111');
+          } else {
+            this.articles.find(({ id }) => id === responseData.cleanOldArticle.id).img_irl = responseData.cleanOldArticle.img_irl;
+            console.log('je passe ici 2222');
+          }
           this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
         },
         (error: Error) => { console.log(error); },

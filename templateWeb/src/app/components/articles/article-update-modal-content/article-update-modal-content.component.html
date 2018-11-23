@@ -23,7 +23,7 @@
           <textarea class="form-control" name="content" rows="4" ngModel [ngModel]='this.content' required></textarea>
         </div>
       </div>
-      <div class="row align-items-center">
+      <div class="row align-items-center browseDiv">
         <div *ngIf="btnDeleteImgTrigged === false" class="col-lg-10 col-md-12 col-sm-12 col-10 custom-file">
           <input typ="hidden" type="text" name="img_irl" class="custom-file-input" [ngModel]='this.theDefaultImg'>
           <input disabled type="file" name="file" class="custom-file-input">
@@ -43,12 +43,29 @@
           <p-toast key="SizeTooBig" position="center"></p-toast>
         </div>
         <div class=" buttonDeleteImage col-lg-2">
-          <button type="submit" class="btn btn-danger"> supprimer </button>
+          <button type="button" (click)="deleteArticleImage(articleForm)" class="btn btn-danger"> supprimer </button>
         </div>
       </div>
-
+      <div *ngIf="IGotAnUrl === true">
+        <angular-cropper #angularCropper [cropperOptions]="croppeOptions" (export)="resultImageFun($event)" [imageUrl]="imageUrl"
+          id="myImgCropper">
+        </angular-cropper>
+        <div class="row justify-content-center">
+          <div class="col-4 p-0 mt-2">
+            <button type="button" class=" btn btn-info btnCropMeDelete" (click)="CropMe()">CropMe</button>
+          </div>
+          <div class="col-4 p-0 mt-2">
+            <button type="button" class=" btn btn-info btn-danger btnCropMeDelete" (click)="deleteImage()">Delete</button>
+          </div>
+        </div>
+        <div class="container" *ngIf="iGotCropped === true">
+          <div class="row">
+            <img class="imgCropped mt-2 mb-2" id="myImgCropped" [src]="resultCroppedImg" />
+          </div>
+        </div>
+      </div>
       <div class=" row modal-footer">
-        <button type="submit" class="btn btn-outline-dark" placement="top" ngbPopover="Features in Progess... Votre article n'a pas été mise à jour">Save</button>
+        <button type="submit" class="btn btn-outline-dark" placement="top" ngbPopover="Votre article a été mise à jour">Save</button>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
       </div>
     </form>
