@@ -25,13 +25,14 @@
       </div>
       <div class="row align-items-center browseDiv">
         <div *ngIf="btnDeleteImgTrigged === false" class="col-lg-10 col-md-12 col-sm-12 col-10 custom-file">
-          <input typ="hidden" type="text" name="img_irl" class="custom-file-input" [ngModel]='this.theDefaultImg'>
+          <input type="hidden" name="img_irl" ngModel [ngModel]='this.img_irl'>
           <input disabled type="file" name="file" class="custom-file-input">
           <label class="custom-file-label" name="fileName">
             {{ myImgName }}
           </label>
         </div>
         <div *ngIf="btnDeleteImgTrigged === true" class="col-lg-10 col-md-12 col-sm-12 col-10 custom-file">
+          <input type="hidden" name="img_irl" ngModel [ngModel]='this.myImgIrl'>
           <input type="file" name="file" class="custom-file-input" ngModel (change)="onGetFiles($event)">
           <label *ngIf="imgGotAnImg === true" for="file" class="custom-file-label">
             {{ imgName }}
@@ -42,7 +43,7 @@
           <p-toast key="wrongExtension" position="center"></p-toast>
           <p-toast key="SizeTooBig" position="center"></p-toast>
         </div>
-        <div class=" buttonDeleteImage col-lg-2">
+        <div *ngIf="btnDeleteImgTrigged === false" class=" buttonDeleteImage col-lg-2">
           <button type="button" (click)="deleteArticleImage(articleForm)" class="btn btn-danger"> supprimer </button>
         </div>
       </div>

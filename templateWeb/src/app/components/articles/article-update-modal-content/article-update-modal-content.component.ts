@@ -19,15 +19,13 @@ export class NgbdModalContentComponent implements OnInit {
   @Input() id;
   @Input() img_irl;
 
-  private config = new Config();
+
   btnDeleteImgTrigged: Boolean = false ;
   myImgUrl;
   myImgName;
   articleImg: File = null;
   imgName: String = null;
   imgGotAnImg: Boolean = false;
-  theDefaultImg = this.config.getDefaultArticleImgUrl;
-
   IGotAnUrl: Boolean = false;
   croppeOptions = [];
   resultCroppedImg: any;
@@ -35,42 +33,35 @@ export class NgbdModalContentComponent implements OnInit {
   iGotCropped: Boolean = false;
   resultImage: any;
   myBlob;
+  myImgIrl;
 
   constructor(public activeModal: NgbActiveModal, public articlesService: ArticlesService,
     public messageService: MessageService, private modalService: NgbModal) { }
 
   ngOnInit() {
-    console.log('my input disable: ', this.btnDeleteImgTrigged);
     this.myImgUrl = this.img_irl;
     this.myImgName = this.img_irl.substring(this.img_irl.lastIndexOf('/') + 1);
-    console.log('coucou', this.img_irl.split('.', 1));
   }
 
   deleteArticleImage(form: NgForm) {
-    console.log('JE SUIS DANS deleteArticleImage');
-    // this.articlesService.deleteArticleImage(this.id);
     if (this.myImgName === 'choose... (png, jpeg, jpg)') {
       return;
     }
     this.btnDeleteImgTrigged = true;
     this.myImgName = 'choose... (png, jpeg, jpg)';
+    this.myImgIrl = 'http://localhost:3000/images/articleImages/defaultImg.png';
     const uploadData = new FormData();
     uploadData.append('id', form.value.id);
     uploadData.append('title', form.value.title);
     uploadData.append('content', form.value.content);
-    uploadData.append('img_irl', form.value.img_irl);
     this.articlesService.updateArticle(uploadData);
-    console.log('my uploadData form: ', uploadData.get('id'));
-    console.log('input disable booleen: ', this.btnDeleteImgTrigged);
   }
 
   onUpdateArticle(form: NgForm) {
     if (form.invalid) {
-      console.log('formulaire de modification d\'un article invalide');
       // test a faire
       return;
     }
-
     if (this.btnDeleteImgTrigged === false) {
       const uploadData = new FormData();
       uploadData.append('id', form.value.id);
@@ -87,12 +78,8 @@ export class NgbdModalContentComponent implements OnInit {
       uploadData.append('title', form.value.title);
       uploadData.append('content', form.value.content);
       uploadData.append('img_irl', form.value.img_irl);
-      console.log('just before send uploadData to service, img_irl: ', form.value.img_irl);
-
       if (!this.articleImg) {
-        console.log('je passe ici 111111111');
       } else {
-        console.log('je passe ici 2222222222');
         if (this.myBlob == null || this.iGotCropped === false) {
           uploadData.append('myFile', this.articleImg, this.articleImg.name);
         } else {

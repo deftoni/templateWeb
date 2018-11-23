@@ -143,12 +143,10 @@ export class ArticlesService {
         (responseData) => {
           this.articles.find(({ id }) => id === responseData.cleanOldArticle.id).title = articleToUpdate.get('title').toString();
           this.articles.find(({ id }) => id === responseData.cleanOldArticle.id).content = articleToUpdate.get('content').toString();
-          if (articleToUpdate.get('img_irl').toString() === undefined) {
+          if (articleToUpdate.get('img_irl') === undefined) {
             this.articles.find(({ id }) => id === responseData.cleanOldArticle.id).img_irl = responseData.cleanOldArticle.img_irl;
-            console.log('je passe ici 1111');
           } else {
             this.articles.find(({ id }) => id === responseData.cleanOldArticle.id).img_irl = responseData.cleanOldArticle.img_irl;
-            console.log('je passe ici 2222');
           }
           this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
         },
