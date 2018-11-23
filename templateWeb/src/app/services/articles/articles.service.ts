@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 import { Config } from '../../config/config';
 import { Subject } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -52,7 +51,7 @@ export class ArticlesService {
           console.log('GET Article', transformedArticleData);
           this.articlesUpdated.next({articles: [...this.articles], countArticle: transformedArticleData.maxArticles });
         },
-        () => { console.log('error'); },
+        (error: Error) => { console.log(error); },
         () => { }
       );
   }
@@ -68,7 +67,9 @@ export class ArticlesService {
      this.articleDetails = reponseData.article;
      console.log('GET ArticleByID: ', this.articleDetails);
      this.articleUpdated.next(this.articleDetails);
-    });
+    },
+    (error: Error) => { console.log(error); },
+    () => { });
   }
 
   getArticleDetailsListener() {
@@ -91,9 +92,10 @@ export class ArticlesService {
           this.articles.push(article);
           this.totalArticle++;
           this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
-        }
+        },
+        (error: Error) => { console.log(error); },
+        () => { }
       );
-
   }
 
   addImgArticleToFtp(img: any) {
@@ -104,7 +106,9 @@ export class ArticlesService {
     })
       .subscribe(event => {
         console.log(event); // handle event here
-      });
+      },
+      (error: Error) => { console.log(error); },
+      () => { });
   }
 
   deleteArticle(articleId: string) {
@@ -121,8 +125,10 @@ export class ArticlesService {
 
   deleteArticleImage(articleId: string) {
     this.http.delete(`${this.config.getArticleUrl()}` + '/ArticleImage/' + articleId)
-    .subscribe(() => {
-    });
+    .subscribe(
+    () => { },
+    (error: Error) => { console.log(error); },
+    () => { });
   }
 
   updatePageData(articlesPerPage: number, currentPage: number) {
@@ -143,8 +149,9 @@ export class ArticlesService {
           this.articles.find(({ id }) => id === responseData.articleId).img_irl = articleToUpdate.img_irl;
 
           this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
-        }
+        },
+        (error: Error) => { console.log(error); },
+        () => { }
       );
   }
-
 }

@@ -3,7 +3,6 @@ import { Article } from '../../../models/articles/article.model';
 import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from '../../../services/articles/articles.service';
 import { Subscription } from 'rxjs';
-import { ARTICLES } from 'src/app/models/articles/mock-articles';
 
 @Component({
   selector: 'app-article-details',
@@ -14,13 +13,13 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
 
   public myArticleToDisplay: Article;
   articleId: string;
-  private sub: any;
+  private routeSub: Subscription;
   private articleSub: Subscription;
 
   constructor(private route: ActivatedRoute, public articlesService: ArticlesService) { }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
+    this.routeSub = this.route.params.subscribe(params => {
       this.articleId = params.articleId;
     });
 
@@ -32,5 +31,6 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.articleSub.unsubscribe();
+    this.routeSub.unsubscribe();
   }
 }

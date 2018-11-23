@@ -5,13 +5,13 @@
     </div>
 
     <form class="needs-validation" novalidate (ngSubmit)="onUpdateArticle(articleForm)" #articleForm="ngForm">
-      <input type="hidden" name="id" ngModel ngModel='{{id}}'>
+      <input type="hidden" name="id" ngModel [ngModel]='this.id'>
       <div class="form-group">
         <div class="row">
           <label for="articleTitle">Titre de l'article</label>
         </div>
         <div class="row">
-          <input type="text" class="form-control" name="title" placeholder="Entrer un titre" ngModel ngModel='{{title}}'
+          <input type="text" class="form-control" name="title" placeholder="Entrer un titre" ngModel [ngModel]='this.title'
             required>
         </div>
       </div>
@@ -20,15 +20,15 @@
           <label for="articleContent">Contenu de l'article</label>
         </div>
         <div class="row">
-          <textarea class="form-control" name="content" rows="4" ngModel ngModel='{{content}}' required></textarea>
+          <textarea class="form-control" name="content" rows="4" ngModel [ngModel]='this.content' required></textarea>
         </div>
       </div>
       <div class="row align-items-center">
         <div *ngIf="btnDeleteImgTrigged === false" class="col-lg-10 col-md-12 col-sm-12 col-10 custom-file">
-          <input typ="hidden" type="text" name="img_irl" class="custom-file-input" ngModel='{{theDefaultImg}}'>
+          <input typ="hidden" type="text" name="img_irl" class="custom-file-input" [ngModel]='this.theDefaultImg'>
           <input disabled type="file" name="file" class="custom-file-input">
           <label class="custom-file-label" name="fileName">
-            {{myImgName}}
+            {{ myImgName }}
           </label>
         </div>
         <div *ngIf="btnDeleteImgTrigged === true" class="col-lg-10 col-md-12 col-sm-12 col-10 custom-file">

@@ -18,7 +18,7 @@ export class ErrorIntercepter implements HttpInterceptor {
           severity: 'error',
           summary: error.error.message,
           detail: error.error.error,
-          life: 5000
+          life: 3000
         });
 
         return throwError(error);

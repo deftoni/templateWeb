@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from 'primeng/api';
 import { CropperComponent, ImageCropperResult } from 'angular-cropperjs';
+import { Config } from './../../../config/config';
 
 @Component({
   selector: 'app-ngbd-modal-content',
@@ -18,13 +19,14 @@ export class NgbdModalContentComponent implements OnInit {
   @Input() id;
   @Input() img_irl;
 
+  private config = new Config();
   btnDeleteImgTrigged: Boolean = false ;
   myImgUrl;
   myImgName;
   articleImg: File;
   imgName: String = null;
   imgGotAnImg: Boolean = false;
-  theDefaultImg: String = 'http://localhost:3000/images/articleImages/defaultImg.png';
+  theDefaultImg = this.config.getDefaultArticleImgUrl;
 
   constructor(public activeModal: NgbActiveModal, public articlesService: ArticlesService, public messageService: MessageService) { }
 

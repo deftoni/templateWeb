@@ -23,7 +23,9 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.authListenerSub = this.authService.getAuthStatusListener()
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
-    });
+    },
+    (error: Error) => { console.log(error); },
+    () => { });
   }
 
   ngOnDestroy() {

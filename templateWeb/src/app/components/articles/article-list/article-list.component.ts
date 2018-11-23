@@ -46,7 +46,9 @@ export class ArticleListComponent implements OnInit, OnDestroy {
           this.articlesService.updatePageData(this.articlesPerPage, this.currentPage);
           this.articlesService.getArticles(this.articlesPerPage, this.currentPage);
         }
-      }
+      },
+      (error: Error) => { console.log(error); },
+      () => { }
     );
 
     // recuperation des articles

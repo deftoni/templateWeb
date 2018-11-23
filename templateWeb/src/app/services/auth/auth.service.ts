@@ -34,7 +34,9 @@ export class AuthService {
     this.http.post<{ message: string, result: any }>(`${this.config.getUserUrl()}` + 'signup', authData)
       .subscribe(response => {
         console.log(response);
-      });
+      },
+      (error: Error) => { console.log(error); },
+      () => { });
   }
 
   login(email: string, password: string) {
@@ -54,7 +56,9 @@ export class AuthService {
         this.saveAuthData(token, expirationDate);
         this.router.navigate(['/']);
       }
-    });
+    },
+    (error: Error) => { console.log(error); },
+    () => { });
   }
 
   autoAuthUser() {
