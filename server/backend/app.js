@@ -7,12 +7,16 @@ const userRoutes = require('./routes/user');
 const articlesRoutes = require('./routes/articles');
 
 const app = express();
-
 mongoose.set('useCreateIndex', true)
-mongoose.connect('mongodb+srv://AngularNode:N8qqeeZPwYf1QBn9@cluster0-g1zec.gcp.mongodb.net/templateWebDB', { useNewUrlParser: true })
-
+mongoose.connect('mongodb+srv://'+
+  process.env.MONGO_ATLAS_USER+
+  ':'+ 
+  process.env.MONGO_ATLAS_PW +
+  '@cluster0-g1zec.gcp.mongodb.net/templateWebDB', 
+  { useNewUrlParser: true }
+)
   .then(() => {
-    console.log('Connected to dataBase');
+    console.log('Connected to dataBase with user: ' + process.env.MONGO_ATLAS_USER);
   })
   .catch(() => {
     console.log('Connection failed!');
