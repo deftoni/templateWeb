@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from 'primeng/api';
 import { CropperComponent, ImageCropperResult } from 'angular-cropperjs';
-import { Config } from './../../../config/config';
 
 @Component({
   selector: 'app-ngbd-modal-content',
@@ -19,10 +18,7 @@ export class NgbdModalContentComponent implements OnInit {
   @Input() id;
   @Input() img_irl;
 
-
   btnDeleteImgTrigged: Boolean = false ;
-  myImgUrl;
-  myImgName;
   articleImg: File = null;
   imgName: String = null;
   imgGotAnImg: Boolean = false;
@@ -34,6 +30,8 @@ export class NgbdModalContentComponent implements OnInit {
   resultImage: any;
   myBlob;
   myImgIrl;
+  myImgUrl;
+  myImgName;
 
   constructor(public activeModal: NgbActiveModal, public articlesService: ArticlesService,
     public messageService: MessageService, private modalService: NgbModal) { }
@@ -43,18 +41,9 @@ export class NgbdModalContentComponent implements OnInit {
     this.myImgName = this.img_irl.substring(this.img_irl.lastIndexOf('/') + 1);
   }
 
-  deleteArticleImage(form: NgForm) {
-    if (this.myImgName === 'choose... (png, jpeg, jpg)') {
-      return;
-    }
+  deleteArticleImage() {
     this.btnDeleteImgTrigged = true;
     this.myImgName = 'choose... (png, jpeg, jpg)';
-    this.myImgIrl = 'http://localhost:3000/images/articleImages/defaultImg.png';
-    const uploadData = new FormData();
-    uploadData.append('id', form.value.id);
-    uploadData.append('title', form.value.title);
-    uploadData.append('content', form.value.content);
-    this.articlesService.updateArticle(uploadData);
   }
 
   onUpdateArticle(form: NgForm) {
@@ -62,17 +51,6 @@ export class NgbdModalContentComponent implements OnInit {
       // test a faire
       return;
     }
-    if (this.btnDeleteImgTrigged === false) {
-      const uploadData = new FormData();
-      uploadData.append('id', form.value.id);
-      uploadData.append('title', form.value.title);
-      uploadData.append('content', form.value.content);
-      uploadData.append('img_irl', form.value.img_irl);
-      this.articlesService.updateArticle(uploadData);
-
-      this.modalService.dismissAll();
-
-    } else {
       const uploadData = new FormData();
       uploadData.append('id', form.value.id);
       uploadData.append('title', form.value.title);
@@ -88,7 +66,6 @@ export class NgbdModalContentComponent implements OnInit {
       }
     this.articlesService.updateArticle(uploadData);
     this.modalService.dismissAll();
-    }
   }
 
   onGetFiles(event) {
