@@ -1,4 +1,4 @@
-const bcrypt = require('../../../templateWeb/node_modules/bcrypt');
+const bcrypt = require('../../../templateWeb/node_modules/bcryptjs');
 const jwt = require('jsonwebtoken');
 
 var userRepo = require('../repository/users.repository');
