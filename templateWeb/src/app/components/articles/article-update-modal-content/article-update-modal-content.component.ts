@@ -6,11 +6,11 @@ import { MessageService } from 'primeng/api';
 import { CropperComponent, ImageCropperResult } from 'angular-cropperjs';
 
 @Component({
-  selector: 'app-ngbd-modal-content',
+  selector: 'app-article-update-modal-content',
   templateUrl: './article-update-modal-content.component.html',
   styleUrls: ['./article-update-modal-content.component.css']
 })
-export class NgbdModalContentComponent implements OnInit {
+export class ArticleUpdateComponent implements OnInit {
   @ViewChild('angularCropper') public angularCropper: CropperComponent;
 
   @Input() title;

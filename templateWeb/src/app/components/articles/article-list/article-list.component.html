@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="paginator" *ngIf="articles">
-    <p-paginator [rows]='this.articlesPerPage' [totalRecords]='this.totalArticles' [rowsPerPageOptions]='this.pageSizeOptions' (onPageChange)='onChangedPage($event)'></p-paginator>
+    <p-paginator [style]="{'border':'none','background-color':'white'}" [rows]='this.articlesPerPage' [totalRecords]='this.totalArticles' [rowsPerPageOptions]='this.pageSizeOptions' (onPageChange)='onChangedPage($event)'></p-paginator>
   </div>
   <div class="list-group" *ngIf="!articles">
     <p class="p-3 mb-2 bg-warning text-dark">Aucun article pour le moment</p>

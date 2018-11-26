@@ -20,8 +20,8 @@ import { ArticleComponent } from './components/articles/article/article.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteButtonComponent } from './components/articles/buttons/delete-button/delete-button.component';
 import { AddButtonComponent } from './components/articles/buttons/add-button/add-button.component';
-import { NgbdModalContentComponent } from './components/articles/article-update-modal-content/article-update-modal-content.component';
-import { NgbdModalComponent } from './components/articles/buttons/update-button/update-button.component';
+import { ArticleUpdateComponent } from './components/articles/article-update-modal-content/article-update-modal-content.component';
+import { UpdateButtonComponent } from './components/articles/buttons/update-button/update-button.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthIntercepter } from './services/auth/auth-intercepter';
@@ -50,10 +50,10 @@ import { CropperComponent } from 'angular-cropperjs';
     LinkListComponent,
     LinkItemsComponent,
     ArticleComponent,
-    NgbdModalContentComponent,
+    ArticleUpdateComponent,
     DeleteButtonComponent,
     AddButtonComponent,
-    NgbdModalComponent,
+    UpdateButtonComponent,
     LoginComponent,
     SignupComponent,
     ArticleDetailsComponent,
@@ -61,7 +61,7 @@ import { CropperComponent } from 'angular-cropperjs';
     CropperComponent,
   ],
   entryComponents: [
-    NgbdModalContentComponent
+    ArticleUpdateComponent
   ],
   imports: [
     BrowserModule,

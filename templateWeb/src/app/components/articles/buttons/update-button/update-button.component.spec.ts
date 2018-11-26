@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgbdModalComponent } from './update-button.component';
+import { UpdateButtonComponent } from './update-button.component';
 
 describe('ModalComponent', () => {
-  let component: NgbdModalComponent;
-  let fixture: ComponentFixture<NgbdModalComponent>;
+  let component: UpdateButtonComponent;
+  let fixture: ComponentFixture<UpdateButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgbdModalComponent ]
+      declarations: [ UpdateButtonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgbdModalComponent);
+    fixture = TestBed.createComponent(UpdateButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
