@@ -35,6 +35,8 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CropperComponent } from 'angular-cropperjs';
+import { ContactUsComponent } from './components/blog/contact-us/contact-us.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -60,6 +62,7 @@ import { CropperComponent } from 'angular-cropperjs';
     ArticleDetailsComponent,
     GetArticleDetailsButtonComponent,
     CropperComponent,
+    ContactUsComponent,
   ],
   entryComponents: [
     ArticleUpdateModalContentComponent
@@ -73,7 +76,10 @@ import { CropperComponent } from 'angular-cropperjs';
     NgbModule,
     PaginatorModule,
     ButtonModule,
-    ToastModule
+    ToastModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBYCcHdWVMj__2B4zf5V6aJ52J4vnfnIfk'
+    })
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true},
