@@ -52,7 +52,7 @@
     color: #fed136;
   }
 
-  .ui-button {
+  .logButton{
     float: left;
     color: black;
     background-color: white!important;
@@ -62,12 +62,12 @@
     border:none!important;
   }
 
-  .ui-button:hover {
+  .logButton:hover {
     background-color: #fed136!important;
   }
 
-  .button-item {
-    padding: 8px;
+  .rowWidth {
+    width: 100%;
   }
 
 
