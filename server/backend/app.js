@@ -2,7 +2,7 @@ const path = require("path");
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const fileUpload = require('../../templateWeb/node_modules/express-fileupload');
+const fileUpload = require('express-fileupload');
 const userRoutes = require('./routes/user');
 const articlesRoutes = require('./routes/articles');
 
