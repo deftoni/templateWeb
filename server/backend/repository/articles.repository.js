@@ -76,7 +76,7 @@ module.exports.deleteArticle = function (articleId) {
 
 module.exports.updateArticle = function (articleId, articleUpdate){
     return new Promise(function (resolve, reject) {
-        Article.findByIdAndUpdate({ _id: articleId }, articleUpdate)
+        Article.findOneAndUpdate({_id: articleId }, articleUpdate)
         .then(oldArticle => {
             resolve(oldArticle);
         })
