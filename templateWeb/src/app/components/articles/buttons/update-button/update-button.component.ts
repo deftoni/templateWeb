@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {ArticleUpdateComponent} from '../../../articles/article-update-modal-content/article-update-modal-content.component';
+import { ArticleUpdateModalContentComponent } from '../../../articles/article-update-modal-content/article-update-modal-content.component';
 
 
 @Component({
@@ -12,7 +12,7 @@ export class UpdateButtonComponent {
   constructor(private modalService: NgbModal) { }
 
   open() {
-    const modalRef = this.modalService.open(ArticleUpdateComponent, { size: 'lg' });
+    const modalRef = this.modalService.open(ArticleUpdateModalContentComponent, { size: 'lg' });
     modalRef.componentInstance.title = this.article.title;
     modalRef.componentInstance.content = this.article.content;
     modalRef.componentInstance.id = this.article.id;

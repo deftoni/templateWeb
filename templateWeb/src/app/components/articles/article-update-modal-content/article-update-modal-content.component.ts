@@ -10,7 +10,7 @@ import { CropperComponent, ImageCropperResult } from 'angular-cropperjs';
   templateUrl: './article-update-modal-content.component.html',
   styleUrls: ['./article-update-modal-content.component.css']
 })
-export class ArticleUpdateComponent implements OnInit {
+export class ArticleUpdateModalContentComponent implements OnInit {
   @ViewChild('angularCropper') public angularCropper: CropperComponent;
 
   @Input() title;
