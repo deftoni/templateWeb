@@ -53,4 +53,21 @@ agm-map {
 
 .contactUSpaddingMargin{
   padding-top: 2%;
+  background-color: #f8f9fa;
+}
+
+.imgTest{
+  width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+  .gmapDisplay{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contactUsContenu{
+    text-align: center;
+  }
 }
