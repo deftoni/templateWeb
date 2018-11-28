@@ -1,4 +1,3 @@
-/*General CSS*/
 
 :host {
   --myColor1: #FFFFFF;
@@ -12,8 +11,6 @@
 #mainNav{
   padding-top: 25px;
   padding-bottom: 25px;
-  -webkit-transition: padding-top .3s,padding-bottom .3s;
-  transition: padding-top .3s,padding-bottom .3s;
   border: none;
   background: var(--myColor4);
 }
