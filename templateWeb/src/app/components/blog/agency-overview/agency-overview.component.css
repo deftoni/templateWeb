@@ -8,6 +8,11 @@
   line-height: 41px;
 }
 
+.pt-10{
+  padding-top: 10rem!important;
+}
+
+
 @media screen and (max-width: 992px) {
   .gmapDisplay{
     display: none;

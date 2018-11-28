@@ -38,6 +38,7 @@ import { CropperComponent } from 'angular-cropperjs';
 import { ContactUsComponent } from './components/blog/contact-us/contact-us.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgencyOverviewComponent } from './components/blog/agency-overview/agency-overview.component';
+import { AgencyTeamComponent } from './components/blog/agency-team/agency-team.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { AgencyOverviewComponent } from './components/blog/agency-overview/agenc
     CropperComponent,
     ContactUsComponent,
     AgencyOverviewComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    AgencyTeamComponent,
   ],
   entryComponents: [
     ArticleUpdateModalContentComponent
