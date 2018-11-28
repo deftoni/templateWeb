@@ -65,6 +65,7 @@ import { AgencyOverviewComponent } from './components/blog/agency-overview/agenc
     CropperComponent,
     ContactUsComponent,
     AgencyOverviewComponent,
+    ContactUsComponent
   ],
   entryComponents: [
     ArticleUpdateModalContentComponent
@@ -81,7 +82,8 @@ import { AgencyOverviewComponent } from './components/blog/agency-overview/agenc
     ToastModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBYCcHdWVMj__2B4zf5V6aJ52J4vnfnIfk'
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true},
