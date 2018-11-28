@@ -1,6 +1,6 @@
 .masthead {
   text-align: center;
-  color: #000;
+  color: #fff;
   background-image: url("/assets/img/contactUs.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -8,6 +8,13 @@
   background-size: cover;
 }
 
+.masthead .card span{
+  color: #000;
+}
+
+.masthead .card-text{
+  color: #000;
+}
 .header.masthead .intro-text {
   padding-top: 100px;
   padding-bottom: 50px;
@@ -20,8 +27,8 @@
 }
 
 header.masthead .intro-text {
-    padding-top: 150px;
-    padding-bottom: 100px;
+    padding-top: 100px;
+    padding-bottom: 150px;
   }
 
 header.masthead .intro-text .intro-lead-in {
@@ -35,7 +42,7 @@ header.masthead .intro-text .intro-lead-in {
 header.masthead .intro-text .intro-heading {
   font-size: 15px;
   font-weight: 700;
-  line-height: 15px;
+  line-height: 30px;
   margin-bottom: 50px;
   font-family: Montserrat,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
 }
@@ -65,7 +72,5 @@ agm-map {
 }
 
 @media screen and (max-width: 768px) {
-  .contactUsContenu{
-    text-align: center;
-  }
+
 }

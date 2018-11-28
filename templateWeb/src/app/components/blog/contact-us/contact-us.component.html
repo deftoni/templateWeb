@@ -1,54 +1,87 @@
 <div class="contactUSpaddingMargin">
-    <header class="masthead">
-        <div class="container">
-            <div class="intro-text text-center">
-                <div class="intro-lead-in">Contact Us</div>
-                <div class="intro-heading text-uppercase">Template web  is here to provide you with more information, answer any questions you may have and create an effective solution for your instructional needs.</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger btnTellMeMore">Effectuer un devis</a>
-            </div>
-        </div>
-    </header>
-    <div class="container mt-5">
-      <div class="row contactUsContenu">
-        <div class="col-lg-7 col-md-12">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6  mt-3">
-              <h5>Corporate Headquarters</h5>
-              <span>Corporate Headquarters</span><br>
-              <span>Achieve3000</span><br>
-              <span>1985 Cedar Bridge Ave., Suite 3</span><br>
-              <span>Lakewood, NJ 08701</span>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 mt-3">
-                <h5>General Contact</h5>
-                <span>Toll-Free: 888-968-6822</span><br>
-                <span>Phone: 732-367-5505</span><br>
-                <span>Fax: 732-367-2313 </span><br>
-                <span>Email: office@achieve3000.com</span>
-            </div>
+  <header class="masthead">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-xl-4 intro-text">
+          <div class="intro-lead-in">Contact Us</div>
+          <div class="intro-heading text-uppercase">
+            Template web is here to provide you with more information, answer any questions you may have and create an
+            effective solution for your instructional needs.
           </div>
-          <div class="row mt-5">
-            <div class="col-lg-6 col-md-6 col-sm-6  mt-3">
-                <h5>Sales Info & Inquiries</h5>
-                <span>Toll-Free: 800-838-8771</span><br>
-                <span>Email: info@achieve3000.com</span>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 mt-3">
-                <h5>International Sales</h5>
-                <span>Email: international@achieve3000.com</span><br>
-                <span>Phone: 732-987-3669</span><br>
-                <span>Schedule: Monday - Thursday 1:15 AM to </span><br>
-                <span>9:00 PM ET | Friday 8:00 AM to 9:00 </span><br>
-                <span>PM ET</span>
-            </div>
+          <div class="intro-heading">
+            <p>
+              Nous vous accueillons sur rendez-vous du lundi au vendredi de 9h30 à 12h30 et de 14h00 à 18h00.
+              N'hésitez pas à utiliser notre formulaire pour toute demande de valorisation, de recrutement ou
+              d'information. Nous vous répondrons dans les meilleurs délais.
+            </p>
           </div>
         </div>
-        <div class="col-lg-5 gmapDisplay">
-          <img class="imgTest" src="../../../../assets/img/gmapBordeaux.jpg">
-          <!--   <agm-map [latitude]="lat" [longitude]="lng">
-                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-              </agm-map> -->
+        <div class="col-xl-4 intro-text">
+          <div class="card">
+            <div class="card-body text-center">
+              <p><img class="profileImg" src="../../../../assets/img/bordeauxMap.JPG" alt="card image"></p>
+              <p class="card-text">ZinzinDuWeb:
+                7 Place de Tourny
+                33000 Bordeaux. <a href="https://www.google.fr/maps/place/2+Rue+de+la+Tour+de+Gassies,+33000+Bordeaux,+France/@44.8389557,-0.5722251,17z/data=!3m1!4b1!4m5!3m4!1s0xd5527ce3a3e13f3:0xe0d1049b657b8426!8m2!3d44.839012!4d-0.569803">Voir
+                  le plan</a></p>
+              <span><i class="fas fa-phone"></i> 06 99 46 47 30</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </header>
+  <div class="container mt-5">
+    <div class="row">
+      <h2>Vous désirez nous contactez par email ?</h2>
+      <h3>Utilisez directement notre formulaire ci-desous ou blablabla@blabla.com</h3>
+    </div>
+    <form id="contactForm" class="needs-validation mt-5" novalidate #ContactUs="ngForm" enctype="multipart/form-data">
+      <div class="row form-group">
+        <div class="col-xl-2">
+          <label for="nomEtPrenom">Prénom et nom</label>
+        </div>
+        <div class="col-xl-4">
+          <input type="text" class="form-control" name="nomEtPrenom" ngModel required>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-xl-2">
+          <label for="societe">Société</label>
+        </div>
+        <div class="col-xl-4">
+          <input type="text" class="form-control" name="societe" ngModel required>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-xl-2">
+          <label for="email">Adresse e-mail</label>
+        </div>
+        <div class="col-xl-4">
+          <input type="email" class="form-control" name="email" ngModel required>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-xl-2">
+          <label for="numTel">Numéro de téléphone</label>
+        </div>
+        <div class="col-xl-4">
+          <input type="number" class="form-control" name="numTel" ngModel required>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-xl-2">
+          <label for="message">Message</label>
+        </div>
+        <div class="col-xl-4">
+          <textarea form="contactForm" type="text" class="form-control" name="message" ngModel required></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary mt-4">Envoyé</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
