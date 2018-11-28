@@ -40,10 +40,6 @@ header.masthead .intro-text .intro-heading {
   font-family: Montserrat,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
 }
 
-.contactUsMarginPadding{
-  margin-top: 5%;
-  padding-top: 2%;
-}
 /*//////////////  HEADER CSS END ////////////////*/
 
 agm-map {
@@ -54,6 +50,8 @@ agm-map {
 .contactUSpaddingMargin{
   padding-top: 2%;
   background-color: #f8f9fa;
+  margin-bottom: 5%;
+  padding-bottom: 2%;
 }
 
 .imgTest{
