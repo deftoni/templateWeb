@@ -37,6 +37,7 @@ import { MessageService } from 'primeng/api';
 import { CropperComponent } from 'angular-cropperjs';
 import { ContactUsComponent } from './components/blog/contact-us/contact-us.component';
 import { AgmCoreModule } from '@agm/core';
+import { AgencyOverviewComponent } from './components/blog/agency-overview/agency-overview.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { AgmCoreModule } from '@agm/core';
     GetArticleDetailsButtonComponent,
     CropperComponent,
     ContactUsComponent,
+    AgencyOverviewComponent,
   ],
   entryComponents: [
     ArticleUpdateModalContentComponent
