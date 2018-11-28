@@ -1,9 +1,7 @@
 
 :host {
-  --myColor1: #FFFFFF;
-  --myColor2: #6495ED;
-  --myColor3: #33923C;
-  --myColor4: #212529;
+  --myColor1: #212529;
+  --myColor2: #fed136;
 }
 
 /* NAVBAR CSS START */
@@ -11,109 +9,103 @@
 #mainNav{
   padding-top: 25px;
   padding-bottom: 25px;
-  border: none;
-  background: var(--myColor4);
+  background: var(--myColor1);
 }
 
 #mainNav .navbar-brand {
+  padding-left: 25px;
   font-size: 25px;
   font-weight: bold;
-  transition: 0.4s;
-  color: #fed136;
+  color: var(--myColor2);
+  line-height: 15px
  }
 
 #mainNav .navbar-toggler {
   font-size: 12px;
-  right: 0;
   padding: 13px;
   text-transform: uppercase;
   color: #fff;
-  border: 0;
-  background-color: #fed136;}
-
+  background-color: var(--myColor2);
+}
 
 #mainNav .navbar-nav .nav-item .nav-link {
-  float: left;
-  color: #fff;
+  color: white;
   text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 25px;
-  border-radius: 4px;
-  font-weight: 400;
   letter-spacing: 1px;
 }
 
-  #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-    color: #fed136;
-  }
+#mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
+  color: var(--myColor2);
+}
 
-  .logButton{
-    float: left;
-    color: black;
-    background-color: white!important;
-    text-align: center;
-    font-size: 18px;
-    line-height: 25px;
-    border:none!important;
-  }
+.logButton{
+  float: left;
+  color: black;
+  background-color: white!important;
+  text-align: center;
+  font-size: 18px;
+  line-height: 25px;
+  border:none!important;
+}
 
-  .logButton:hover {
-    background-color: #fed136!important;
-  }
+.logButton:hover {
+  background-color: #fed136!important;
+}
 
-  .rowWidth {
-    width: 100%;
-  }
+.rowWidth {
+  width: 100%;
+}
 
 
 /* NAVBAR CSS END */
 
 
 
-  /*MEDIA START HERE -> responsive design*/
-  @media (min-width: 992px)
+/*MEDIA START HERE -> responsive design*/
+@media (min-width: 992px)
+{
+
+  #mainNav.navbar-shrink
   {
-
-    #mainNav.navbar-shrink
-    {
-      padding-top: 0;
-      padding-bottom: 0;
-      background-color: #212529;
-    }
-
-    .navbar-expand-lg .navbar-collapse
-    {
-      display: -ms-flexbox!important;
-      display: flex!important;
-      -ms-flex-preferred-size: auto;
-      flex-basis: auto;
-    }
-    .navbar-expand-lg .navbar-nav
-    {
-      -ms-flex-direction: row;
-      flex-direction: row;
-    }
-
-    .navbar-expand-lg
-    {
-      -ms-flex-flow: row nowrap;
-      flex-flow: row nowrap;
-      -ms-flex-pack: start;
-      justify-content: flex-start;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #212529;
   }
 
-    #mainNav .navbar-nav .nav-item .nav-link
-    {
-      padding: 1.1em 1em!important;
-    }
-
-    #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover
-    {
-      color: #fed136;
-    }
-
+  .navbar-expand-lg .navbar-collapse
+  {
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
   }
+  .navbar-expand-lg .navbar-nav
+  {
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .navbar-expand-lg
+  {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+  #mainNav .navbar-nav .nav-item .nav-link
+  {
+    padding: 1.1em 1em;
+  }
+
+  #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover
+  {
+    color: #fed136;
+  }
+
+}
 
 

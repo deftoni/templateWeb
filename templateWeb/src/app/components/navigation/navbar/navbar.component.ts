@@ -11,10 +11,11 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   animations: [
     trigger('scrollState', [
       state('onTop', style({
-        backgroundColor: 'red'
+        backgroundColor: 'rgba(33, 37, 41, 0.5)'
       })),
       state('inPage', style({
-        backgroundColor: 'black'
+        backgroundColor: 'rgba(33, 37, 41, 0.9)',
+        padding: '14px'
       })),
       transition('onTop <=> inPage', animate('500ms 0ms ease-in'))
     ])
@@ -47,18 +48,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  ngOnDestroy() {
-    this.authListenerSub.unsubscribe();
-  }
-
   @HostListener('window:scroll', ['$event'])
-  doSomething(event) {
-    console.log('scroll positionY', window.pageYOffset );
+  setScrollInfo() {
     if ( window.pageYOffset <= 115 ) {
       this.scrollInfo = 'onTop';
     } else {
       this.scrollInfo = 'inPage';
     }
+  }
+
+  ngOnDestroy() {
+    this.authListenerSub.unsubscribe();
   }
 
 }
