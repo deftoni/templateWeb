@@ -2,24 +2,13 @@ import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { scrollStateTrigger } from './animation';
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
-  animations: [
-    trigger('scrollState', [
-      state('onTop', style({
-        backgroundColor: 'rgba(33, 37, 41, 0.5)'
-      })),
-      state('inPage', style({
-        backgroundColor: 'rgba(33, 37, 41, 0.9)',
-        padding: '14px'
-      })),
-      transition('onTop <=> inPage', animate('500ms 0ms ease-in'))
-    ])
-  ]
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
@@ -46,6 +35,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout();
+  }
+
+  onArticle() {
+    this.router.navigateByUrl('/article');
   }
 
   @HostListener('window:scroll', ['$event'])

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const userRoutes = require('./routes/user');
 const articlesRoutes = require('./routes/articles');
-const contactRoutes = require('./routes/contact');
+const contactRoutes = require('./routes/contact'); 
 
 const app = express();
 mongoose.set('useCreateIndex', true)

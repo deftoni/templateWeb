@@ -1,126 +1,80 @@
+
+:host {
+  --myColor1: #212529;
+  --myColor2: #fed136;
+}
+
 /* NAVBAR CSS START */
 
 #mainNav{
-  padding: 14px;
-  background: #212529;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background: var(--myColor1);
   transition: all 500ms ease-in;
-}
-
-.onTop {
-  background: transparent!important;
-  padding: 25px!important;
-}
-
-.onTop a {
-  color: black;
-}
-
-.onTop .navbar-brand {
-  color: black!important;
-}
-
-.onTop .navbar-toggler {
-  color: black!important;
-}
-
-.onTop .navbar-nav .nav-item .nav-link{
-  color: black!important;
-  font-size: 20px!important;
-}
-
-.onTop button {
-  font-size: 18px;
-}
-
-.onTop .styleButton{
-  padding: 10px;
 }
 
 #mainNav .navbar-brand {
   padding-left: 25px;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: bold;
-  color:  white;
+  color: var(--myColor2);
   line-height: 15px;
  }
 
- #mainNav .navbar-toggler {
+#mainNav .navbar-toggler {
   font-size: 12px;
   padding: 13px;
   text-transform: uppercase;
-  color: white;
+  color: #fff;
   background-color: var(--myColor2);
 }
 
 #mainNav .navbar-nav .nav-item .nav-link {
   color: white;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 25px;
   letter-spacing: 1px;
 }
 
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-  background-color: #fed136;
-  color: black;
+  color: var(--myColor2);
 }
 
 .logButton{
+  float: left;
   color: black;
   background-color: white;
   text-align: center;
-  font-size: 16px;
-  font-weight: 440;
+  font-size: 18px;
   line-height: 25px;
   border:none!important;
-  border-radius: 8px;
 }
-
-.styleButton{
-  background-color: transparent;
-  border-radius: 8px;
-}
-
 
 .logButton:hover {
   background-color: #fed136;
-  animation: marked 200ms ease-out forwards;
-}
-
-@keyframes marked {
-  0% {
-    transform: scale(1)
-  }
-  50% {
-    transform: scale(1.05)
-  }
-  100% {
-    transform: scale(1)
-  }
-
-}
-
-.buttonSpace {
-  padding: 5px
-}
-
-.itemSpace {
-  padding: 10px;
-}
-
-.horizontalCenter {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .rowWidth {
   width: 100%;
 }
 
+
+/* NAVBAR CSS END */
+
+
+
 /*MEDIA START HERE -> responsive design*/
 @media (min-width: 992px)
 {
+
+  #mainNav.navbar-shrink
+  {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #212529;
+  }
 
   .navbar-expand-lg .navbar-collapse
   {
@@ -143,4 +97,16 @@
     justify-content: flex-start;
 }
 
+  #mainNav .navbar-nav .nav-item .nav-link
+  {
+    padding: 1.1em 1em;
+  }
+
+  #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover
+  {
+    color: #fed136;
+  }
+
 }
+
+
