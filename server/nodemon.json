@@ -2,6 +2,7 @@
     "env": {
         "MONGO_ATLAS_USER": "AngularNode",
         "MONGO_ATLAS_PW": "N8qqeeZPwYf1QBn9",
-        "JWT_KEY": "secret_this_should_be_changed"
+        "JWT_KEY": "secret_this_should_be_changed",
+        "EMAIL_CONNECTION_PWD": "9psiBORDEAUX"
     }
 }

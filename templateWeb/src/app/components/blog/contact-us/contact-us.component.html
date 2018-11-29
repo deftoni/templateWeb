@@ -36,13 +36,13 @@
       <h2>Vous désirez nous contactez par email ?</h2>
       <h3>Utilisez directement notre formulaire ci-desous ou blablabla@blabla.com</h3>
     </div>
-    <form id="contactForm" class="needs-validation mt-5" novalidate #ContactUs="ngForm" enctype="multipart/form-data">
+    <form id="contactForm" (submit)="sendEmail(ContactUs)" class="needs-validation mt-5" novalidate #ContactUs="ngForm" enctype="multipart/form-data">
       <div class="row form-group">
         <div class="col-xl-2">
           <label for="nomEtPrenom">Prénom et nom</label>
         </div>
         <div class="col-xl-4">
-          <input type="text" class="form-control" name="nomEtPrenom" ngModel required>
+          <input type="text" class="form-control" name="nomEtPrenom" placeholder="Entrez votre Prénom et Nom" ngModel required>
         </div>
       </div>
       <div class="row form-group">
@@ -50,7 +50,7 @@
           <label for="societe">Société</label>
         </div>
         <div class="col-xl-4">
-          <input type="text" class="form-control" name="societe" ngModel required>
+          <input type="text" class="form-control" placeholder="Entrer votre société" name="societe" ngModel>
         </div>
       </div>
       <div class="row form-group">
@@ -58,7 +58,8 @@
           <label for="email">Adresse e-mail</label>
         </div>
         <div class="col-xl-4">
-          <input type="email" class="form-control" name="email" ngModel required>
+          <input type="email" class="form-control" name="email" placeholder="Entrez votre email" #emailInput="ngModel" ngModel required email>
+          <div class="alert alert-danger" *ngIf="emailInput.invalid && emailInput.touched " >Valid email is required</div>
         </div>
       </div>
       <div class="row form-group">
@@ -66,7 +67,8 @@
           <label for="numTel">Numéro de téléphone</label>
         </div>
         <div class="col-xl-4">
-          <input type="number" class="form-control" name="numTel" ngModel required>
+          <input type="number" class="form-control" #phoneInput="ngModel" name="numTel" placeholder="Entrez votre numéro de téléphone" #phoneInput="ngModel" ngModel required>
+          <div class="alert alert-danger" *ngIf="phoneInput.invalid && phoneInput.touched " >Valid phone number is required</div>
         </div>
       </div>
       <div class="row form-group">
@@ -74,7 +76,7 @@
           <label for="message">Message</label>
         </div>
         <div class="col-xl-4">
-          <textarea form="contactForm" type="text" class="form-control" name="message" ngModel required></textarea>
+          <textarea form="contactForm" type="text" class="form-control" name="message" placeholder="Entrez votre message" ngModel required></textarea>
         </div>
       </div>
       <div class="row">

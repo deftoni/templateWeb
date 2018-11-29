@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const userRoutes = require('./routes/user');
 const articlesRoutes = require('./routes/articles');
+const contactRoutes = require('./routes/contact');
 
 const app = express();
 mongoose.set('useCreateIndex', true)
@@ -43,5 +44,6 @@ app.use((req, res, next) => {
 app.use('/images', express.static(path.join('../server/backend/public/images')));
 app.use('/api/articles', articlesRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/contact', contactRoutes);
 
 module.exports = app;

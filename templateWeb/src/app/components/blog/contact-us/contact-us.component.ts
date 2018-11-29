@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { EmailsService } from '../../../services/emails/emails.service';
+
 
 @Component({
   selector: 'app-contact-us',
@@ -7,15 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsComponent implements OnInit {
 
-  title: String;
-  lat: Number;
-  lng: Number;
-  constructor() { }
+  myformIsValid: Boolean = false;
+  constructor(private emailService: EmailsService) { }
 
   ngOnInit() {
-    this.title = 'My first AGM project';
-    this.lat = 44.8637065;
-    this.lng = -0.6561808;
+
+  }
+
+  sendEmail (form: NgForm) {
+    if (form.invalid) {
+      console.log('form invalid');
+      return;
+    } else {
+      this.myformIsValid = true;
+    }
+    console.log('appel du service a été commenté');
+    // this.emailService.sendEmail(form.value);
   }
 
 }
