@@ -13,19 +13,19 @@
     <div class="navbar-collapse collapse col-xl-8 col-lg-8 col-md-12 col-sm-6 col-6" id="navbarResponsive">
       <ul class="navbar-nav nav-pills align-items-center horizontalCenter">
         <li class="nav-item itemSpace">
-          <a class="nav-link styleButton" href="#agencyOverview">L'agence</a>
+          <a class="nav-link styleButton" [routerLink]="['/']" fragment="agencyOverview">L'agence</a>
         </li>
         <li class="nav-item itemSpace">
-          <a class="nav-link styleButton" href="#agencyTeam">l'équipe</a>
+          <a class="nav-link styleButton" [routerLink]="['/']" fragment="agencyTeam">l'équipe</a>
           </li>
         <li class="nav-item itemSpace">
-          <a class="nav-link styleButton" href="#listServices">Services</a>
+          <a class="nav-link styleButton" [routerLink]="['/']" fragment="listServices">Services</a>
         </li>
         <li class="nav-item itemSpace">
-          <a class="nav-link styleButton" href="#portfolio">Portfolio</a>
+          <a class="nav-link styleButton" [routerLink]="['/']" fragment="portfolio">Portfolio</a>
         </li>
         <li class="nav-item itemSpace">
-          <a class="nav-link styleButton" href="#contactUs">Contact</a>
+          <a class="nav-link styleButton" [routerLink]="['/']" fragment="contactUs">Contact</a>
         </li>
         <li class="nav-item itemSpace">
           <a class="nav-link styleButton" [routerLink]="['/', 'articleList']">Articles</a>

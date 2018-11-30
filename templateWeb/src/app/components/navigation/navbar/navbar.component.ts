@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
-import { scrollStateTrigger } from './animation';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
