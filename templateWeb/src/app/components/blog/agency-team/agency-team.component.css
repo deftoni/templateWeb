@@ -36,10 +36,10 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.10);
+    transform: scale(1.05);
   }
   100% {
-    transform: scale(1.20);
+    transform: scale(1.10);
   }
 
 }

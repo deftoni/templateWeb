@@ -40,6 +40,7 @@ import { AgmCoreModule } from '@agm/core';
 import { AgencyOverviewComponent } from './components/blog/agency-overview/agency-overview.component';
 import { AgencyTeamComponent } from './components/blog/agency-team/agency-team.component';
 import { SmoothScrollDirective } from './directives/smooth-scroll/smooth-scroll.directive';
+import { ScrollSpyDirective } from './directives/scroll-spy/scroll-spy.directive';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { SmoothScrollDirective } from './directives/smooth-scroll/smooth-scroll.
     ContactUsComponent,
     AgencyTeamComponent,
     SmoothScrollDirective,
+    ScrollSpyDirective
   ],
   entryComponents: [
     ArticleUpdateModalContentComponent

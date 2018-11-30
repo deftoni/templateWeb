@@ -1,7 +1,7 @@
 <nav [ngClass]="{'onTop': scrollInfo == 'onTop' }" class="navbar navbar-expand-lg fixed-top" id="mainNav">
   <div class="row align-items-center rowWidth">
     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-12">
-      <a class="navbar-brand" href="#header">Template Web</a>
+      <a class="navbar-brand" [routerLink]="['/']" fragment="header" >Template Web</a>
     </div>
     <div class="col-md-0 col-sm-0 col-0">
       <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive"

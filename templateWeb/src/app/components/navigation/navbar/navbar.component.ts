@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,6 +22,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
+
+  }
+
+  scrollTo(fragment) {
+    document.querySelector('#' + fragment)
+    .scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest'});
   }
 
   onLogin() {
@@ -42,7 +48,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event'])
   setScrollInfo() {
-    if ( window.pageYOffset <= 115 ) {
+    if ( window.pageYOffset <= 75 ) {
       this.scrollInfo = 'onTop';
     } else {
       this.scrollInfo = 'inPage';

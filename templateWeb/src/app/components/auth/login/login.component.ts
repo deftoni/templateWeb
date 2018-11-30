@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
+    window.scroll(0, 0);
   }
 
   onLogin(form: NgForm) {

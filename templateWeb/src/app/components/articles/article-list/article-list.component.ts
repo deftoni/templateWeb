@@ -27,7 +27,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   constructor(public articlesService: ArticlesService, private authService: AuthService) { }
 
   ngOnInit() {
-
+    window.scroll(0, 0);
     // verification de l'authentification
     this.userIsAuthenticated = this.authService.getAuthStatus();
     this.authListenerSub = this.authService.getAuthStatusListener()

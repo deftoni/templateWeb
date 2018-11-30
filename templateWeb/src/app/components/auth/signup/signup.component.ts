@@ -12,6 +12,7 @@ export class SignupComponent implements OnInit {
   constructor(public authService: AuthService ) { }
 
   ngOnInit() {
+    window.scroll(0, 0);
   }
 
   onSignup(form: NgForm) {
