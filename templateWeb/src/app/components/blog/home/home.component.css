@@ -15,9 +15,33 @@
 }
 
 .btnTellMeMore {
-    background-color: #fed136;
-    border-color: #fed136;
-    color: #000;
+  color: black;
+  background-color: #fed136;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: 1px;
+  border:none!important;
+  border-radius: 8px;
+}
+
+.btnTellMeMore:hover {
+  background-color: #fed136;
+  animation: marked 150ms ease-out forwards;
+}
+
+@keyframes marked {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.10);
+  }
+  100% {
+    transform: scale(1.20);
+  }
+
 }
 
 

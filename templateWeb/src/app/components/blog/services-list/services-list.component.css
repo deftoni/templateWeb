@@ -5,6 +5,10 @@
 }
 
 .serviceListMarginPadding{
-    padding-top: 10%; 
+    padding-top: 10%;
     margin-bottom: 11%;
+}
+
+.text-primary{
+  color: #fed136 !important;
 }

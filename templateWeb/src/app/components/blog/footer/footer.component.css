@@ -6,12 +6,13 @@
   --myColor3: #33923C;
   --myColor4: #212529;
   --myColor5: #817B82;
+  --myColor6: #fed136;
 }
 
 
 .bestFooterEver {
-  background: var(--myColor5);
-  color: var(--myColor4);
+  background: var(--myColor4);
+  color: var(--myColor6);
   padding-top: 2%;
   padding-bottom: 2%;
 }

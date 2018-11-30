@@ -13,7 +13,3 @@
 .paginator{
   margin-top: 1rem;
 }
-
-body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active{
-  border-radius: 11px !important;
-}

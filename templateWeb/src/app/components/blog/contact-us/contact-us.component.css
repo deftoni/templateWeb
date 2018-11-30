@@ -1,6 +1,6 @@
 .masthead {
   text-align: center;
-  color: #fff;
+  color: #000;
   background-image: url("/assets/img/contactUs.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -20,10 +20,28 @@
   padding-bottom: 50px;
 }
 
-.btnTellMeMore {
+.btnEnvoye {
   background-color: #fed136;
   border-color: #fed136;
   color: #000;
+}
+
+.btnEnvoye:hover {
+  background-color: #fed136;
+  animation: marked 150ms ease-out forwards;
+}
+
+@keyframes marked {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.10);
+  }
+  100% {
+    transform: scale(1.20);
+  }
+
 }
 
 header.masthead .intro-text {

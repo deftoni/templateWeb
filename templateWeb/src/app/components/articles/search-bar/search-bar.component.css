@@ -1,0 +1,11 @@
+.btnfficher {
+  color: black;
+  background-color: #fed136;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: 1px;
+  border:none!important;
+  border-radius: 8px;
+}

@@ -40,13 +40,13 @@
     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-12">
       <ul class="nav float-right">
         <li class="nav-item buttonSpace" *ngIf='!userIsAuthenticated'>
-          <button label="Login" type="button" class="btn logButton" (click)="onLogin()">Login</button>
+          <button label="Login" type="button" class="btn logButton" (click)="onLogin()">Log in</button>
         </li>
         <li class="nav-item buttonSpace" *ngIf='!userIsAuthenticated'>
-          <button label="Signup" type="button" class="btn logButton" (click)="onSignup()">Signup</button>
+          <button label="Signup" type="button" class="btn logButton" (click)="onSignup()">Sign up</button>
         </li>
         <li class="nav-item buttonSpace" *ngIf='userIsAuthenticated'>
-          <button label="Logout" type="button" class="btn logButton" (click)="onLogout()">LogOut</button>
+          <button label="Logout" type="button" class="btn logButton" (click)="onLogout()">Log out</button>
         </li>
       </ul>
     </div>
