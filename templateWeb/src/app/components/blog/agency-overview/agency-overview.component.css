@@ -4,14 +4,17 @@
   height: 100%;
 }
 
-.contentAgencyOverview{
-  line-height: 41px;
-}
-
 .pt-10{
   padding-top: 8rem!important;
 }
 
+.row p{
+  line-height: 41px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #6c757d!important;
+}
 
 @media screen and (max-width: 992px) {
   .gmapDisplay{

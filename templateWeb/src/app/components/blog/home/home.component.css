@@ -51,6 +51,7 @@ header.masthead .intro-text {
     }
 
 header.masthead .intro-text .intro-lead-in {
+      color: black;
       font-size: 40px;
       font-style: italic;
       line-height: 40px;
@@ -59,6 +60,7 @@ header.masthead .intro-text .intro-lead-in {
   }
 
 header.masthead .intro-text .intro-heading {
+    color: black;
     font-size: 75px;
     font-weight: 700;
     line-height: 75px;
