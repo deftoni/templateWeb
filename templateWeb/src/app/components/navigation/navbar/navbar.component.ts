@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   private authListenerSub: Subscription;
   scrollInfo = 'onTop';
+  private urlFragment = window.location.hash;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -22,13 +23,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
-
   }
 
+  /*
   scrollTo(fragment) {
     document.querySelector('#' + fragment)
     .scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest'});
   }
+  */
 
   onLogin() {
     this.router.navigateByUrl('/login');

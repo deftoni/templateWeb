@@ -1,35 +1,37 @@
-import { Directive, Output, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, Output, ElementRef, HostListener } from '@angular/core';
 import { EventEmitter } from 'events';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+
 
 @Directive({
   selector: '[appScrollSpy]'
 })
 export class ScrollSpyDirective {
-  @Input() public spiedTags = [];
   @Output() public sectionChange = new EventEmitter();
-  private currentFragment: string;
+  private currentFragment = window.location.hash;
 
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef, private router: Router) { }
 
   @HostListener('window:scroll', ['$event'])
-  onScroll(event: any) {
-    console.log('mon event', event);
+  onScroll() {
     let currentFragment: string;
     const children = this.el.nativeElement.children;
-    console.log('children', children);
-    const scrollTop = event.target.scrollTop;
-    const parentOffset = event.target.offsetTop;
+    let scrollTop;
     for (let i = 0; i < children.length; i++) {
       const element = children[i];
-      if (this.spiedTags.some(spiedTag => spiedTag === element.tagName)) {
-          if ((element.offsetTop - parentOffset) <= scrollTop) {
+      scrollTop = element.scrollTop;
+          if (((element.offsetTop - window.pageYOffset) <= scrollTop) && (element.offsetTop + element.offsetHeight) > window.pageYOffset ) {
             currentFragment = element.id;
           }
-      }
     }
     if (currentFragment !== this.currentFragment) {
+      console.log('changmeent a faire');
       this.currentFragment = currentFragment;
-      this.sectionChange.emit(this.currentFragment);
+      if (this.currentFragment) {
+        this.router.navigate(['/'], {fragment: this.currentFragment });
+        // emit currentFragment
+      }
     }
   }
 }
