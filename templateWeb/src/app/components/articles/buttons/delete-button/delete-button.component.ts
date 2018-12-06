@@ -17,6 +17,7 @@ export class DeleteButtonComponent implements OnInit {
 
   onDelete() {
     this.articlesService.deleteArticle(this.articleId);
+
   }
 
 }

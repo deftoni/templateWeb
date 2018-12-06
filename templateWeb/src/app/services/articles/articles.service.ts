@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Config } from '../../config/config';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class ArticlesService {
 
   private config = new Config();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router ) { }
 
   getArticles(articlesPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${articlesPerPage}&page=${currentPage}`;
@@ -87,11 +88,14 @@ export class ArticlesService {
     this.http.post<{ message: string, articleId: string, articleImgPath: string}>(`${this.config.getArticleUrl()}`, newArticle)
       .subscribe(
         (responseData) => {
+
           article.id = responseData.articleId;
           article.img_irl = responseData.articleImgPath;
           this.articles.push(article);
           this.totalArticle++;
           this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
+          this.router.navigate(['/articleList']);
+
         },
         (error: Error) => { console.log(error); },
         () => { }
@@ -115,6 +119,7 @@ export class ArticlesService {
     this.http.delete(`${this.config.getArticleUrl()}` + articleId)
     .subscribe(() => {
       this.getArticles(this.articlesPerPage, this.currentPage);
+      this.router.navigate(['/articleList']);
     });
       /*.subscribe(() => {
       this.articles = this.articles.filter(article => article.id !== articleId);
@@ -149,6 +154,7 @@ export class ArticlesService {
             this.articles.find(({ id }) => id === responseData.cleanOldArticle.id).img_irl = responseData.cleanOldArticle.img_irl;
           }
           this.articlesUpdated.next({articles: [...this.articles], countArticle: (this.totalArticle)});
+          this.router.navigate(['/articleList']);
         },
         (error: Error) => { console.log(error); },
         () => { }

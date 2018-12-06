@@ -41,6 +41,7 @@ import { AgencyOverviewComponent } from './components/blog/agency-overview/agenc
 import { AgencyTeamComponent } from './components/blog/agency-team/agency-team.component';
 import { SmoothScrollDirective } from './directives/smooth-scroll/smooth-scroll.directive';
 import { ScrollSpyDirective } from './directives/scroll-spy/scroll-spy.directive';
+import { ServiceElementComponent } from './components/blog/service-element/service-element/service-element.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { ScrollSpyDirective } from './directives/scroll-spy/scroll-spy.directive
     ContactUsComponent,
     AgencyTeamComponent,
     SmoothScrollDirective,
-    ScrollSpyDirective
+    ScrollSpyDirective,
+    ServiceElementComponent
   ],
   entryComponents: [
     ArticleUpdateModalContentComponent
