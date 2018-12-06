@@ -23,7 +23,7 @@ export class ServicesListComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
     checkScroll() {
-      const componentPosition = this.el.nativeElement.offsetTop - 100;
+      const componentPosition = this.el.nativeElement.offsetTop - 300;
 
       const scrollPosition = window.pageYOffset;
 

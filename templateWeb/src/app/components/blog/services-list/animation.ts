@@ -32,8 +32,8 @@ export const scrollAnimationFromRightTrigger = trigger('scrollAnimationFromRight
     opacity: 0,
     transform: 'translateX(+100%)'
   })),
-  transition('show => hide', animate('700ms ease-out')),
-  transition('hide => show', animate('700ms ease-in'))
+  transition('show => hide', animate('500ms ease-out')),
+  transition('hide => show', animate('500ms ease-in'))
 ]);
 
 export const scrollAnimationFromLeftTrigger = trigger('scrollAnimationFromLeft', [
@@ -45,8 +45,8 @@ export const scrollAnimationFromLeftTrigger = trigger('scrollAnimationFromLeft',
     opacity: 0,
     transform: 'translateX(-100%)'
   })),
-  transition('show => hide', animate('700ms ease-out')),
-  transition('hide => show', animate('700ms ease-in'))
+  transition('show => hide', animate('500ms ease-out')),
+  transition('hide => show', animate('500ms ease-in'))
 ]);
 
 export const scrollAnimationFromBottomTrigger = trigger('scrollAnimationFromBottom', [
@@ -58,6 +58,6 @@ export const scrollAnimationFromBottomTrigger = trigger('scrollAnimationFromBott
     opacity: 0,
     transform: 'translateY(+100%)'
   })),
-  transition('show => hide', animate('700ms ease-out')),
-  transition('hide => show', animate('700ms ease-in'))
+  transition('show => hide', animate('500ms ease-out')),
+  transition('hide => show', animate('500ms ease-in'))
 ]);
