@@ -5,12 +5,19 @@ import { ArticlesService } from '../../../services/articles/articles.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 
+import { trigger, state, style } from '@angular/animations';
+
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.css']
 })
+
 export class ArticleComponent implements OnInit, OnDestroy {
+
+  clickInfo = 'default';
+
+
 
   @Input() article: Article;
 
@@ -31,4 +38,12 @@ export class ArticleComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.authListenerSub.unsubscribe();
   }
+
+  onClickSimple() {
+    this.clickInfo = 'clicked';
+    setTimeout(() => {
+      this.clickInfo = 'default'; },
+      3000);
+  }
+
 }

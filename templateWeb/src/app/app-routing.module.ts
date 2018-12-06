@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'articleCreate', component: ArticleCreateComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'article-details/:articleId', component: ArticleDetailsComponent }
+  { path: 'article-details/:articleId', component: ArticleDetailsComponent, data: {state: 'article-details'} }
 
 ];
 

@@ -13,3 +13,7 @@
 .paginator{
   margin-top: 1rem;
 }
+
+.container {
+  min-height: 500px;
+}

@@ -1,4 +1,6 @@
-  <app-navbar></app-navbar>
-  <p-toast key="errorToast" position="center"></p-toast>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
+<app-navbar></app-navbar>
+<p-toast key="errorToast" position="center"></p-toast>
+<main [@routerTransition]="getState(o)">
+  <router-outlet #o="outlet"></router-outlet>
+</main>
+

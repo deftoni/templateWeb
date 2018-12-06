@@ -1,9 +1,16 @@
-.articleDetailMarge{
-  margin-top: 15%;
-  margin-bottom: 10%;
+.imgArticleDetail{
+  width: 100%;
+  min-height: 100%;
+}
+.articleDetails{
+  min-height: 460px;
+  padding: 20px;
+
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.35);
 }
 
-.imgArticleDetail{
-  width: 50%;
-  min-height: 300px;
+.container {
+  margin-top: 15%;
 }

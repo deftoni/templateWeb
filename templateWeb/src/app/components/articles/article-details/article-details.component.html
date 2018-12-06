@@ -1,17 +1,55 @@
 <div *ngIf="!this.myArticleToDisplay">
 </div>
-<div class="container articleDetailMarge" *ngIf="this.myArticleToDisplay">
-  <div class="row">
-    <div class="col">
-      <img class="imgArticleDetail" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg">
-    </div>
-    <div class="col">
-      <div class="row">
-        <h2>{{ this.myArticleToDisplay.title }}</h2>
+<div class="container" *ngIf="this.myArticleToDisplay">
+  <nav class="navbar navbar-expand-lg ">
+    <div class="row">
+      <div class="col-xl-12">
+        <ul class="navbar-nav nav-pills align-items-center horizontalCenter">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/', 'articleList']">Articles</a>
+          </li>
+          <li class="nav-item">
+              <i class="fas fa-arrow-right fa-xs"></i>
+            </li>
+          <li class="nav-item">
+            <span>{{ this.myArticleToDisplay.title }}</span>
+          </li>
+        </ul>
       </div>
-      <div class="row">
-        <h2>plopo</h2>
+    </div>
+  </nav>
+  <div class="articleDetails">
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-6">
+        <img class="imgArticleDetail" [src]="this.myArticleToDisplay.img_irl">
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-3">
+        <div class="row">
+          <h2>{{ this.myArticleToDisplay.title }}</h2>
+        </div>
+        <div class="row">
+          <p>{{ this.myArticleToDisplay.content }}</p>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-3">
+        <div class="row">
+          <h2>{{ this.myArticleToDisplay.title }}</h2>
+        </div>
+        <div class="row">
+          <p>{{ this.myArticleToDisplay.content }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-3 ml-3">
+        <div class="row">
+          <h2>{{ this.myArticleToDisplay.title }}</h2>
+        </div>
+        <div class="row">
+          <p>{{ this.myArticleToDisplay.content }}</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<app-footer></app-footer>
