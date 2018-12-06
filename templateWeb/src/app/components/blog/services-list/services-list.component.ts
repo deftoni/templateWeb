@@ -1,15 +1,21 @@
 import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
-import { itemSlideinTrigger, scrollAnimationTrigger} from './animation';
+import {
+  itemSlideinTrigger,
+  scrollAnimationFromRightTrigger,
+  scrollAnimationFromLeftTrigger,
+  scrollAnimationFromBottomTrigger } from './animation';
 import { ServiceElement } from 'src/app/models/service-element/service-element.model';
+import { AnimationEvent } from '@angular/animations';
 
 @Component({
   selector: 'app-services-list',
   templateUrl: './services-list.component.html',
   styleUrls: ['./services-list.component.css'],
-  animations: [ itemSlideinTrigger, scrollAnimationTrigger]
+  animations: [ itemSlideinTrigger, scrollAnimationFromRightTrigger, scrollAnimationFromLeftTrigger, scrollAnimationFromBottomTrigger]
 })
 export class ServicesListComponent implements OnInit {
 
+  public displayServiceElements: ServiceElement[] = [];
   public serviceElements: ServiceElement[];
   public state = 'hide';
 
@@ -53,7 +59,20 @@ export class ServicesListComponent implements OnInit {
       }
     ];
 
+    if (this.serviceElements.length >= 1) {
+      this.displayServiceElements.push(this.serviceElements[0]);
+    }
   }
 
+  onItemAnimated(event: AnimationEvent, last: number) {
+    if ( event.fromState !== 'void') {
+      return;
+    }
+    if (this.serviceElements.length > last + 1 ) {
+      this.displayServiceElements.push(this.serviceElements[last + 1 ]);
+    } else {
+      this.serviceElements = this.displayServiceElements;
+    }
+  }
 
 }
